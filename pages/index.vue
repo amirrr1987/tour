@@ -1,4 +1,11 @@
 <template>
-  <div class="">search:</div>
+  <section>
+    <TheContainer>
+      .sdfsd
+    </TheContainer>
+  </section>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+
+</script>
