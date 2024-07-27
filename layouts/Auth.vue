@@ -1,10 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    Layout: Auth
+  <main class="h-screen flex justify-center items-center">
     <slot />
-  </div>
+  </main>
 </template>
 
 <style scoped></style>

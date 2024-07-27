@@ -1,8 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+</script>
 
 <template>
   <footer>
-    <div class="">
+    <div class="bg-gray-200 py-12">
       <UContainer>
         <div class="grid grid-cols-5 gap-4">
           <UCard>f</UCard>
@@ -13,16 +14,15 @@
         </div>
       </UContainer>
     </div>
-    <UContainer class="text-center">
-      <UDivider />
+
+<div class="bg-gray-300 py-4">
+  <UContainer class="text-center">
+    <span class="text-xs">
       کلیه حقوق این سایت محفوظ و متعلق به شرکت ایده گستر داده کسب و کار شهر
-      می‌باشد.
-    </UContainer>
-    <UContainer class="text-center">
-      <UDivider />
-      کلیه حقوق این سایت محفوظ و متعلق به شرکت ایده گستر داده کسب و کار شهر
-      می‌باشد.
-    </UContainer>
+    می‌باشد.
+    </span>
+  </UContainer>
+</div>
   </footer>
 </template>
 

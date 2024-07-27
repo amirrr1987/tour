@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const links = [
+const navbarLinks = [
   {
-    label: "Home",
+    label: "تور کد",
     to: "/",
 
     avatar: {
@@ -11,17 +11,18 @@ const links = [
     },
   },
   {
-    label: "Tour",
-    icon: "i-heroicons-home",
-    to: "/tour",
-  },
-  {
-    label: "About",
+    label: "درباره ما",
     icon: "i-heroicons-chart-bar",
     to: "/about",
   },
   {
-    label: "Contact",
+    label: "تور‌ها",
+    icon: "i-heroicons-home",
+    to: "/tour",
+  },
+
+  {
+    label: "تماس با ما",
     icon: "i-heroicons-command-line",
     to: "/contact",
   },
@@ -33,5 +34,5 @@ const navUI = {
 </script>
 
 <template>
-  <UHorizontalNavigation :links="links" :ui="navUI" />
+  <UHorizontalNavigation :links="navbarLinks" :ui="navUI"   />
 </template>
