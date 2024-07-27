@@ -4,6 +4,8 @@ const route = useRoute();
 const links = [
   {
     label: "Home",
+    to: "/",
+
     avatar: {
       src: "https://avatars.githubusercontent.com/u/739984?v=4",
     },
@@ -11,7 +13,7 @@ const links = [
   {
     label: "Tour",
     icon: "i-heroicons-home",
-    to: "/getting-started/installation",
+    to: "/tour",
   },
   {
     label: "About",
