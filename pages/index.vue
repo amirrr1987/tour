@@ -1,3 +1,4 @@
 <template>
-    <div class="">sdf</div>
+  <div class="">search:</div>
 </template>
+<script setup lang="ts"></script>
