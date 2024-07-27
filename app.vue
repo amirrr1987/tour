@@ -8,3 +8,8 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
+<style>
+#__nuxt{
+  font-family: 'Vazirmatn';
+}
+</style>
