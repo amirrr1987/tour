@@ -1216,9 +1216,9 @@ const tours = reactive([
 ]);
 
 const sectionUi = {
-  base: "flex-1 col-span-9",
+  base: "flex-1 col-span-7  xl:col-span-9",
   body: {
-    base: "grid grid-cols-4  gap-4",
+    base: "grid lg:grid-cols-2 xl:grid-cols-4  gap-4",
     padding: "px-0 py-0 sm:p-0",
   },
 
@@ -1226,7 +1226,7 @@ const sectionUi = {
   shadow: 'shadow-none',
 };
 const asideUi = {
-  base: "col-span-3",
+  base: "col-span-5 xl:col-span-3",
 };
 const tourCardUi = {
   base: 'relative',
