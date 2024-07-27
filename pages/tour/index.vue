@@ -8,7 +8,13 @@
         </div>
       </form>
     </UCard>
-    <UCard as="section" :ui="sectionUi"> f </UCard>
+    <UCard as="section" :ui="sectionUi">
+      <template v-for="tour in tours" :key="tour.id">
+        <RouterLink :to="`/tour/tour-details/${tour.id}`">
+          <UCard as="figure">{{ tour }}</UCard>
+        </RouterLink>
+      </template>
+    </UCard>
   </main>
 </template>
 <script setup lang="ts">
@@ -16,9 +22,15 @@ const search = useRouteQuery("search");
 
 const sectionUi = {
   base: "flex-1 col-span-8",
+  body: {
+    base: "grid grid-cols-4  gap-4",
+    padding: "px-4 py-4 sm:p-4",
+  },
 };
 const asideUi = {
   base: "col-span-2",
 };
+
+const tours = reactive([{ id: 1 }, { id: 2 }]);
 </script>
 <style lang="css"></style>
