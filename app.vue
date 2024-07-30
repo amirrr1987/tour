@@ -1,15 +1,18 @@
 <template>
-  <NuxtRouteAnnouncer>
-    <template #default="{ message }">
-      <p>{{ message }} was loaded.</p>
-    </template>
-  </NuxtRouteAnnouncer>
+  <NuxtRouteAnnouncer />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
 </template>
 <style>
-#__nuxt{
-  font-family: 'Vazirmatn';
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Vazirmatn", sans-serif;
 }
 </style>

@@ -10,13 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@ant-design-vue/nuxt": "^1.4.2",
-    "@nuxt/ui": "^2.18.2",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",
-    "@vueuse/router": "^10.11.0",
+    "gsap": "^3.12.5",
+    "nprogress": "^0.2.0",
     "nuxt": "^3.12.4",
-    "vue": "latest",
-    "yup": "^1.4.0"
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@types/nprogress": "^0.2.3",
+    "@unocss/nuxt": "^0.61.7",
+    "unocss": "^0.61.7"
   }
 }

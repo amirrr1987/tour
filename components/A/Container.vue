@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main class="h-screen flex justify-center items-center">
+  <div class="container mx-auto px-4">
     <slot />
-  </main>
+  </div>
 </template>
 
 <style scoped></style>
