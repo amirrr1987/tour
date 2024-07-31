@@ -8,11 +8,12 @@
       </ul>
     </AContainer>
   </nav>
-
   <main>
     <section>
       <AContainer>
-        <AModal />
+        <AModal title="sfsdf">
+          <UInput class="border-red border-solid border" />
+        </AModal>
         <div ref="box" class="box">Animate me!</div>
       </AContainer>
     </section>
@@ -28,7 +29,6 @@
 <script setup lang="ts">
 import { gsap } from "gsap";
 const box = ref(null);
-
 onMounted(() => {
   gsap.to(box.value, { x: 100, duration: 1 });
 });
