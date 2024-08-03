@@ -1,26 +1,26 @@
 <template>
   <Swiper
     :modules="[SwiperAutoplay, SwiperEffectCreative]"
-    :slides-per-view="4"
-    :loop="true"
-    space-between="30"
-    :autoplay="{
-      delay: 1000,
-      disableOnInteraction: true,
-    }"
+    :slidesPerView="1"
+    :spaceBetween="10"
     :breakpoints="{
       '640': {
         slidesPerView: 2,
         spaceBetween: 20,
       },
       '768': {
-        slidesPerView: 4,
+        slidesPerView: 2,
         spaceBetween: 40,
       },
       '1024': {
-        slidesPerView: 5,
+        slidesPerView: 4,
         spaceBetween: 50,
       },
+    }"
+    :loop="true"
+    :autoplay="{
+      delay: 1000,
+      disableOnInteraction: true,
     }"
     :creative-effect="{
       prev: {
