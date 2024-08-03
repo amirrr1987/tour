@@ -11,18 +11,18 @@ import nprogress from "nprogress";
 const route = useRoute();
 const token = route.query.token as string;
 
-
+definePageMeta({
+  layout: "auth",
+});
 onMounted(async () => {
   nprogress.start();
 
-  console.log("🚀 ~ onMounted ~ nprogress.start():", nprogress.start())
+  console.log("🚀 ~ onMounted ~ nprogress.start():", nprogress.start());
   const { data: tokenData, refresh } = await useFetch(`/api/v1/auth/${token}`);
-  const x = useLocalStorage("tokenData", tokenData.value)
+  const x = useLocalStorage("tokenData", tokenData.value);
   nprogress.done();
-  useRouter().push('/')
-  
-})
-
+  useRouter().push("/");
+});
 
 // const getData = async () => {
 //   try {
