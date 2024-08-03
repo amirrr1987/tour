@@ -5,11 +5,10 @@
     <UDivider class="my-8" />
     <AContainer>
       <div class="md:grid md: grid-cols-6 gap-4">
-        <FooterCertificates class="col-span-2" />
         <FooterLinks class="col-span-2" />
+        <FooterCertificates />
         <FooterSocials />
         <FooterSupport />
-        <FooterCompoentsDivider />
       </div>
     </AContainer>
 

@@ -11,7 +11,7 @@ const config = {
       از تخفیف‌ها و جدیدترین‌ تورها با خبر شوید.
     </div>
     <UButtonGroup size="xl" orientation="horizontal" dir="ltr">
-      <UInput :ui="config" />
+      <UInput :ui="config" type="email" />
       <UButton icon="tabler:send" color="green" />
     </UButtonGroup>
   </AContainer>

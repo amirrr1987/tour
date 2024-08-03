@@ -2,7 +2,6 @@
 const config = {
   border: {
     base: "border-green-300 dark:border-green-800",
-    horizontal: "w-20",
   },
 };
 </script>
