@@ -24,20 +24,10 @@ const links = [
     },
   ],
   [
+
     {
-      label: "صفحه اصلی",
-      avatar: {
-        src: "https://avatars.githubusercontent.com/u/739984?v=4",
-      },
-      to: "/",
-    },
-    {
-      label: "درباره ما",
-      to: "/about-us",
-    },
-    {
-      label: "تور داخلی",
-      to: "/tour",
+      label: "ورود/ثبت نام",
+      to: "/login",
     },
     {
       label: "تور خارجی",
