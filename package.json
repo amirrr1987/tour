@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "tour",
   "private": true,
   "type": "module",
   "scripts": {
@@ -20,8 +20,6 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@types/nprogress": "^0.2.3",
-    "@unocss/nuxt": "^0.61.8",
-    "unocss": "^0.61.8"
+    "@types/nprogress": "^0.2.3"
   }
 }
