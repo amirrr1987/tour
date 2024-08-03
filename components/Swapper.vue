@@ -8,6 +8,20 @@
       delay: 1000,
       disableOnInteraction: true,
     }"
+    :breakpoints="{
+      '640': {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      '768': {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+      '1024': {
+        slidesPerView: 5,
+        spaceBetween: 50,
+      },
+    }"
     :creative-effect="{
       prev: {
         shadow: false,
@@ -21,7 +35,12 @@
     <SwiperSlide v-for="slide in slides" :key="slide.id" class="py-1">
       <UCard :ui="cardUi">
         <template #header>
-          <img class="aspect-[1.7] object-cover" :src="slide.img" :title="slide.title" :alt="slide.title" />
+          <img
+            class="aspect-[1.7] object-cover"
+            :src="slide.img"
+            :title="slide.title"
+            :alt="slide.title"
+          />
         </template>
         {{ slide.title }}
       </UCard>
@@ -68,7 +87,6 @@ const slides = ref<Slide[]>([
     title: "تور تستی",
     img: "https://s3gw.at.shab.cloud/production/houses/photos/2024/1/15/20/104643/thumb-house-104643-2024-06-10-08-41-02-0e76292794888d4f1fa75fb3aff4ca27c58f56a6-751044.jpg",
   },
-
 ]);
 
 const cardUi = {
