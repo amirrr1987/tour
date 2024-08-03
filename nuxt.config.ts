@@ -2,5 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@unocss/nuxt", "@vueuse/nuxt"],
+  modules: ["@nuxt/ui", "@vueuse/nuxt"],
+  app: {
+    head: {
+      htmlAttrs: {
+        dir: 'rtl',
+        lang: 'fa'
+      }
+    }
+  }
 });

@@ -1,9 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const config = {
+  constrained: "!container",
+};
+</script>
 
 <template>
-  <div class="container mx-auto px-4">
+  <UContainer :ui="config">
     <slot />
-  </div>
+  </UContainer>
 </template>
 
 <style scoped></style>
