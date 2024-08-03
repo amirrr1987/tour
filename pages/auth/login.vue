@@ -3,6 +3,9 @@ import { object, string, type InferType } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
 import { gsap } from "gsap";
 
+definePageMeta({
+  layout: "auth",
+});
 const schema = object({
   username: string().required("Required"),
   password: string().required("Required"),
@@ -28,7 +31,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-screen flex items-center justify-center" ref="formRef">
+  <div ref="formRef">
     <UForm
       :schema="schema"
       :state="state"
