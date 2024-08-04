@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const inputUi = {
-  base: "w-96",
+  base: "md:w-96",
 }
 
 
