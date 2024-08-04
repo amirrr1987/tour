@@ -4,9 +4,9 @@
     <FooterSubscribe />
     <UDivider class="my-8" />
     <AContainer>
-      <div class="md:grid md: grid-cols-6 gap-4">
-        <FooterLinks class="col-span-2" />
-        <FooterCertificates />
+      <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-y-12 md:gap-x-4">
+        <FooterLinks class="md:col-span-3 lg:col-span-2" />
+        <FooterCertificates class="md:col-span-2" />
         <FooterSocials />
         <FooterSupport />
       </div>
