@@ -16,19 +16,11 @@ definePageMeta({
 });
 onMounted(async () => {
   nprogress.start();
-
-  console.log("🚀 ~ onMounted ~ nprogress.start():", nprogress.start());
-  const { data: tokenData, refresh } = await useFetch(`/api/v1/auth/${token}`);
-  const x = useLocalStorage("tokenData", tokenData.value);
+  const { data: tokenData } = await useFetch(
+    `/api/v1/auth/verify-email/${token}`
+  );
+  useLocalStorage("tokenData", tokenData.value);
   nprogress.done();
   useRouter().push("/");
 });
-
-// const getData = async () => {
-//   try {
-//     await refresh();
-//   } catch (error) {
-//     console.log("🚀 ~ getData ~ error:", error);
-//   }
-// };
 </script>
