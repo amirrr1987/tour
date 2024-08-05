@@ -27,7 +27,7 @@ const links = [
 
     {
       label: "ورود/ثبت نام",
-      to: "/login",
+      to: "/auth/login",
     },
     {
       label: "تور خارجی",
