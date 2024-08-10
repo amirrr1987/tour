@@ -1,2 +1,5 @@
 [functions]
-timeout = 30  # Set the timeout to 30 seconds
+  node_bundler = "esbuild"
+
+[[functions.environment]]
+  timeout = 30
