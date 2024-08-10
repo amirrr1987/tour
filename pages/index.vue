@@ -1,4 +1,5 @@
 <template>
+  {{categoies}}
   <section class="py-12">
     <div
       class="flex flex-col gap-y-8 md:flex-row md:justify-between md:mx-auto md:max-w-screen-md md:px-6"
@@ -50,6 +51,13 @@
   </section>
 </template>
 <script setup lang="ts">
+const token = useLocalStorage('tokenData', '2');
+console.log("tokenData")
+console.log(token)
+console.log("tokenData")
+console.log(token.value)
+const {data: categoies}  = await useFetch(`/api/v1/category/gettAll/${token.value.accessToken}`, )
+console.log(categoies)
 const uDivider = {
   wrapper: {
     base: "flex items-center align-center text-center",

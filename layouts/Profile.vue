@@ -10,9 +10,7 @@
             }}</span>
           </template> -->
       </UCard>
-      <UCard class="col-span-9 !border-0">
-        <slot />
-      </UCard>
+      <slot />
     </AContainer>
   </section>
   <TheFooter />

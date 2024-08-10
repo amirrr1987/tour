@@ -19,7 +19,7 @@ onMounted(async () => {
   const { data: tokenData } = await useFetch(
     `/api/v1/auth/verify-email/${token}`
   );
-  useLocalStorage("tokenData", tokenData.value);
+  useLocalStorage("accessToken", tokenData.value?.accessToken);
   nprogress.done();
   useRouter().push("/");
 });

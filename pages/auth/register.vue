@@ -3,7 +3,7 @@
     :schema="schema"
     :state="state"
     class="space-y-4"
-    @submit.prevent="onSubmit"
+    @submit="onSubmit"
   >
     <UFormGroup label="email" name="email">
       <UInput v-model="state.email" />
@@ -37,20 +37,16 @@ const schema = object({
 type Schema = InferType<typeof schema>;
 
 const state = reactive({
-  username: "",
-  password: "",
-  email: "",
+  username: "amirrr1",
+  password: "QWqw12!@",
+  email: "gzx45633@tccho.com",
 });
-const register = async () => {
+
+
+async function onSubmit(event: FormSubmitEvent<Schema>) {
   await useFetch("/api/v1/auth/register", {
     method: "post",
     body: state,
   });
-};
-
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // Do something with event.data
-  console.log(event.data);
-  register();
 }
 </script>
