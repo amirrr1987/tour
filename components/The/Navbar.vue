@@ -1,14 +1,12 @@
 <template>
-  <div class="border-b py-1 text-xs">
-    <AContainer class="flex justify-end">
-      <div>
-        <div>021-91005711</div>
-        <div>021-91005711</div>
-      </div>
+  <div class="border-b py-1 bg-gray-800 text-white">
+    <AContainer class="flex justify-between text-xs">
+      <div>021-91005711</div>
+      <div>021-91005711</div>
     </AContainer>
   </div>
   <nav
-    class="z-50 relative bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900 p-4"
+    class="z-50 sticky top-0 relative bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900 p-4 shadow-lg"
     @mouseleave="toggle(false)"
   >
     <AContainer
@@ -62,15 +60,16 @@
               to="/"
               class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
               aria-current="page"
-              >Home</NuxtLink
             >
+              صفحه اصلی
+            </NuxtLink>
           </li>
           <li @mouseenter="toggle(true)">
             <button
               data-collapse-toggle="mega-menu-full-dropdown"
               class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
             >
-              Company
+              تور‌ها
               <svg
                 class="w-2.5 h-2.5 ms-3"
                 aria-hidden="true"
@@ -88,29 +87,15 @@
               </svg>
             </button>
           </li>
+
           <li>
             <NuxtLink
               @mouseenter="toggle(false)"
               to="/contact"
               class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-              >Contact</NuxtLink
             >
-          </li>
-          <li>
-            <NuxtLink
-              @mouseenter="toggle(false)"
-              to="/contact"
-              class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-              >Contact</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink
-              @mouseenter="toggle(false)"
-              to="/contact"
-              class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-              >Contact</NuxtLink
-            >
+              درباره ما
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -120,27 +105,34 @@
       <div
         v-show="isShow"
         @mouseenter="toggle(true)"
-        class="absolute inset-x-0 top-14 mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600"
+        class="absolute shadow-lg  inset-x-0 top-14 mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600"
       >
         <AContainer class="flex py-4 gap-4">
-          <div class="col-span-3 grid grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-auto h-96">
+          <div
+            class="col-span-3 grid grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-auto h-96"
+          >
             <div v-for="si in 20">
-              <h3 class="font-semibold">Title</h3>
-              <UDivider class="mb-2 mt-1" />
+              <h3 class="font-semibold mb-2">عنوان دسته {{ si }}</h3>
+              <!-- <UDivider class="mb-2 mt-1" /> -->
               <ul>
                 <li class="mb-1" v-for="item in 5">
                   <NuxtLink
                     to="/"
-                    class="text-sm hover:text-blue-500 text-gray-500 py-2"
+                    class="text-sm hover:text-blue-500 text-gray-400 py-2"
                   >
-                    Connect using.
+                    دسته {{ item }}
                   </NuxtLink>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col-span-2">
-            <img src="https://placehold.co/300x300" alt="" />
+            <img
+              class="w-full h-full"
+              src="https://placehold.co/300x300"
+              title="hjkj"
+              alt="jhhj"
+            />
           </div>
         </AContainer>
       </div>
