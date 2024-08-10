@@ -1,0 +1,2 @@
+[functions]
+timeout = 30  # Set the timeout to 30 seconds
