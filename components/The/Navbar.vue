@@ -105,23 +105,34 @@
       <div
         v-show="isShow"
         @mouseenter="toggle(true)"
-        class="absolute shadow-lg  inset-x-0 top-14 mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600"
+        class="absolute shadow-lg inset-x-0 top-14 mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600"
       >
         <AContainer class="flex py-4 gap-4">
           <div
             class="col-span-3 grid grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-auto h-96"
           >
             <div v-for="si in 20">
-              <h3 class="font-semibold mb-2">عنوان دسته {{ si }}</h3>
-              <!-- <UDivider class="mb-2 mt-1" /> -->
+              <div class="flex gap-x-2 items-center">
+                <!-- <img src="https://placehold.co/60x20" alt="" /> -->
+                <Icon name="iconoir:sea-and-sun" />
+                <h3 class="font-medium">عنوان دسته {{ si }}</h3>
+              </div>
+              <UDivider class="mt-2 mb-3" />
               <ul>
-                <li class="mb-1" v-for="item in 5">
+                <li
+                  class="group mb-1 ease-in-out duration-500 hover:-translate-x-2 flex items-center gap-x-1 py-2"
+                  v-for="item in 5"
+                >
                   <NuxtLink
                     to="/"
-                    class="text-sm hover:text-blue-500 text-gray-400 py-2"
+                    class="text-sm hover:text-blue-500 text-gray-400"
                   >
                     دسته {{ item }}
                   </NuxtLink>
+                  <Icon
+                    name="tabler:arrow-left"
+                    class="hidden text-sm group-hover:block group-hover:text-blue-500"
+                  />
                 </li>
               </ul>
             </div>
