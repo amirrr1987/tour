@@ -109,7 +109,7 @@
       >
         <AContainer class="flex py-4 gap-4">
           <div
-            class="col-span-3 grid grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-auto h-96"
+            class="col-span-3 grid grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-y-auto overflow-x-hidden h-96"
           >
             <div v-for="si in 20">
               <div class="flex gap-x-2 items-center">
