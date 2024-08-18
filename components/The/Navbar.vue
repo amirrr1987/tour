@@ -60,6 +60,7 @@
                   v-for="item in 5"
                 >
                   <NuxtLink
+                    @click="toggle(false)"
                     to="/"
                     class="text-sm hover:text-blue-500 text-gray-400"
                   >
