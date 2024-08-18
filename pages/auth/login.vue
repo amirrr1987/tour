@@ -17,8 +17,10 @@ const state = reactive({
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // Do something with event.data
-  console.log(event.data);
+    await useFetch("/api/v1/auth/login", {
+    method: "post",
+    body: event.data,
+  });
 }
 definePageMeta({
   layout: "auth",

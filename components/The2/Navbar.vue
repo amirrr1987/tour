@@ -30,7 +30,7 @@
           <UButton to="sss" variant="link" :padded="false"> درباره ما </UButton>
         </li>
         <li @mouseenter="toggle(false)">
-          <UButton to="/contact-us" variant="link" :padded="false">
+          <UButton to="sss" variant="link" :padded="false">
             تماس با ما
           </UButton>
         </li>
@@ -87,7 +87,7 @@
   </nav>
 </template>
 <script setup lang="ts">
-// import gsap from "gsap";
+import gsap from "gsap";
 onMounted(() => {
   // gsap.to(".sticky", { y: 0 });
 });

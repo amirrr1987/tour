@@ -19,8 +19,10 @@ const state = reactive({
 });
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // انجام کاری با داده‌های event
-  console.log(event.data);
+  await useFetch("/api/v1/auth/register", {
+    method: "post",
+    body: event.data,
+  });
 }
 definePageMeta({
   layout: "auth",

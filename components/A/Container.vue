@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const config = {
-  constrained: "!container",
-};
+  constrained: '!container',
+}
 </script>
 
 <template>
-  <UContainer :ui="config">
+  <UContainer  :ui="config">
     <slot />
   </UContainer>
 </template>
