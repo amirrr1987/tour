@@ -1,10 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <TheNavbar />
-  <TheHeader />
-  <slot />
-  <TheFooter />
+  <div>
+    Component: The/Main
+  </div>
 </template>
 
 <style scoped></style>

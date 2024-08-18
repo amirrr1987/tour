@@ -1,5 +1,5 @@
 {
-  "name": "tour",
+  "name": "nuxt-app",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,18 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.18.3",
-    "@vueuse/core": "^10.11.0",
-    "@vueuse/nuxt": "^10.11.0",
-    "@vueuse/router": "^10.11.0",
-    "gsap": "^3.12.5",
-    "nprogress": "^0.2.0",
+    "@nuxt/ui": "^2.18.4",
     "nuxt": "^3.12.4",
     "nuxt-swiper": "^1.2.2",
     "vue": "latest",
     "yup": "^1.4.0"
-  },
-  "devDependencies": {
-    "@types/nprogress": "^0.2.3"
   }
 }

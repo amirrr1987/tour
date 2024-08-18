@@ -1,112 +1,84 @@
-<script setup lang="ts">
-const inputUi = {
-  base: "md:w-96",
-};
-
-const buttonGroupUi = {
-  rounded: "rounded-xl",
-  shadow: "shadow-xl",
-};
-
-const city = ref("");
-
-const router = useRouter();
-const findByData = () => {
-  router.push(`/tour/?city=${city.value}`);
-};
-const cities = [
-  "خوی",
-  "Arlene Mccoy",
-  "Devon Webb",
-  "Tom Cook",
-  "Tanya Fox",
-  "Hellen Schmidt",
-  "Caroline Schultz",
-  "Mason Heaney",
-  "Claudie Smitham",
-  "Emil Schaefer",
-];
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <header class="py-12 flex">
-    <AContainer class="flex justify-center items-center">
-      <UButtonGroup size="xl" orientation="horizontal" :ui="buttonGroupUi">
-        <UInputMenu
-          :ui="inputUi"
-          v-model="city"
-          :options="cities"
-          @keyup.enter="findByData"
-        />
-
-        <!-- <UButton icon="tabler:click" color="green" /> -->
-        <!-- <UButton icon="tabler:x" color="green" /> -->
-        <UButton
-          icon="tabler:search"
-          color="green"
-          label="جستجو"
-          @click="findByData"
-        />
-      </UButtonGroup>
-    </AContainer>
-  </header>
-
-  <section
-    class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply"
-  >
-    <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-      <h1
-        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl"
-      >
-        We invest in the world’s potential
-      </h1>
-      <p
-        class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48"
-      >
-        Here at Flowbite we focus on markets where technology, innovation, and
-        capital can unlock long-term value and drive economic growth.
-      </p>
-      <div
-        class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0"
-      >
-        <a
-          href="#"
-          class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-        >
-          Get started
-          <svg
-            class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
+  <section class="relative bg-[url('/images/bg/6.jpg')] py-36 bg-cover">
+    <div class="absolute inset-0 bg-slate-900/40"></div>
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-12 md:grid-cols-2 items-center gap-6">
+        <div class="lg:col-span-7">
+          <h5 class="text-3xl font-dancing text-white">Find Your Ideal Stay</h5>
+          <h4
+            class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-6xl mb-6 mt-5"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
-        <a
-          href="#"
-          class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
-        >
-          Learn more
-        </a>
+            Where Do You <br />
+            Want To Go?
+          </h4>
+          <p class="text-white/70 text-xl max-w-xl">
+            Planning for a trip? We will organize your trip with the best places
+            and within best budget!
+          </p>
+
+          <div class="mt-6">
+            <a
+              href=""
+              class="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-red-500 text-white rounded-md"
+              >View Packages</a
+            >
+            <a
+              href="#!"
+              data-type="youtube"
+              data-id="S_CGed6E610"
+              class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-red-500 bg-red-500 text-white ms-1 lightbox"
+              ><i data-feather="video" class="h-4 w-4"></i></a
+            ><span class="font-semibold ms-1 align-middle"></span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div
+            class="bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-800 p-6 z-10 relative lg:ms-10"
+          >
+            <h4 class="mb-5 text-2xl font-semibold">
+              Search Your Destinations
+            </h4>
+            <UForm>
+              <UFormGroup label="Search" class="mb-4">
+                <UInput placeholder="Search" />
+              </UFormGroup>
+              <UFormGroup label="Select Your Date" class="mb-4">
+                <UInput type="date" placeholder="Select Your Date" />
+              </UFormGroup>
+              <UFormGroup label="Select Your Date" class="mb-4">
+                <UInput type="date" placeholder="Select Your Date" />
+              </UFormGroup>
+              <UButton block>Search</UButton>
+            </UForm>
+          </div>
+        </div>
       </div>
+    </div>
+    <UButton
+      variant="soft"
+      icon="radix-icons:arrow-down"
+      class="absolute inset-x-0 mx-auto w-max h-auto -bottom-4 z-50"
+      :ui="{ rounded: 'rounded-full' }"
+    />
+    <div
+      class="shape absolute sm:-bottom-px -bottom-[2px] start-0 end-0 overflow-hidden text-white dark:text-slate-900"
+    >
+      <svg
+        class="w-full h-auto scale-[2.0] origin-top"
+        viewBox="0 0 2880 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z"
+          fill="currentColor"
+        ></path>
+      </svg>
     </div>
   </section>
 </template>
 
-<style scoped>
-header {
-  background-image: url("/public/3d-render-view-beach-summer-holidays-concept_56345-794.jpg");
-  height: 30rem;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-</style>
+<style scoped></style>
