@@ -35,6 +35,14 @@
           </UButton>
         </li>
       </ul>
+      <ul class="flex flex-col md:flex-row font-medium gap-x-4">
+        <li>
+          <UButton to="/auth/login" variant="link">ورود</UButton>
+        </li>
+        <li>
+          <UButton to="/auth/register" variant="soft">ثبت نام</UButton>
+        </li>
+      </ul>
     </AContainer>
 
     <Transition>
