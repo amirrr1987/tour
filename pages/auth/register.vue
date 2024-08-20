@@ -17,12 +17,14 @@ const state = reactive({
   password: undefined,
   remember: undefined,
 });
-
+const loading = ref(false)
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  loading.value = !loading.value
   await useFetch("/api/v1/auth/register", {
     method: "post",
     body: event.data,
   });
+  loading.value = !loading.value
 }
 definePageMeta({
   layout: "auth",
@@ -60,7 +62,7 @@ definePageMeta({
       <UCheckbox v-model="state.remember" />
     </UFormGroup>
 
-    <UButton type="submit" block class="font-[Vazirmatn] text-md">
+    <UButton type="submit" block class="font-[Vazirmatn] text-md" :loading="loading">
       ثبت نام
     </UButton>
     <div>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { boolean, object, string, type InferType } from "yup";
 import type { FormSubmitEvent } from "#ui/types";
+import { useLocalStorage } from "@vueuse/core";
 
 const schema = object({
-  email: string().email("ایمیل نامعتبر است").required("الزامی است"),
+  username: string().required("الزامی است"),
   password: string().min(8, "باید حداقل 8 کاراکتر باشد").required("الزامی است"),
   remember: boolean(),
 });
@@ -11,16 +12,18 @@ const schema = object({
 type Schema = InferType<typeof schema>;
 
 const state = reactive({
-  email: undefined,
-  password: undefined,
-  remember: undefined,
+  username: "test",
+  password: "test-password",
 });
-
+const router = useRouter();
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  await useFetch("/api/v1/auth/login", {
+  const { data: tokenData } = await useFetch("/api/v1/auth/login", {
     method: "post",
     body: event.data,
   });
+
+  useLocalStorage("accessToken", tokenData.value?.accessToken);
+  router.push("/");
 }
 definePageMeta({
   layout: "auth",
@@ -30,12 +33,8 @@ definePageMeta({
 <template>
   <h5 class="my-6 text-xl font-semibold">ورود</h5>
   <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-    <UFormGroup v-slot="{ error }" label="ایمیل" name="email">
-      <UInput
-        v-model="state.email"
-        type="email"
-        placeholder="name@example.com"
-      />
+    <UFormGroup v-slot="{ error }" label="نام کاربری" name="username">
+      <UInput v-model="state.username" type="text" />
     </UFormGroup>
 
     <UFormGroup label="رمز عبور" name="password">
