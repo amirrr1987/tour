@@ -28,43 +28,40 @@ definePageMeta({
 </script>
 
 <template>
-  <UCard class="w-[400px]">
-    <UButton to="/" variant="link" class="mx-auto block">
-      <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" />
+  <h5 class="my-6 text-xl font-semibold">ورود</h5>
+  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+    <UFormGroup v-slot="{ error }" label="ایمیل" name="email">
+      <UInput
+        v-model="state.email"
+        type="email"
+        placeholder="name@example.com"
+      />
+    </UFormGroup>
+
+    <UFormGroup label="رمز عبور" name="password">
+      <UInput
+        v-model="state.password"
+        type="password"
+        placeholder="رمز عبور:"
+      />
+    </UFormGroup>
+
+    <UFormGroup
+      label="مرا به خاطر بسپار"
+      name="remember"
+      class="flex gap-x-4 py-1"
+    >
+      <UCheckbox v-model="state.remember" />
+    </UFormGroup>
+
+    <UButton type="submit" block class="font-[Vazirmatn] text-md">
+      ورود
     </UButton>
-    <h5 class="my-6 text-xl font-semibold">ورود</h5>
-    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-      <UFormGroup v-slot="{ error }" label="ایمیل" name="email">
-        <UInput
-          v-model="state.email"
-          type="email"
-          placeholder="name@example.com"
-        />
-      </UFormGroup>
-
-      <UFormGroup label="رمز عبور" name="password">
-        <UInput
-          v-model="state.password"
-          type="password"
-          placeholder="رمز عبور:"
-        />
-      </UFormGroup>
-
-      <UFormGroup
-        label="مرا به خاطر بسپار"
-        name="remember"
-        class="flex gap-x-4 py-1"
-      >
-        <UCheckbox v-model="state.remember" />
-      </UFormGroup>
-
-      <UButton type="submit" block class="font-[Vazirmatn] text-md">
-        ورود
-      </UButton>
+    <div class="flex justify-center gap-4 pt-8">
       <UButton to="/auth/register" color="gray" variant="link">ثبت نام</UButton>
-      <UButton to="/auth/forget" color="gray" variant="link"
-        >فراموشی رمز عبور</UButton
-      >
-    </UForm>
-  </UCard>
+      <UButton to="/auth/forget" color="gray" variant="link">
+        فراموشی رمز عبور
+      </UButton>
+    </div>
+  </UForm>
 </template>

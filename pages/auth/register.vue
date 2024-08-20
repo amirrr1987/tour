@@ -30,47 +30,42 @@ definePageMeta({
 </script>
 
 <template>
-  <UCard class="w-[400px]">
-    <UButton to="/" variant="link" class="mx-auto block">
-      <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" >
+  <h5 class="my-6 text-xl font-semibold">ثبت نام</h5>
+  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+    <UFormGroup label="نام کاربری" name="username">
+      <UInput v-model="state.username" />
+    </UFormGroup>
+
+    <UFormGroup label="ایمیل" name="email">
+      <UInput
+        v-model="state.email"
+        type="email"
+        placeholder="name@example.com"
+      />
+    </UFormGroup>
+
+    <UFormGroup label="رمز عبور" name="password">
+      <UInput
+        v-model="state.password"
+        type="password"
+        placeholder="رمز عبور:"
+      />
+    </UFormGroup>
+
+    <UFormGroup
+      label="شرایط و ضوابط را می‌پذیرم"
+      name="acceptCondition"
+      class="flex gap-x-4 py-1"
+    >
+      <UCheckbox v-model="state.remember" />
+    </UFormGroup>
+
+    <UButton type="submit" block class="font-[Vazirmatn] text-md">
+      ثبت نام
     </UButton>
-    <h5 class="my-6 text-xl font-semibold">ورود</h5>
-    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-      <UFormGroup label="نام کاربری" name="username">
-        <UInput v-model="state.username" />
-      </UFormGroup>
-
-      <UFormGroup label="ایمیل" name="email">
-        <UInput
-          v-model="state.email"
-          type="email"
-          placeholder="name@example.com"
-        />
-      </UFormGroup>
-
-      <UFormGroup label="رمز عبور" name="password">
-        <UInput
-          v-model="state.password"
-          type="password"
-          placeholder="رمز عبور:"
-        />
-      </UFormGroup>
-
-      <UFormGroup
-        label="شرایط و ضوابط را می‌پذیرم"
-        name="acceptCondition"
-        class="flex gap-x-4 py-1"
-      >
-        <UCheckbox v-model="state.remember" />
-      </UFormGroup>
-
-      <UButton type="submit" block class="font-[Vazirmatn] text-md">
-        ثبت نام
-      </UButton>
-      <div>
-        حساب کاربری دارید؟
-        <UButton to="/auth/login" color="gray" variant="link">ورود</UButton>
-      </div>
-    </UForm>
-  </UCard>
+    <div>
+      حساب کاربری دارید؟
+      <UButton to="/auth/login" color="gray" variant="link">ورود</UButton>
+    </div>
+  </UForm>
 </template>
