@@ -1,13 +1,9 @@
 <template>
-<TopDestinations />
-<ToursPackages />
+  <TopDestinations />
+  <ToursPackages />
 
   <!-- Start -->
   <section class="relative md:py-24 py-16">
-   
- 
-
- 
     <!--end container-->
 
     <div class="container mx-auto px-4 relative md:mt-24 mt-16">
@@ -482,3 +478,8 @@
   <!--end section-->
   <!-- End -->
 </template>
+<script setup lang="ts">
+definePageMeta({
+  layout: "landing",
+});
+</script>

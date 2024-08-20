@@ -1,10 +1,6 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div>
-    Layout: Landing
-    <slot />
-  </div>
+  <TheNavbar />
+  <TheHeader />
+  <slot />
+  <TheFooter />
 </template>
-
-<style scoped></style>

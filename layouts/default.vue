@@ -1,10 +1,5 @@
-<script setup lang="ts"></script>
-
 <template>
   <TheNavbar />
-  <TheHeader />
   <slot />
   <TheFooter />
 </template>
-
-<style scoped></style>
