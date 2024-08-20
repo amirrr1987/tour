@@ -31,7 +31,9 @@ definePageMeta({
 
 <template>
   <UCard class="w-[400px]">
-    <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" />
+    <UButton to="/" variant="link" class="mx-auto block">
+      <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" >
+    </UButton>
     <h5 class="my-6 text-xl font-semibold">ورود</h5>
     <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
       <UFormGroup label="نام کاربری" name="username">

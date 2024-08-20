@@ -1,7 +1,6 @@
 <template>
   <section class="py-12">
     <AContainer>
-      
       <div class="flex flex-wrap flex-row justify-center items-center">
         <div class="flex flex-wrap w-full">
           <div class="flex flex-wrap flex-col w-full text-sm sm:text-base">

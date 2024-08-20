@@ -5,24 +5,44 @@
     <div class="absolute inset-0 bg-slate-900/40"></div>
     <div class="container mx-auto px-4">
       <div class="grid lg:grid-cols-12 md:grid-cols-2 items-center gap-6">
+             <div class="lg:col-span-5">
+          <div
+            class="bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-800 p-6 z-10 relative lg:ms-10"
+          >
+            <h4 class="mb-5 text-2xl font-semibold">
+              مقصد خود را جستجو کنید
+            </h4>
+            <UForm>
+              <UFormGroup label="جستجو" class="mb-4">
+                <UInput placeholder="جستجو" />
+              </UFormGroup>
+              <UFormGroup label="تاریخ خود را انتخاب کنید" class="mb-4">
+                <UInput type="date" placeholder="تاریخ خود را انتخاب کنید" />
+              </UFormGroup>
+              <UFormGroup label="تاریخ خود را انتخاب کنید" class="mb-4">
+                <UInput type="date" placeholder="تاریخ خود را انتخاب کنید" />
+              </UFormGroup>
+              <UButton block>جستجو</UButton>
+            </UForm>
+          </div>
+        </div>
         <div class="lg:col-span-7">
-          <h5 class="text-3xl font-dancing text-white">Find Your Ideal Stay</h5>
+          <h5 class="text-3xl font-dancing text-white">اقامت ایده‌آل خود را پیدا کنید</h5>
           <h4
             class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-6xl mb-6 mt-5"
           >
-            Where Do You <br />
-            Want To Go?
+            به کجا می‌خواهید <br />
+            بروید؟
           </h4>
           <p class="text-white/70 text-xl max-w-xl">
-            Planning for a trip? We will organize your trip with the best places
-            and within best budget!
+            برنامه‌ریزی برای سفر؟ ما سفر شما را با بهترین مکان‌ها و با بهترین بودجه سازماندهی خواهیم کرد!
           </p>
 
           <div class="mt-6">
             <a
               href=""
               class="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-red-500 text-white rounded-md"
-              >View Packages</a
+              >مشاهده بسته‌ها</a
             >
             <a
               href="#!"
@@ -34,27 +54,7 @@
           </div>
         </div>
 
-        <div class="lg:col-span-5">
-          <div
-            class="bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-800 p-6 z-10 relative lg:ms-10"
-          >
-            <h4 class="mb-5 text-2xl font-semibold">
-              Search Your Destinations
-            </h4>
-            <UForm>
-              <UFormGroup label="Search" class="mb-4">
-                <UInput placeholder="Search" />
-              </UFormGroup>
-              <UFormGroup label="Select Your Date" class="mb-4">
-                <UInput type="date" placeholder="Select Your Date" />
-              </UFormGroup>
-              <UFormGroup label="Select Your Date" class="mb-4">
-                <UInput type="date" placeholder="Select Your Date" />
-              </UFormGroup>
-              <UButton block>Search</UButton>
-            </UForm>
-          </div>
-        </div>
+   
       </div>
     </div>
     <UButton

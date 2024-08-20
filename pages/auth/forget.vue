@@ -27,7 +27,9 @@ definePageMeta({
 
 <template>
   <UCard class="w-[400px]">
-    <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" />
+    <UButton to="/" variant="link" class="mx-auto block">
+      <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" />
+    </UButton>
     <h5 class="my-6 text-xl font-semibold">ورود</h5>
     <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
       <UFormGroup v-slot="{ error }" label="ایمیل" name="email">
@@ -57,10 +59,9 @@ definePageMeta({
       <UButton type="submit" block class="font-[Vazirmatn] text-md">
         ورود
       </UButton>
-      <UButton to="/auth/register" color="gray" variant="link"
-        >register</UButton
-      >
-      <UButton to="/auth/forget" color="gray" variant="link">forget</UButton>
+
+      <UButton to="/auth/register" color="gray" variant="link">ثبت نام</UButton>
+      <UButton to="" color="gray" variant="link">فراموشی رمز عبور</UButton>
     </UForm>
   </UCard>
 </template>
