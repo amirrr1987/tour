@@ -46,7 +46,6 @@
         </li>
       </ul>
     </AContainer>
-
     <Transition>
       <div
         v-show="isShow"
@@ -57,17 +56,17 @@
           <div
             class="col-span-3 grid grid-cols-2 md:grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-y-auto overflow-x-hidden h-96"
           >
-            <div v-for="si in categories" :key="si">
+            <div v-for="category in categories" :key="category.id">
               <div class="flex gap-x-2 items-center">
                 <!-- <img src="https://placehold.co/60x20" alt="" /> -->
                 <Icon name="iconoir:sea-and-sun" />
-                <h3 class="font-medium">{{ si.name }}</h3>
+                <h3 class="font-medium">{{ category.name }}</h3>
               </div>
               <UDivider class="mt-2 mb-3" />
               <ul>
                 <li
-                  v-for="item in si.subCategoryModel"
-                  :key="item.id"
+                  v-for="(subCategory, index) in category.subCategoryModel"
+                  :key="index"
                   class="group mb-1 ease-in-out duration-500 hover:-translate-x-2 flex items-center gap-x-1 py-2"
                 >
                   <NuxtLink
@@ -75,7 +74,7 @@
                     class="text-sm hover:text-blue-500 text-gray-400"
                     @click="toggle(false)"
                   >
-                    دسته {{ item.name }}
+                    {{ subCategory.name }}
                   </NuxtLink>
                   <Icon
                     name="tabler:arrow-left"
@@ -96,12 +95,9 @@
         </AContainer>
       </div>
     </Transition>
-    {{ categories }}
   </nav>
 </template>
 <script setup lang="ts">
-import type { Category } from "~/types/CategoryModel";
-
 // import gsap from "gsap";
 const { data: categories } = await useFetch("/api/v1/category/getAll");
 console.log("data");

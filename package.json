@@ -13,6 +13,7 @@
     "@morev/vue-transitions": "^3.0.2",
     "@nuxt/eslint": "^0.5.1",
     "@nuxt/ui": "^2.18.4",
+    "@nuxtjs/dotenv": "^1.4.2",
     "@nuxtjs/html-validator": "^1.8.2",
     "@vite-pwa/nuxt": "^0.10.0",
     "@vueuse/core": "^11.0.0",

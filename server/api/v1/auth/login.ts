@@ -3,7 +3,7 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  const url = `http://10.0.202.34:8081/api/auth/login`;
+  const url = `http://10.0.202.34:8081/auth/login`;
 
   try {
     const response = await $fetch(url, {

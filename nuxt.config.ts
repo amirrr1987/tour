@@ -8,91 +8,94 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/ui",
     "nuxt-swiper",
-    "@nuxt/eslint",
+    // "@nuxt/eslint",
     "nuxt-typed-router",
-    "@nuxtjs/html-validator",
-    "@vite-pwa/nuxt",
-    "nuxt-seo-experiments"
+    // "@nuxtjs/html-validator",
+    // "@vite-pwa/nuxt",
+    // "nuxt-seo-experiments",
+    // "@nuxtjs/dotenv",
   ],
-  site: {
-    // production URL
-    url: 'https://example.com',
-  },
-  pwa: {
-    strategies: sw ? "injectManifest" : "generateSW",
-    srcDir: sw ? "service-worker" : undefined,
-    filename: sw ? "sw.ts" : undefined,
-    registerType: "autoUpdate",
-    manifest: {
-      name: "Nuxt Vite PWA",
-      short_name: "NuxtVitePWA",
-      theme_color: "#ffffff",
-      icons: [
-        {
-          src: "pwa-192x192.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "pwa-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-        },
-        {
-          src: "pwa-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-          purpose: "any maskable",
-        },
-      ],
-    },
-    workbox: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-    },
-    injectManifest: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-    },
-    client: {
-      installPrompt: true,
-      // you don't need to include this: only for testing purposes
-      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
-      periodicSyncForUpdates: 20,
-    },
-    devOptions: {
-      enabled: true,
-      suppressWarnings: true,
-      navigateFallback: "/",
-      navigateFallbackAllowlist: [/^\/$/],
-      type: "module",
-    },
-  },
-  htmlValidator: {
-    usePrettier: false,
-    logLevel: "verbose",
-    failOnError: false,
-    /** A list of routes to ignore (that is, not check validity for). */
-    ignore: [/\.(xml|rss|json)$/],
-    options: {
-      extends: [
-        "html-validate:document",
-        "html-validate:recommended",
-        "html-validate:standard",
-      ],
-      rules: {
-        "svg-focusable": "off",
-        "no-unknown-elements": "error",
-        // Conflicts or not needed as we use prettier formatting
-        "void-style": "off",
-        "no-trailing-whitespace": "off",
-        // Conflict with Nuxt defaults
-        "require-sri": "off",
-        "attribute-boolean-style": "off",
-        "doctype-style": "off",
-        // Unreasonable rule
-        "no-inline-style": "off",
-      },
-    },
-  },
+  // site: {
+  //   // production URL
+  //   url: "https://example.com",
+  // },
+
+  // srcDir: "src/",
+  // pwa: {
+  //   strategies: sw ? "injectManifest" : "generateSW",
+  //   srcDir: sw ? "service-worker" : undefined,
+  //   filename: sw ? "sw.ts" : undefined,
+  //   registerType: "autoUpdate",
+  //   manifest: {
+  //     name: "Nuxt Vite PWA",
+  //     short_name: "NuxtVitePWA",
+  //     theme_color: "#ffffff",
+  //     icons: [
+  //       {
+  //         src: "pwa-192x192.png",
+  //         sizes: "192x192",
+  //         type: "image/png",
+  //       },
+  //       {
+  //         src: "pwa-512x512.png",
+  //         sizes: "512x512",
+  //         type: "image/png",
+  //       },
+  //       {
+  //         src: "pwa-512x512.png",
+  //         sizes: "512x512",
+  //         type: "image/png",
+  //         purpose: "any maskable",
+  //       },
+  //     ],
+  //   },
+  //   workbox: {
+  //     globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+  //   },
+  //   injectManifest: {
+  //     globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+  //   },
+  //   client: {
+  //     installPrompt: true,
+  //     // you don't need to include this: only for testing purposes
+  //     // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+  //     periodicSyncForUpdates: 20,
+  //   },
+  //   devOptions: {
+  //     enabled: true,
+  //     suppressWarnings: true,
+  //     navigateFallback: "/",
+  //     navigateFallbackAllowlist: [/^\/$/],
+  //     type: "module",
+  //   },
+  // },
+  // htmlValidator: {
+  //   usePrettier: false,
+  //   logLevel: "verbose",
+  //   failOnError: false,
+  //   /** A list of routes to ignore (that is, not check validity for). */
+  //   ignore: [/\.(xml|rss|json)$/],
+  //   options: {
+  //     extends: [
+  //       "html-validate:document",
+  //       "html-validate:recommended",
+  //       "html-validate:standard",
+  //     ],
+  //     rules: {
+  //       "svg-focusable": "off",
+  //       "no-unknown-elements": "error",
+  //       // Conflicts or not needed as we use prettier formatting
+  //       "void-style": "off",
+  //       "no-trailing-whitespace": "off",
+  //       // Conflict with Nuxt defaults
+  //       "require-sri": "off",
+  //       "attribute-boolean-style": "off",
+  //       "doctype-style": "off",
+  //       // Unreasonable rule
+  //       "no-inline-style": "off",
+  //     },
+  //   },
+  // },
   app: {
     head: {
       htmlAttrs: {
