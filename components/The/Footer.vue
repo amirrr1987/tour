@@ -170,7 +170,7 @@
                   <ul class="list-none flex flex-col gap-y-2">
                     <li>
                       <UButton
-                        to="/aboutus"
+                        to="/about-us"
                         variant="link"
                         color="white"
                         icon="tabler:chevron-left"
