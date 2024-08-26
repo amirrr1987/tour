@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TourDTO } from "~/types/TourModel";
+import { getTourType } from "~/utils";
 const cardUi = {
   base: "overflow-hidden text-sm",
   header: {
@@ -29,61 +30,66 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <UCard as="figure" class="w-[24.02%]" :ui="cardUi">
-    <template #header>
-      <UBadge :ui="badgeUi" color="rose" variant="solid"
-        >{{ tour.priceDiscount }}%</UBadge
-      >
-      <NuxtImg
-        format="webp"
-        class="aspect-[3/2] object-cover w-full"
-        :src="props.tour.mainImageAddress"
-        :placeholder="[50, 25]"
-        :title="props.tour.name"
-        :alt="props.tour.name"
-      />
+  <NuxtLink :to="`/tour/tour-details/tour-${props.tour.id}`" class="">
+    <UCard as="figure" :ui="cardUi">
+      <template #header>
+        <UBadge :ui="badgeUi" color="rose" variant="solid">
+          {{ props.tour.priceDiscount }}%
+        </UBadge>
+        <NuxtImg
+          format="webp"
+          class="aspect-[3/2] object-cover w-full"
+          :src="props.tour.mainImageAddress"
+          :placeholder="[50, 25]"
+          :title="props.tour.name"
+          :alt="props.tour.name"
+        />
 
-      <div
-        class="grid grid-cols-[1fr,max-content,1fr,max-content,1fr] text-center h-10"
-      >
-        <div class="flex items-center justify-center">
-          <Icon name="tabler:user" />
-          {{ props.tour.capacity }}
+        <div
+          class="grid grid-cols-[1fr,max-content,1fr,max-content,1fr] text-center h-10"
+        >
+          <div class="flex items-center justify-center">
+            <Icon name="tabler:user" />
+            {{ props.tour.capacity }}
+          </div>
+          <UDivider orientation="vertical" />
+          <div class="flex items-center justify-center">
+            {{ props.tour.tourLevelTypeEnum }}
+          </div>
+          <UDivider orientation="vertical" />
+          <div class="flex items-center justify-center gap-x-1">
+            <Icon class="bg-yellow-500" name="tabler:star-filled" />
+            {{ props.tour.rate }}
+          </div>
         </div>
-        <UDivider orientation="vertical" />
-        <div class="flex items-center justify-center">
-          {{ props.tour.tourLevelTypeEnum }}
-        </div>
-        <UDivider orientation="vertical" />
-        <div class="flex items-center justify-center gap-x-1">
-          <Icon class="bg-yellow-500" name="tabler:star-filled" />
-          {{ props.tour.rate }}
+      </template>
+      <div>{{ props.tour.name }}</div>
+      <div></div>
+      <div class="flex justify-between">
+        <div class="">
+          <span class="font-medium"
+            >{{ Number(props.tour.price).toLocaleString() }}
+          </span>
+          <span> تومان</span>
         </div>
       </div>
-    </template>
-    <div>{{ props.tour.name }}</div>
-    <div></div>
-    <div class="flex justify-between">
-      <div class="">
-        <span class="font-medium">{{
-          Number(props.tour.price).toLocaleString()
-        }}</span>
-        <span>تومان</span>
+      <div class="flex justify-between">
+        <div>
+          {{
+            $dayjs(props.tour.startDate)
+              .calendar("jalali")
+              .locale("fa")
+              .format("DD MMMM")
+          }}
+        </div>
+        <!-- <div>{{ getTourType(props.tour.tourTypeEnum) }}</div> -->
+        <div>{{ props.tour.tourTypeEnum }}</div>
       </div>
-    </div>
-    <div>
-      {{
-        $dayjs(props.tour.startDate)
-          .calendar("jalali")
-          .locale("fa")
-          .format("YYYY/MM/DD")
-      }}
-      <div>{{ props.tour.tourTypeEnum }}</div>
-    </div>
-    <template #footer>
-      <!--      {{ props.tour }}-->
-    </template>
-  </UCard>
+      <template #footer>
+        <!--      {{ props.tour }}-->
+      </template>
+    </UCard>
+  </NuxtLink>
 </template>
 
 <style scoped></style>
