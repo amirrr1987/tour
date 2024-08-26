@@ -23,7 +23,7 @@
           <UButton to="/" variant="link" :padded="false"> صفحه اصلی </UButton>
         </li>
         <li @mouseenter="toggle(true)">
-          <UButton to="/" variant="link" :padded="false"> تور‌ها </UButton>
+          <UButton to="/tour" variant="link" :padded="false"> تور‌ها </UButton>
         </li>
 
         <li @mouseenter="toggle(false)">
