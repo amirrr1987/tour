@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "dayjs-nuxt",
     "@nuxt/image",
   ],
+
   plugins: ["~/plugins/dayjs"],
   css: ["@/assets/styles/main.css"],
   app: {
