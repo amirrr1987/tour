@@ -7,7 +7,7 @@
 </template>
 <style>
 body {
-  font-family: "Vazirmatn", sans-serif;
+  font-family: "Vazirmatn FD", sans-serif;
   font-optical-sizing: auto;
   font-weight: 268;
   font-style: normal;
