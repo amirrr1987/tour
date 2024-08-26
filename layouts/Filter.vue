@@ -3,7 +3,7 @@
 <template>
   <div>
     <TheNavbar />
-    <main>
+    <main class="bg-gray-50">
       <slot />
     </main>
     <TheFooter />
