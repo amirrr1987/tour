@@ -2,10 +2,7 @@
   <TopDestinations />
   <ToursPackages />
 
-  <!-- Start -->
   <section class="relative md:py-24 py-16">
-    <!--end container-->
-
     <div class="container mx-auto px-4 relative md:mt-24 mt-16">
       <div class="grid grid-cols-1 pb-6 text-center">
         <h3
@@ -19,7 +16,6 @@
           you can replace it with any text.
         </p>
       </div>
-      <!--end grid-->
 
       <div class="grid grid-cols-1 mt-6">
         <div class="tiny-three-item">
@@ -57,7 +53,7 @@
           <div class="tiny-slide text-center">
             <div class="cursor-e-resize">
               <div
-                class="content relative rounded shadow dark:shadow-gray-700 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+                class="content relative rounded shadow dark:shadow-gray-700 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-test dark:before:shadow-gray-700 before:origin-top-left"
               >
                 <i class="mdi mdi-format-quote-open mdi-48px text-red-500"></i>
                 <p class="text-slate-400">
@@ -210,9 +206,7 @@
           </div>
         </div>
       </div>
-      <!--end grid-->
     </div>
-    <!--end container-->
 
     <div class="container mx-auto px-4 relative md:mt-24 mt-16">
       <div class="grid grid-cols-1 pb-6 text-center">
@@ -227,7 +221,6 @@
           you can replace it with any text.
         </p>
       </div>
-      <!--end grid-->
 
       <div
         class="relative grid md:grid-cols-12 grid-cols-1 items-center mt-6 gap-6"
@@ -239,7 +232,6 @@
             alt=""
           />
         </div>
-        <!--end col-->
 
         <div class="md:col-span-6">
           <div id="accordion-collapse" data-accordion="collapse">
@@ -469,14 +461,11 @@
             </div>
           </div>
         </div>
-        <!--end col-->
       </div>
-      <!--end grid-->
     </div>
-    <!--end container-->
   </section>
-  <!--end section-->
-  <!-- End -->
+
+  
 </template>
 <script setup lang="ts">
 definePageMeta({

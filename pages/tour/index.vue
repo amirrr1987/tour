@@ -16,6 +16,7 @@
 </template>
 <script setup lang="ts">
 import { useRouteQuery } from "@vueuse/router";
+import { useConfigStore } from "~/stores/configStore";
 import type { TourDTO } from "~/types/TourModel";
 const cities = [
   "خوی",
@@ -36,6 +37,10 @@ definePageMeta({
 });
 
 const city = useRouteQuery("city", "", { transform: String });
+const configStore = useConfigStore();
+console.log("configStore");
+console.log(configStore);
+console.log("configStore");
 
 const { data: tours } = await useFetch<TourDTO.Content[]>(
   "/api/v1/tour/getAll"

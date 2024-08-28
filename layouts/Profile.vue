@@ -18,9 +18,7 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const logger = () => {
-  console.log(3333333333333);
-};
+const logger = () => {};
 const links = [
   [],
   [
