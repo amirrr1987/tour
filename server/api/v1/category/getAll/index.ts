@@ -4,12 +4,7 @@ export default defineEventHandler(async () => {
   const url = `http://10.0.202.34:8081/category/getAll`;
 
   try {
-    const response: Category[] = await $fetch(url, {
-      method: "GET",
-    });
-console.log(response);
-
-    return response;
+    return await $fetch(url);
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error("Fetch error:", error.message);

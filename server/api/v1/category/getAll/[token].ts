@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
         Authorization: `Bearer ${token}`
       }
     });
+    console.log("🚀 ~ defineEventHandler ~ response:", response)
     return response;
   } catch (error: any) {
     console.error("Fetch error:", error);

@@ -8,7 +8,6 @@ export default defineEventHandler(async (event) => {
       method: "post",
       body: body,
     });
-    console.log(response);
     return response;
   } catch (error: any) {
     console.error("Fetch error:", error);
