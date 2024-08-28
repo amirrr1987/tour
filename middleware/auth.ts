@@ -1,10 +1,8 @@
 import { useLocalStorage } from "@vueuse/core";
-
 export default defineNuxtRouteMiddleware((to, from) => {
-  const token = useLocalStorage("accessToken", "");
-  console.log("🚀 ~ defineNuxtRouteMiddleware ~ token:", token.value);
+  const configStore = useConfigStore();
 
-  if (!token.value) {
+  if (!configStore.token) {
     return navigateTo("/auth/login");
   }
 });

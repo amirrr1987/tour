@@ -21,8 +21,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     method: "post",
     body: event.data,
   });
-
-  useLocalStorage("accessToken", tokenData.value?.accessToken);
+  const configStore = useConfigStore();
+  configStore.token = tokenData.value?.accessToken;
   router.push("/");
 }
 definePageMeta({
