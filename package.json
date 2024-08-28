@@ -16,6 +16,7 @@
     "@nuxt/ui": "^2.18.4",
     "@nuxtjs/dotenv": "^1.4.2",
     "@nuxtjs/html-validator": "^1.8.2",
+    "@pinia/nuxt": "^0.5.4",
     "@vite-pwa/nuxt": "^0.10.0",
     "@vueuse/core": "^11.0.0",
     "@vueuse/nuxt": "^11.0.0",
@@ -27,10 +28,13 @@
     "nuxt-seo-experiments": "^4.0.0",
     "nuxt-swiper": "^1.2.2",
     "nuxt-typed-router": "^3.6.5",
+    "pinia": "^2.2.2",
     "vue": "latest",
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@iconify-json/tabler": "^1.1.121",
+    "@nuxtjs/color-mode": "^3.4.4",
     "@types/nprogress": "^0.2.3",
     "dayjs-nuxt": "^2.1.11",
     "nuxt-lodash": "^2.5.3"

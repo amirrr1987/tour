@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "dayjs-nuxt",
     "@nuxt/image",
+    "@pinia/nuxt",
   ],
 
   plugins: ["~/plugins/dayjs"],
