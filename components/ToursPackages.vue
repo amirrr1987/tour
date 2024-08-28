@@ -65,7 +65,7 @@
           </template>
 
           <NuxtLink
-            to="/tour-detail-one"
+            to="/about-us"
             class="text-lg font-medium hover:text-red-500 duration-500 ease-in-out"
           >
             <h4>ماجراجویی قایقرانی در کوبا</h4>
