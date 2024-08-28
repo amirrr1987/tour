@@ -23,7 +23,7 @@
           <UButton to="/" variant="link" :padded="false"> صفحه اصلی </UButton>
         </li>
         <li @mouseenter="toggle(true)">
-          <UButton to="/tour" variant="link" :padded="false"> تور‌ها </UButton>
+          <UButton to="/tour-list" variant="link" :padded="false"> تور‌ها </UButton>
         </li>
 
         <li @mouseenter="toggle(false)">
@@ -56,12 +56,12 @@
           <div
             class="col-span-3 grid grid-cols-2 md:grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-y-auto overflow-x-hidden h-96"
           >
-            <div v-for="category in categories" :key="category.id">
-              <div class="flex gap-x-2 items-center">
+            <div v-for="category in categories" :key="category.id ?? 0">
+              <NuxtLink :to="`/tour-list/${category.url}`" class="flex gap-x-2 items-center">
                 <!-- <img src="https://placehold.co/60x20" alt="" /> -->
                 <Icon name="iconoir:sea-and-sun" />
                 <h3 class="font-medium">{{ category.name }}</h3>
-              </div>
+              </NuxtLink>
               <UDivider class="mt-2 mb-3" />
               <ul>
                 <li
@@ -70,7 +70,7 @@
                   class="group mb-1 ease-in-out duration-500 hover:-translate-x-2 flex items-center gap-x-1 py-2"
                 >
                   <NuxtLink
-                    to="/"
+                    :to="`/tour-list/${category.url}/${subCategory.url}`"
                     class="text-sm hover:text-blue-500 text-gray-400"
                     @click="toggle(false)"
                   >
@@ -98,11 +98,9 @@
   </nav>
 </template>
 <script setup lang="ts">
-// import gsap from "gsap";
-const { data: categories } = await useFetch("/api/v1/category/getAll");
-console.log("data");
-console.log(categories.value);
-console.log("data");
+import type { Category } from '~/types/CategoryModel';
+
+const { data: categories } = await useFetch<Category[]>("/api/v1/category/getAll");
 
 const isShow = ref(false);
 const toggle = (status: boolean) => {
@@ -110,10 +108,9 @@ const toggle = (status: boolean) => {
 };
 </script>
 <style>
-/* we will explain what these classes do next! */
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 
 .v-enter-from,

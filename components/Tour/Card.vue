@@ -2,7 +2,7 @@
 import type { TourDTO } from "~/types/TourModel";
 import { getTourType } from "~/utils";
 const cardUi = {
-  base: "overflow-hidden text-sm",
+  base: "overflow-hidden text-sm bg-red-500",
   header: {
     base: "relative",
     padding: "px-0 py-0 sm:px-0",
@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <NuxtLink :to="`/tour/tour-details/tour-${props.tour.id}`" class="">
+  <NuxtLink :to="`/tour/${props.tour.tourUrl}`" class="">
     <UCard as="figure" :ui="cardUi">
       <template #header>
         <UBadge :ui="badgeUi" color="rose" variant="solid">
