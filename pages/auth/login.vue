@@ -12,7 +12,7 @@ const schema = object({
 type Schema = InferType<typeof schema>;
 
 const state = reactive({
-  username: "test",
+  username: "test1",
   password: "test-password",
 });
 const router = useRouter();

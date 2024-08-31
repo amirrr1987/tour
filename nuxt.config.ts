@@ -21,4 +21,5 @@ export default defineNuxtConfig({
       title: "کشف جهان با خدمات تور و سفر ما",
     },
   },
+  
 });

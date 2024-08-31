@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  const url = `http://10.0.202.34:8081/auth/register`;
+  const url = `http://localhost:8081/auth/register`;
 
   try {
     const response = await $fetch(url, {

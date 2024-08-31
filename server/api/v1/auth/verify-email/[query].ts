@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
     throw new Error("No query parameter provided");
   }
 
-  const url = `http://10.0.202.34:8081/auth/verify-email?token=${query}`;
+  const url = `http://localhost:8081/auth/verify-email?token=${query}`;
 
   try {
     return await $fetch(url);

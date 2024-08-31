@@ -1,5 +1,5 @@
 export default defineEventHandler(async () => {
-  const url = `http://10.0.202.34:8081/tour/getAll`;
+  const url = `http://localhost:8081/tour/getAll`;
 
   try {
     return await $fetch(url);

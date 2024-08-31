@@ -1,3 +1,6 @@
+import type { TransferTypeEnum } from "~/enums";
+import {MealTypeEnum, StayTypeEnum, TourLevelTypeEnum, TourTypeEnum} from "~/enums";
+
 interface Tour {
   name: string;
   capacity: number;
@@ -10,17 +13,11 @@ interface Tour {
   priceDiscount: number;
   mainImageAddress: string;
   imagesAddress: string[];
-  stayTypeEnum: "HOTEL" | "MOTEL" | "HOUSE" | "VILLA" | "CAMP";
-  transferTypeEnum: "AIRPLANE" | "TRAIN" | "BUS" | "SHIP";
-  mealTypeEnum:
-    | "BREAKFAST"
-    | "BRUNCH"
-    | "LUNCH"
-    | "AFTERNOON_TEA"
-    | "dinner"
-    | "FULL";
-  tourLevelTypeEnum: "EASY" | "MEDIUM" | "HARD";
-  tourTypeEnum: "ECONOMY" | "STANDARD" | "LUXURY";
+  stayTypeEnum: StayTypeEnum;
+  transferTypeEnum: TransferTypeEnum;
+  mealTypeEnum: MealTypeEnum;
+  tourLevelTypeEnum: TourLevelTypeEnum;
+  tourTypeEnum: TourTypeEnum;
   categoryId: [];
   rate: number;
   id: number;

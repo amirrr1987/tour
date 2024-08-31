@@ -5,14 +5,12 @@
     <div class="absolute inset-0 bg-slate-900/40"></div>
     <div class="container mx-auto px-4">
       <div class="grid lg:grid-cols-12 md:grid-cols-2 items-center gap-6">
-             <div class="lg:col-span-5">
+        <div class="lg:col-span-5">
           <div
             class="bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-800 p-6 z-10 relative lg:ms-10"
           >
-            <h4 class="mb-5 text-2xl font-semibold">
-              مقصد خود را جستجو کنید
-            </h4>
-            <UForm>
+            <h4 class="mb-5 text-2xl font-semibold">مقصد خود را جستجو کنید</h4>
+            <UForm :state="{}">
               <UFormGroup label="جستجو" class="mb-4">
                 <UInput placeholder="جستجو" />
               </UFormGroup>
@@ -27,7 +25,9 @@
           </div>
         </div>
         <div class="lg:col-span-7">
-          <h5 class="text-3xl font-dancing text-white">اقامت ایده‌آل خود را پیدا کنید</h5>
+          <h5 class="text-3xl font-dancing text-white">
+            اقامت ایده‌آل خود را پیدا کنید
+          </h5>
           <h4
             class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-6xl mb-6 mt-5"
           >
@@ -35,7 +35,8 @@
             بروید؟
           </h4>
           <p class="text-white/70 text-xl max-w-xl">
-            برنامه‌ریزی برای سفر؟ ما سفر شما را با بهترین مکان‌ها و با بهترین بودجه سازماندهی خواهیم کرد!
+            برنامه‌ریزی برای سفر؟ ما سفر شما را با بهترین مکان‌ها و با بهترین
+            بودجه سازماندهی خواهیم کرد!
           </p>
 
           <div class="mt-6">
@@ -53,8 +54,6 @@
             ><span class="font-semibold ms-1 align-middle"></span>
           </div>
         </div>
-
-   
       </div>
     </div>
     <UButton

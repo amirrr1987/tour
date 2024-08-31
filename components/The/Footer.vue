@@ -1,295 +1,400 @@
 <script setup lang="ts"></script>
 
 <template>
-  <!-- Footer Start -->
-  <footer class="footer bg-gray-800 relative text-gray-200 dark:text-gray-200">
-    <div class="container mx-auto px-4 relative">
-      <div class="grid grid-cols-12">
-        <div class="col-span-12">
-          <div class="py-[60px] px-0">
-            <div class="grid md:grid-cols-12 grid-cols-1 gap-6">
-              <div class="lg:col-span-3 md:col-span-12">
-                <UButton to="#" class="text-[22px] focus:outline-none">
-                  <img src="/images/logo-light.png" alt="" />
-                </UButton>
-                <p class="mt-6 text-gray-300">
-                  برنامه‌ریزی برای سفر؟ ما سفرتان را با بهترین مکان‌ها و بهترین
-                  بودجه سازماندهی خواهیم کرد!
-                </p>
-                <ul class="list-none mt-6">
-                  <li class="inline">
-                    <UButton
-                      to="https://1.envato.market/travosy"
-                      target="_blank"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="shopping-cart"
-                        class="size-4 align-middle"
-                        title="خرید اکنون"
-                      />
-                    </UButton>
-                  </li>
-                  <li class="inline">
-                    <UButton
-                      to="https://dribbble.com/shreethemes"
-                      target="_blank"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="dribbble"
-                        class="size-4 align-middle"
-                        title="درایبل"
-                      />
-                    </UButton>
-                  </li>
-                  <li class="inline">
-                    <UButton
-                      to="http://linkedin.com/company/shreethemes"
-                      target="_blank"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="linkedin"
-                        class="size-4 align-middle"
-                        title="لینکدین"
-                      />
-                    </UButton>
-                  </li>
-                  <li class="inline">
-                    <UButton
-                      to="https://www.facebook.com/shreethemes"
-                      target="_blank"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="facebook"
-                        class="size-4 align-middle"
-                        title="فیس‌بوک"
-                      />
-                    </UButton>
-                  </li>
-                  <li class="inline">
-                    <UButton
-                      to="https://www.instagram.com/shreethemes/"
-                      target="_blank"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="instagram"
-                        class="size-4 align-middle"
-                        title="اینستاگرام"
-                      />
-                    </UButton>
-                  </li>
-                  <li class="inline">
-                    <UButton
-                      to="https://x.com/shreethemes"
-                      target="_blank"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="twitter"
-                        class="size-4 align-middle"
-                        title="توییتر"
-                      />
-                    </UButton>
-                  </li>
-                  <li class="inline">
-                    <UButton
-                      to="mailto:support@shreethemes.in"
-                      class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:bg-red-500 hover:text-white text-slate-300"
-                    >
-                      <Icon
-                        name="mail"
-                        class="size-4 align-middle"
-                        title="ایمیل"
-                      />
-                    </UButton>
-                  </li>
-                </ul>
-                <!--end icon-->
-              </div>
-              <!--end col-->
-
-              <div class="lg:col-span-3 md:col-span-4">
-                <div class="lg:ms-8">
-                  <h5 class="tracking-[1px] text-gray-100 font-semibold">
-                    دفتر
-                  </h5>
-                  <h5 class="tracking-[1px] text-gray-100 mt-6">
-                    تور و سفر تراوسی
-                  </h5>
-
-                  <div class="flex mt-4">
-                    <Icon
-                      name="tabler:map-pin"
-                      class="size-4 text-red-500 me-2"
-                    />
-                    <h6 class="text-gray-300">
-                      C/54 Northwest Freeway, Suite 558, Houston, USA 485
-                    </h6>
-                  </div>
-
-                  <div class="flex text-white mt-4">
-                    <Icon
-                      name="tabler:phone"
-                      class="size-4 text-red-500 me-2"
-                    />
-                    <UButton
-                      to="mailto:contact@example.com"
-                      color="white"
-                      variant="link"
-                      :padded="false"
-                    >
-                      contact@example.com
-                    </UButton>
-                  </div>
-
-                  <div class="flex text-white mt-4">
-                    <Icon
-                      name="tabler:phone"
-                      class="size-4 text-red-500 me-2"
-                    />
-                    <UButton
-                      to="tel:+152534-468-854"
-                      color="white"
-                      variant="link"
-                      :padded="false"
-                    >
-                      +152 534-468-854
-                    </UButton>
-                  </div>
-                </div>
-              </div>
-              <!--end col-->
-
-              <div class="lg:col-span-3 md:col-span-4">
-                <div class="lg:ms-8">
-                  <h5 class="font-semibold mb-4">شرکت</h5>
-                  <ul class="list-none flex flex-col gap-y-2">
-                    <li>
-                      <UButton
-                        to="/about-us"
-                        variant="link"
-                        color="white"
-                        icon="tabler:chevron-left"
-                        :padded="false"
-                      >
-                        درباره ما
-                      </UButton>
-                    </li>
-                    <li>
-                      <UButton
-                        to="/services"
-                        variant="link"
-                        color="white"
-                        icon="tabler:chevron-left"
-                        :padded="false"
-                      >
-                        خدمات
-                      </UButton>
-                    </li>
-                    <li>
-                      <UButton
-                        to="/team"
-                        variant="link"
-                        color="white"
-                        icon="tabler:chevron-left"
-                        :padded="false"
-                      >
-                        تیم
-                      </UButton>
-                    </li>
-                    <li>
-                      <UButton
-                        to="/pricing"
-                        variant="link"
-                        color="white"
-                        icon="tabler:chevron-left"
-                        :padded="false"
-                      >
-                        قیمت‌گذاری
-                      </UButton>
-                    </li>
-                    <li>
-                      <UButton
-                        to="/blogs"
-                        variant="link"
-                        color="white"
-                        icon="tabler:chevron-left"
-                        :padded="false"
-                      >
-                        بلاگ
-                      </UButton>
-                    </li>
-                    <li>
-                      <UButton
-                        to="/auth/login"
-                        variant="link"
-                        color="white"
-                        icon="tabler:chevron-left"
-                        :padded="false"
-                      >
-                        ورود
-                      </UButton>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!--end col-->
-
-              <div class="lg:col-span-3 md:col-span-4">
-                <h5 class="tracking-[1px] text-gray-100 font-semibold">
-                  خبرنامه
-                </h5>
-                <p class="my-6">
-                  ثبت‌نام کنید و آخرین نکات را از طریق ایمیل دریافت کنید.
-                </p>
-                <UForm :state="{}">
-                  <UFormGroup
-                    label="ایمیل خود را وارد کنید"
-                    class="mb-6"
-                    :ui="{
-                      label: {
-                        base: 'text-white mb-2',
-                      },
-                    }"
-                  >
-                    <UInput
-                      icon="tabler:mail"
-                      type="email"
-                      placeholder="ایمیل"
-                      name="email"
-                      required
-                    />
-                  </UFormGroup>
-                  <UButton type="submit" name="send" color="rose" block>
-                    ثبت‌نام
-                  </UButton>
-                </UForm>
-              </div>
-              <!--end col-->
+  <footer class="border-t">
+    <div class="mx-auto container px-4">
+      <div class="gap-4 p-4 py-16 sm:pb-16 md:flex md:justify-between">
+        <div class="mb-12 flex flex-col gap-4">
+          <a href="/" class="flex items-center gap-2"
+            ><img
+              class="h-7 w-7"
+              src="https://magicui.design/icon.png"
+              alt="MagicUI Logo"
+            /><span
+              class="self-center whitespace-nowrap text-2xl font-semibold text-neutral-900 dark:text-white"
+              >Magic UI</span
+            ></a
+          >
+          <div class="max-w-sm">
+            <div class="z-10 mt-4 flex w-full flex-col items-start text-left">
+              <h1 class="text-3xl font-bold lg:text-2xl">Get started today.</h1>
+              <p class="mt-2">
+                Start your 7-day free trial. No credit card required.
+              </p>
+              <a
+                href="/signup"
+                class="inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 mt-4 w-full rounded-full px-6 text-sm font-semibold tracking-tighter transition-all ease-out hover:ring-2 hover:ring-neutral-800 hover:ring-offset-2 hover:ring-offset-current dark:hover:ring-neutral-50"
+                >Start free trial<svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1"
+                >
+                  <path
+                    d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path></svg
+              ></a>
             </div>
-            <!--end grid-->
           </div>
-          <!--end col-->
+        </div>
+        <div
+          class="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
+        >
+          <div>
+            <h2
+              class="mb-6 text-sm font-semibold uppercase text-neutral-900 dark:text-white"
+            >
+              Product
+            </h2>
+            <ul class="grid gap-2">
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Features<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Pricing<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >FAQ<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="mailto:support@example.com"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Support<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2
+              class="mb-6 text-sm font-semibold uppercase text-neutral-900 dark:text-white"
+            >
+              Company
+            </h2>
+            <ul class="grid gap-2">
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >About Us<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Blog<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Careers<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Contact<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2
+              class="mb-6 text-sm font-semibold uppercase text-neutral-900 dark:text-white"
+            >
+              Resources
+            </h2>
+            <ul class="grid gap-2">
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Documentation<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >API Reference<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Community<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2
+              class="mb-6 text-sm font-semibold uppercase text-neutral-900 dark:text-white"
+            >
+              Legal
+            </h2>
+            <ul class="grid gap-2">
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Privacy Policy<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug font-medium text-neutral-400 duration-200 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                  >Terms of Service<svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                  >
+                    <path
+                      d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    ></path></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <!--end grid-->
-    </div>
-    <!--end container-->
-
-    <UDivider />
-    <div class="flex justify-center py-2">
-      <p class="mb-0">
-        طراحی شده توسط
-        <UButton to="https://amirmaghami.ir/" target="_blank" variant="link">
-          امیر مقامی
-        </UButton>
-      </p>
+      <div
+        class="flex flex-col gap-2 border-t py-4 sm:flex sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex space-x-5 sm:mt-0 sm:justify-center">
+          <a
+            href="#"
+            class="fill-neutral-500 text-neutral-500 hover:fill-neutral-900 hover:text-neutral-900 dark:hover:fill-neutral-600 dark:hover:text-neutral-600"
+            ><svg
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-4"
+            >
+              <path
+                d="M2 1C1.44772 1 1 1.44772 1 2V13C1 13.5523 1.44772 14 2 14H13C13.5523 14 14 13.5523 14 13V2C14 1.44772 13.5523 1 13 1H2ZM3.05 6H4.95V12H3.05V6ZM5.075 4.005C5.075 4.59871 4.59371 5.08 4 5.08C3.4063 5.08 2.925 4.59871 2.925 4.005C2.925 3.41129 3.4063 2.93 4 2.93C4.59371 2.93 5.075 3.41129 5.075 4.005ZM12 8.35713C12 6.55208 10.8334 5.85033 9.67449 5.85033C9.29502 5.83163 8.91721 5.91119 8.57874 6.08107C8.32172 6.21007 8.05265 6.50523 7.84516 7.01853H7.79179V6.00044H6V12.0047H7.90616V8.8112C7.8786 8.48413 7.98327 8.06142 8.19741 7.80987C8.41156 7.55832 8.71789 7.49825 8.95015 7.46774H9.02258C9.62874 7.46774 10.0786 7.84301 10.0786 8.78868V12.0047H11.9847L12 8.35713Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path></svg
+            ><span class="sr-only">Linkedin</span></a
+          ><a
+            href="#"
+            class="fill-neutral-500 text-neutral-500 hover:fill-neutral-900 hover:text-neutral-900 dark:hover:fill-neutral-600 dark:hover:text-neutral-600"
+            ><svg
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-4"
+            >
+              <path
+                d="M7.23336 4.69629C7.23336 2.96884 8.63335 1.56857 10.36 1.56857C11.3736 1.56857 12.183 2.04804 12.7254 2.74385C13.3079 2.62467 13.8557 2.40913 14.3513 2.11508C14.1559 2.72598 13.7424 3.2396 13.2033 3.56463C13.2038 3.56568 13.2042 3.56674 13.2047 3.56779C13.7334 3.50361 14.2364 3.36302 14.7048 3.15546L14.7037 3.15715C14.3667 3.66183 13.9431 4.10736 13.4561 4.47034C13.4823 4.64672 13.4956 4.82427 13.4956 5.00079C13.4956 8.6871 10.6873 12.9746 5.52122 12.9746C3.93906 12.9746 2.46544 12.511 1.22505 11.7152C0.992632 11.5661 0.925108 11.2568 1.07423 11.0244C1.0874 11.0038 1.10183 10.9846 1.11734 10.9666C1.20582 10.8202 1.37438 10.7309 1.5554 10.7522C2.47066 10.8601 3.38568 10.7485 4.19219 10.3962C3.39226 10.0434 2.77129 9.35975 2.50204 8.51974C2.45359 8.3686 2.48835 8.20311 2.59351 8.08422C2.59716 8.0801 2.60087 8.07606 2.60464 8.0721C1.96391 7.50819 1.55973 6.68208 1.55973 5.76143V5.72759C1.55973 5.56814 1.64411 5.42059 1.78155 5.33974C1.82671 5.31317 1.87537 5.29511 1.92532 5.28558C1.70549 4.86154 1.58116 4.37984 1.58116 3.86958C1.58116 3.40165 1.58384 2.81192 1.91332 2.28081C1.98718 2.16175 2.10758 2.08915 2.2364 2.07195C2.42588 2.01237 2.64087 2.06969 2.77406 2.23302C3.86536 3.57126 5.44066 4.49583 7.23366 4.73961L7.23336 4.69629ZM5.52122 11.9746C4.73387 11.9746 3.97781 11.8435 3.27248 11.6023C4.13012 11.4538 4.95307 11.1159 5.66218 10.5602C5.81211 10.4427 5.87182 10.2435 5.81126 10.0629C5.7507 9.88234 5.583 9.75943 5.39255 9.75607C4.68968 9.74366 4.06712 9.39716 3.67793 8.86845C3.86828 8.85306 4.05428 8.82039 4.23445 8.77167C4.43603 8.71716 4.57363 8.53114 4.56674 8.32243C4.55985 8.11372 4.41029 7.93718 4.20555 7.89607C3.42694 7.73977 2.79883 7.16764 2.56169 6.42174C2.76255 6.47025 2.97102 6.4991 3.18482 6.5061C3.38563 6.51267 3.56646 6.38533 3.62795 6.19405C3.68943 6.00277 3.61666 5.79391 3.44963 5.68224C2.86523 5.29155 2.48116 4.62464 2.48116 3.86958C2.48116 3.70213 2.48352 3.55268 2.49355 3.41719C3.85115 4.79913 5.70873 5.68931 7.77588 5.79338C7.93225 5.80126 8.08328 5.73543 8.18395 5.61553C8.28463 5.49562 8.32332 5.33548 8.28851 5.18284C8.25255 5.02517 8.23336 4.86284 8.23336 4.69629C8.23336 3.52085 9.18591 2.56857 10.36 2.56857C11.5943 2.56857 12.4956 3.71208 12.4956 5.00079C12.4956 8.25709 10.0202 11.9746 5.52122 11.9746Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path></svg
+            ><span class="sr-only">Twitter</span></a
+          >
+        </div>
+        <span
+          class="text-sm tracking-tight text-neutral-500 dark:text-neutral-400 sm:text-center"
+          >Copyright © 2024 <a href="/" class="cursor-pointer">Magic UI</a>.
+          All Rights Reserved.</span
+        >
+      </div>
     </div>
   </footer>
+  <!-- Footer Start -->
+
   <!--end footer-->
   <!-- Footer End -->
 </template>
