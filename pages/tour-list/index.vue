@@ -73,16 +73,17 @@
           </div>
         </div>
         <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
-          <TourListCard v-for="tour in tourList" :tour="tour" />
+          <TourListCard
+            v-for="tour in tourList"
+            :tour="tour"
+            :key="`tour-${tour.id}`"
+          />
         </div>
         <div class="flex justify-center py-4">
-          {{ state.page }}
           <UPagination
             v-model="state.page"
             :pageCount="state.size"
             :total="totalElements"
-            @nextButton="onSubmit"
-            @prevButton="onSubmit"
           />
         </div>
       </div>
@@ -99,7 +100,6 @@ import {
   TourTypeEnum,
   TourTypeEnumList,
   MealTypeEnum,
-  MealTypeEnumList,
   TransferTypeEnum,
   TransferTypeEnumList,
   StayTypeEnum,
@@ -124,10 +124,7 @@ const schema = object({
 });
 
 type Schema = InferType<typeof schema>;
-const page = ref(1);
-const currentPage = computed(() => {
-  return useRouteQuery<number>("page", page.value).value;
-});
+
 const state = reactive({
   tourLevelType: useRouteQuery<TourLevelTypeEnum | undefined>(
     "tourLevelType",
@@ -140,121 +137,65 @@ const state = reactive({
     undefined
   ),
   stayType: useRouteQuery<StayTypeEnum | undefined>("stayType", undefined),
-  page: useRouteQuery<number>("page", 1),
+  page: useRouteQuery("page", "1", { transform: Number }),
   size: useRouteQuery<number>("size", 5),
 });
+
 const tourList = ref<TourDTO.Content[]>([]);
+const totalElements = ref(0);
 
-const onSubmit = async (event: FormSubmitEvent<Schema>) => {
-  console.log(state.page);
-  console.log(state.size);
+const fetchTours = async () => {
   const { data } = await useFetch<TourDTO.Search.Response>(
-    // "http://10.0.202.34:8081/tour/getAll"
-
     "http://10.0.202.34:8081/tour/search",
     {
       method: "POST",
       body: {
         stayTypeEnum: state.stayType,
         transferTypeEnum: state.transferType,
-        mealTypeEnum: state.mealType,
         tourLevelTypeEnum: state.tourLevelType,
         tourTypeEnum: state.tourType,
-        page: currentPage.value,
+        page: state.page - 1,
         size: state.size,
       },
     }
   );
+
   if (data.value) {
-    console.log("🚀 ~ onSubmit ~ data.value:", data.value);
-    tourList.value = await data.value.content;
-    totalElements.value = data.value?.totalElements + 1;
-    // totalElements.value = data.value?.totalElements + 1;
+    tourList.value = data.value.content;
+    totalElements.value = data.value.totalElements;
   }
 };
 
-const onReset = async (e: any) => {
+const onSubmit = async () => {
+  await fetchTours();
+};
+
+const onReset = async () => {
   state.tourLevelType = undefined;
   state.tourType = undefined;
-  state.mealType = undefined;
   state.transferType = undefined;
   state.stayType = undefined;
-  await onSubmit(e);
+  await fetchTours();
 };
+
+await fetchTours();
+
 watch(
-  () => state,
-  async (e) => {
-    console.log(state.page);
-    console.log(state.size);
-    const { data } = await useFetch<TourDTO.Search.Response>(
-      // "http://10.0.202.34:8081/tour/getAll"
-
-      "http://10.0.202.34:8081/tour/search",
-      {
-        method: "POST",
-        body: {
-          stayTypeEnum: state.stayType,
-          transferTypeEnum: state.transferType,
-          mealTypeEnum: state.mealType,
-          tourLevelTypeEnum: state.tourLevelType,
-          tourTypeEnum: state.tourType,
-          page: state.page - 1,
-          size: state.size,
-        },
-      }
-    );
-    if (data.value) {
-      console.log("🚀 ~ onSubmit ~ data.value:", data.value);
-      tourList.value = await data.value.content;
-      console.log(state.page);
-      
-      totalElements.value = await data.value?.totalElements + 1;
-      // totalElements.value = data.value?.totalElements + 1;
-    }
-  }
+  () => state.page,
+  async () => await fetchTours()
 );
 
-const { data } = await useFetch<TourDTO.Search.Response>(
-  "http://10.0.202.34:8081/tour/search",
-  {
-    method: "POST",
-    body: {
-      stayTypeEnum: state.stayType,
-      transferTypeEnum: state.transferType,
-      mealTypeEnum: state.mealType,
-      tourLevelTypeEnum: state.tourLevelType,
-      tourTypeEnum: state.tourType,
-      page: state.page - 1,
-      size: state.size,
-    },
-  }
-);
-const totalElements = ref(0);
-
-if (data.value) {
-  tourList.value = await data.value.content;
-  totalElements.value = data.value?.totalElements + 1;
-}
 const route = useRoute();
-
-const links = computed(() => {
-  let list = [
-    {
-      label: "صفحه اصلی",
-      to: "/",
-    },
-  ];
-  route.matched.forEach((item) => {
-    list.push({ label: String(item.meta.name), to: item.path });
-  });
-  return list;
-});
+const links = computed(() => [
+  { label: "صفحه اصلی", to: "/" },
+  ...route.matched.map((item) => ({ label: item.meta.name, to: item.path })),
+]);
 
 const formGroupUi = {
   label: { base: "mb-2 text-gray-400 dark:text-gray-300" },
 };
 </script>
-<style>
+<style lang="less">
 label {
   font-weight: 800;
 }
