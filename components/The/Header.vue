@@ -1,76 +1,53 @@
-<script setup lang="ts">
-import { Navigation, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-
-const list = [
-  "assets/img/hero/hero_bg_1_1.jpg",
-  "assets/img/hero/hero_bg_1_2.jpg",
-  "assets/img/hero/hero_bg_1_3.jpg",
-  "assets/img/hero/hero_bg_2_1.jpg",
-  "assets/img/hero/hero_bg_2_2.jpg",
-  "assets/img/hero/hero_bg_2_3.jpg",
-  "assets/img/hero/hero_bg_3_1.jpg",
-  "assets/img/hero/hero_bg_3_2.jpg",
-  "assets/img/hero/hero_bg_3_3.jpg",
-  "assets/img/hero/hero_bg_3_4.jpg",
-  "assets/img/hero/hero_bg_3_5.jpg",
-];
-</script>
-
 <template>
-  <header>
-    <Swiper
-      :modules="[SwiperAutoplay, SwiperEffectCreative, Navigation, Pagination]"
-      :slides-per-view="1"
-      :loop="true"
-      :effect="'creative'"
-      :pagination="true"
-      :navigation="true"
-      :autoplay="{
-        delay: 8000,
-        disableOnInteraction: true,
-      }"
-      :creative-effect="{
-        prev: {
-          shadow: false,
-          translate: ['-20%', 0, -1],
-        },
-        next: {
-          translate: ['100%', 0, 0],
-        },
-      }"
-    >
-      <SwiperSlide v-for="slide in list" :key="slide">
-        <NuxtImg :src="slide" />
-      </SwiperSlide>
-    </Swiper>
+  <header class="bg-[url('assets/img/hero/hero_bg_1_1.jpg')] py-72">
+    <div class="mx-auto max-w-4xl">
+      <UCard>
+        <UForm class="flex items-center gap-4">
+          <UFormGroup label="جستجو" class="flex-1">
+            <UInput />
+          </UFormGroup>
+          <UFormGroup label="تاریخ شروع">
+            <UPopover :popper="{ placement: 'bottom-start' }">
+              <UButton icon="i-heroicons-calendar-days-20-solid">
+                {{ format(selected.start, "d MMM, yyy") }} -
+                {{ format(selected.end, "d MMM, yyy") }}
+              </UButton>
+
+              <template #panel="{ close }">
+                <DatePicker v-model="selected" @close="close" />
+              </template>
+            </UPopover>
+          </UFormGroup>
+
+          <div class="r">
+            <UButton class="">جستجو</UButton>
+          </div>
+        </UForm>
+      </UCard>
+    </div>
   </header>
 </template>
+<script setup lang="ts">
+import { sub, format, isSameDay, type Duration } from "date-fns";
 
-<style>
-.swiper {
-  /* width: 100%; */
-  /* height: 30rem; */
-  /* direction: ltr; */
+const ranges = [
+  { label: "Last 7 days", duration: { days: 7 } },
+  { label: "Last 14 days", duration: { days: 14 } },
+  { label: "Last 30 days", duration: { days: 30 } },
+  { label: "Last 3 months", duration: { months: 3 } },
+  { label: "Last 6 months", duration: { months: 6 } },
+  { label: "Last year", duration: { years: 1 } },
+];
+const selected = ref({ start: sub(new Date(), { days: 14 }), end: new Date() });
+
+function isRangeSelected(duration: Duration) {
+  return (
+    isSameDay(selected.value.start, sub(new Date(), duration)) &&
+    isSameDay(selected.value.end, new Date())
+  );
 }
 
-.swiper-slide {
-  /* text-align: center;
-  font-size: 18px;
-  background: #fff; */
-
-  /* Center slide text vertically */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+function selectRange(duration: Duration) {
+  selected.value = { start: sub(new Date(), duration), end: new Date() };
 }
-
-.swiper-slide img {
-  /* display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; */
-}
-</style>
+</script>

@@ -11,36 +11,41 @@
         <p>{{ tour.priceOff }}</p>
       </div>
       <div class="col-span-4">
-        <swiper
-          class="h-80 w-full mx-auto"
-          :style="{
-            '--swiper-navigation-color': '#fff',
-            '--swiper-pagination-color': '#fff',
-          }"
-          :loop="true"
-          :spaceBetween="10"
-          :navigation="true"
-          :thumbs="{ swiper: thumbsSwiper }"
-          :modules="[FreeMode, Navigation, Thumbs]"
-        >
-          <SwiperSlide v-for="item in tour.imagesAddress">
-            <NuxtImg class="rounded-t-3xl	" :src="item" />
-          </SwiperSlide>
-        </swiper>
-        <swiper
-          @swiper="setThumbsSwiper"
-          :loop="true"
-          :spaceBetween="10"
-          :slidesPerView="4"
-          :freeMode="true"
-          :watchSlidesProgress="true"
-          :modules="[FreeMode, Navigation, Thumbs]"
-          class="mySwiper"
-        >
-          <SwiperSlide v-for="item in tour.imagesAddress">
-            <NuxtImg class="w-full h-full object-contain" :src="item" />
-          </SwiperSlide>
-        </swiper>
+        <UCard>
+          <swiper
+            class="h-80 w-full mx-auto"
+            :style="{
+              '--swiper-navigation-color': '#fff',
+              '--swiper-pagination-color': '#fff',
+            }"
+            :loop="true"
+            :spaceBetween="10"
+            :navigation="true"
+            :thumbs="{ swiper: thumbsSwiper }"
+            :modules="[FreeMode, Navigation, Thumbs]"
+          >
+            <SwiperSlide v-for="item in tour.imagesAddress">
+              <NuxtImg
+                class="rounded-t-3xl w-full h-full object-cover"
+                :src="item"
+              />
+            </SwiperSlide>
+          </swiper>
+          <swiper
+            @swiper="setThumbsSwiper"
+            :loop="true"
+            :spaceBetween="10"
+            :slidesPerView="4"
+            :freeMode="true"
+            :watchSlidesProgress="true"
+            :modules="[FreeMode, Navigation, Thumbs]"
+            class="mySwiper !pt-2"
+          >
+            <SwiperSlide v-for="item in tour.imagesAddress">
+              <NuxtImg class="w-full !h-16 object-cover" :src="item" />
+            </SwiperSlide>
+          </swiper>
+        </UCard>
       </div>
     </TheContainer>
   </section>
@@ -57,7 +62,7 @@ import { FreeMode, Navigation, Thumbs, Pagination } from "swiper/modules";
 import { SwiperSlide } from "swiper/vue";
 definePageMeta({
   layout: "single",
-  name: "hjhjg",
+  name: "single",
 });
 
 const route = useRoute();
@@ -76,27 +81,12 @@ const setThumbsSwiper = (swiper: any) => {
 </script>
 <style lang="less">
 .single-tour {
-  .mySwiper {
-    height: 20%;
-    box-sizing: border-box;
-    padding: 10px 0;
-  }
-
   .mySwiper .swiper-slide {
-    width: 25%;
-    height: 100%;
     opacity: 0.4;
   }
 
   .mySwiper .swiper-slide-thumb-active {
     opacity: 1;
-  }
-
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 }
 </style>
