@@ -1,13 +1,13 @@
 <template>
   <section class="py-12">
     <TheContainer class="grid gap-4 grid-cols-12">
-      <div class="lg:col-span-4 xl:col-span-2">
+      <div class="col-span-12 lg:col-span-4 xl:col-span-2">
         <!-- <TourListFilter  /> -->
         <UCard>
           <UForm
             :schema="schema"
             :state="state"
-            class="space-y-4"
+            class="space-y-8 md:space-y-4 grid grid-cols-2 md:grid-cols-1 "
             @submit.prevent="onSubmit"
           >
             <UFormGroup
@@ -21,7 +21,7 @@
                 class="radio-filed"
               />
             </UFormGroup>
-            <UDivider />
+            <UDivider class="hidden md:flex" />
             <UFormGroup label="نوع تور" name="tourType" :ui="formGroupUi">
               <URadioGroup
                 v-model="state.tourType"
@@ -30,7 +30,7 @@
               />
             </UFormGroup>
 
-            <UDivider />
+            <UDivider class="hidden md:flex" />
             <UFormGroup name="transferType" :ui="formGroupUi">
               <template #label>
                 <UIcon name="tabler:car" />
@@ -42,7 +42,7 @@
                 class="radio-filed"
               />
             </UFormGroup>
-            <UDivider />
+            <UDivider class="hidden md:flex" />
             <UFormGroup label="محل اقامت" name="stayType" :ui="formGroupUi">
               <URadioGroup
                 v-model="state.stayType"
@@ -50,7 +50,7 @@
                 class="radio-filed"
               />
             </UFormGroup>
-            <UDivider />
+            <UDivider class="hidden md:flex" />
             <div class="flex gap-x-4">
               <UButton size="xs" type="submit" icon="">اعمال فیلتر</UButton>
               <UButton size="xs" type="" variant="ghost" @click="onReset"
@@ -60,7 +60,7 @@
           </UForm>
         </UCard>
       </div>
-      <div class="lg:col-span-8 xl:col-span-10">
+      <div class="col-span-12 lg:col-span-8 xl:col-span-10">
         <div class="flex justify-between mb-4">
           <UBreadcrumb :links="links" />
           <div class="flex gap-x-2 items-center">

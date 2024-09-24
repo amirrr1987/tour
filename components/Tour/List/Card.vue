@@ -52,6 +52,8 @@ const cardUi = {
           <NuxtImg
             class="w-full aspect-[3/2] object-cover"
             :src="props.tour.mainImageAddress"
+            loading="lazy"
+            :
           />
         </div>
       </template>
