@@ -18,10 +18,7 @@
               </template>
             </UPopover>
           </UFormGroup>
-
-          <div class="r">
-            <UButton class="">جستجو</UButton>
-          </div>
+          <UButton class="mt-4" icon="tabler-search">جستجو</UButton>
         </UForm>
       </UCard>
     </div>
