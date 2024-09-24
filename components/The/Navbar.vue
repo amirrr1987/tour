@@ -1,133 +1,19 @@
-<template>
-  <div class="border-b py-1 bg-gray-800 text-white">
-    <AContainer class="flex justify-between text-xs">
-      <div>021-91005711</div>
-      <div>021-91005711</div>
-    </AContainer>
-  </div>
-  <nav
-    class="sticky top-0 relative z-50 py-4 bg-white shadow-lg"
-    @mouseleave="toggle(false)"
-  >
-    <AContainer class="flex items-center gap-x-4">
-      <NuxtLink to="/">
-        <img
-          src="https://flowbite.com/docs/images/logo.svg"
-          class="h-8"
-          title="Logo"
-          alt="Logo"
-        />
-      </NuxtLink>
-      <ul class="flex-1 flex flex-col md:flex-row font-medium gap-x-8">
-        <li @mouseenter="toggle(false)">
-          <UButton to="/" variant="link" :padded="false"> صفحه اصلی </UButton>
-        </li>
-        <li @mouseenter="toggle(true)">
-          <UButton to="/tour-list" variant="link" :padded="false">
-            تور‌ها
-          </UButton>
-        </li>
+<script setup lang="ts">
+const { data } = await useFetch("http://10.0.202.34:8081/category/getAll");
+</script>
 
-        <li @mouseenter="toggle(false)">
-          <UButton to="/about-us" variant="link" :padded="false">
-            درباره ما
-          </UButton>
-        </li>
-        <li @mouseenter="toggle(false)">
-          <UButton to="/contact-us" variant="link" :padded="false">
-            تماس با ما
-          </UButton>
-        </li>
+<template>
+  <nav class="bg-white shadow sticky top-0 z-50 py-4">
+    <TheContainer class="flex items-center gap-x-4">
+      <ul class="flex gap-4 flex-1">
+        <li><NuxtLink to="/">صفحه اصلی</NuxtLink></li>
+        <li><NuxtLink to="/tour-list">تورها</NuxtLink></li>
+        <li><NuxtLink to="/about-us">درباره ما</NuxtLink></li>
+        <li><NuxtLink to="/contact-us">تماس با ما</NuxtLink></li>
       </ul>
-      <ul class="flex flex-col md:flex-row font-medium gap-x-4">
-        <li>
-          <UButton to="/auth/login" variant="link">ورود</UButton>
-        </li>
-        <li>
-          <UButton to="/auth/register" variant="soft">ثبت نام</UButton>
-        </li>
-      </ul>
-    </AContainer>
-    <Transition>
-      <div
-        v-show="isShow"
-        class="absolute shadow-lg z-50 inset-x-0 top-14 mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600"
-        @mouseenter="toggle(true)"
-      >
-        <AContainer class="flex py-4 gap-4">
-          <div
-            class="col-span-3 grid grid-cols-2 md:grid-cols-5 gap-x-16 gap-y-4 flex-1 overflow-y-auto overflow-x-hidden h-96"
-          >
-            <div v-for="category in categories" :key="category.id ?? 0">
-              <NuxtLink
-                :to="{
-                  path: `/tour-list`,
-                  params: { url: category.url || '' },
-                }"
-                class="flex gap-x-2 items-center"
-              >
-                <!-- <img src="https://placehold.co/60x20" alt="" /> -->
-                <Icon name="iconoir:sea-and-sun" />
-                <h3 class="font-medium">{{ category.name }}</h3>
-              </NuxtLink>
-              <UDivider class="mt-2 mb-3" />
-              <ul>
-                <li
-                  v-for="(subCategory, index) in category.subCategoryModel"
-                  :key="index"
-                  class="group mb-1 ease-in-out duration-500 hover:-translate-x-2 flex items-center gap-x-1 py-2"
-                >
-                  <NuxtLink
-                    :to="{
-                      path: `/tour-list`,
-                      params: { url: subCategory.url || '' },
-                    }"
-                    class="text-sm hover:text-blue-500 text-gray-400"
-                    @click="toggle(false)"
-                  >
-                    {{ subCategory.name }}
-                  </NuxtLink>
-                  <Icon
-                    name="tabler:arrow-left"
-                    class="hidden text-sm group-hover:block group-hover:text-blue-500"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="hidden lg:block lg:col-span-2">
-            <img
-              class="w-full h-full"
-              src="https://placehold.co/300x300"
-              title="hjkj"
-              alt="jhhj"
-            />
-          </div>
-        </AContainer>
-      </div>
-    </Transition>
+      <NuxtLink to="/">
+        <NuxtImg class="h-10" src="assets/img/logo.svg" />
+      </NuxtLink>
+    </TheContainer>
   </nav>
 </template>
-<script setup lang="ts">
-import type { Category } from "~/types/CategoryModel";
-
-const { data: categories } = await useFetch<Category[]>(
-  "/api/v1/category/getAll"
-);
-
-const isShow = ref(false);
-const toggle = (status: boolean) => {
-  isShow.value = status;
-};
-</script>
-<style>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>

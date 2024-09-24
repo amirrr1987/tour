@@ -1,5 +1,14 @@
 <template>
+  <TheTagline />
   <TheNavbar />
-  <slot />
+  <TheHeader />
+  <main>
+    <slot />
+  </main>
   <TheFooter />
 </template>
+<style>
+body {
+  background-color: #f1f1f1;
+}
+</style>

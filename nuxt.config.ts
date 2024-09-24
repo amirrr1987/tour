@@ -1,25 +1,23 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",
-    "nuxt-swiper",
-    "nuxt-typed-router",
-    "dayjs-nuxt",
     "@nuxt/image",
-    "@pinia/nuxt",
+    "@nuxt/icon",
+    "nuxt-lodash",
+    "nuxt-swiper",
   ],
-
-  plugins: ["~/plugins/dayjs"],
-  css: ["@/assets/styles/main.css"],
+  css: ["assets/css/main.css"],
   app: {
-    head: {
-      htmlAttrs: {
-        dir: "rtl",
-        lang: "fa",
-      },
-      title: "کشف جهان با خدمات تور و سفر ما",
+    rootAttrs: {
+      dir: "rtl",
+      lang: "fa",
     },
   },
-  
+  lodash: {
+    prefix: "_",
+  },
 });

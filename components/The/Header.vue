@@ -1,83 +1,76 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Navigation, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+
+const list = [
+  "assets/img/hero/hero_bg_1_1.jpg",
+  "assets/img/hero/hero_bg_1_2.jpg",
+  "assets/img/hero/hero_bg_1_3.jpg",
+  "assets/img/hero/hero_bg_2_1.jpg",
+  "assets/img/hero/hero_bg_2_2.jpg",
+  "assets/img/hero/hero_bg_2_3.jpg",
+  "assets/img/hero/hero_bg_3_1.jpg",
+  "assets/img/hero/hero_bg_3_2.jpg",
+  "assets/img/hero/hero_bg_3_3.jpg",
+  "assets/img/hero/hero_bg_3_4.jpg",
+  "assets/img/hero/hero_bg_3_5.jpg",
+];
+</script>
 
 <template>
-  <section class="relative bg-[url('/images/bg/6.jpg')] py-36 bg-cover">
-    <div class="absolute inset-0 bg-slate-900/40"></div>
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-12 md:grid-cols-2 items-center gap-6">
-        <div class="lg:col-span-5">
-          <div
-            class="bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-800 p-6 z-10 relative lg:ms-10"
-          >
-            <h4 class="mb-5 text-2xl font-semibold">مقصد خود را جستجو کنید</h4>
-            <UForm :state="{}">
-              <UFormGroup label="جستجو" class="mb-4">
-                <UInput placeholder="جستجو" />
-              </UFormGroup>
-              <UFormGroup label="تاریخ خود را انتخاب کنید" class="mb-4">
-                <UInput type="date" placeholder="تاریخ خود را انتخاب کنید" />
-              </UFormGroup>
-              <UFormGroup label="تاریخ خود را انتخاب کنید" class="mb-4">
-                <UInput type="date" placeholder="تاریخ خود را انتخاب کنید" />
-              </UFormGroup>
-              <UButton block>جستجو</UButton>
-            </UForm>
-          </div>
-        </div>
-        <div class="lg:col-span-7">
-          <h5 class="text-3xl font-dancing text-white">
-            اقامت ایده‌آل خود را پیدا کنید
-          </h5>
-          <h4
-            class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-6xl mb-6 mt-5"
-          >
-            به کجا می‌خواهید <br />
-            بروید؟
-          </h4>
-          <p class="text-white/70 text-xl max-w-xl">
-            برنامه‌ریزی برای سفر؟ ما سفر شما را با بهترین مکان‌ها و با بهترین
-            بودجه سازماندهی خواهیم کرد!
-          </p>
-
-          <div class="mt-6">
-            <a
-              href=""
-              class="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-red-500 text-white rounded-md"
-              >مشاهده بسته‌ها</a
-            >
-            <a
-              href="#!"
-              data-type="youtube"
-              data-id="S_CGed6E610"
-              class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-red-500 bg-red-500 text-white ms-1 lightbox"
-              ><i data-feather="video" class="h-4 w-4"></i></a
-            ><span class="font-semibold ms-1 align-middle"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <UButton
-      variant="soft"
-      icon="radix-icons:arrow-down"
-      class="absolute inset-x-0 mx-auto w-max h-auto -bottom-4 z-50"
-      :ui="{ rounded: 'rounded-full' }"
-    />
-    <div
-      class="shape absolute sm:-bottom-px -bottom-[2px] start-0 end-0 overflow-hidden text-white dark:text-slate-900"
+  <header>
+    <Swiper
+      :modules="[SwiperAutoplay, SwiperEffectCreative, Navigation, Pagination]"
+      :slides-per-view="1"
+      :loop="true"
+      :effect="'creative'"
+      :pagination="true"
+      :navigation="true"
+      :autoplay="{
+        delay: 8000,
+        disableOnInteraction: true,
+      }"
+      :creative-effect="{
+        prev: {
+          shadow: false,
+          translate: ['-20%', 0, -1],
+        },
+        next: {
+          translate: ['100%', 0, 0],
+        },
+      }"
     >
-      <svg
-        class="w-full h-auto scale-[2.0] origin-top"
-        viewBox="0 0 2880 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z"
-          fill="currentColor"
-        ></path>
-      </svg>
-    </div>
-  </section>
+      <SwiperSlide v-for="slide in list" :key="slide">
+        <NuxtImg :src="slide" />
+      </SwiperSlide>
+    </Swiper>
+  </header>
 </template>
 
-<style scoped></style>
+<style>
+.swiper {
+  /* width: 100%; */
+  /* height: 30rem; */
+  /* direction: ltr; */
+}
+
+.swiper-slide {
+  /* text-align: center;
+  font-size: 18px;
+  background: #fff; */
+
+  /* Center slide text vertically */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.swiper-slide img {
+  /* display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; */
+}
+</style>
