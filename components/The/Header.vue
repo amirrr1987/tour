@@ -1,50 +1,34 @@
 <template>
-  <header class="bg-[url('assets/img/hero/hero_bg_1_1.jpg')] py-72">
-    <div class="mx-auto max-w-4xl">
-      <UCard>
-        <UForm class="flex items-center gap-4">
-          <UFormGroup label="جستجو" class="flex-1">
-            <UInput />
-          </UFormGroup>
-          <UFormGroup label="تاریخ شروع">
-            <UPopover :popper="{ placement: 'bottom-start' }">
-              <UButton icon="i-heroicons-calendar-days-20-solid">
-                {{ format(selected.start, "d MMM, yyy") }} -
-                {{ format(selected.end, "d MMM, yyy") }}
-              </UButton>
+  <header class="bg-[url('assets/img/hero/hero_bg_1_1.jpg')] py-12 md:py-72">
+    <TheContainer>
+      <h4 class="text-3xl text-white mb-2">بگذار سفر آغاز شود...</h4>
+      <p class="mb-4 text-base text-white">
+        در حال برنامه‌ریزی برای سفر هستید؟ ما سفر شما را با بهترین مکان‌ها و در
+        بهترین بودجه سازماندهی خواهیم کرد!
+      </p>
 
-              <template #panel="{ close }">
-                <DatePicker v-model="selected" @close="close" />
-              </template>
-            </UPopover>
+      <UCard>
+        <UForm class="space-y-4 md:space-y-0 md:flex">
+          <UFormGroup label="جستجو" class="md:flex-1/2">
+            <UInput v-model:modelValue="search.search" />
           </UFormGroup>
-          <UButton class="mt-4" icon="tabler-search">جستجو</UButton>
+          {{ search.date[0] }}
+          {{ search.date[1] }}
+          <UFormGroup label="تاریخ شروع">
+            <DatePicker v-model:modelValue="search.date" color="red" />
+          </UFormGroup>
+
+          <UButton class="md:flex-1/2" icon="tabler-search">جستجو</UButton>
         </UForm>
       </UCard>
-    </div>
+    </TheContainer>
   </header>
 </template>
 <script setup lang="ts">
-import { sub, format, isSameDay, type Duration } from "date-fns";
-
-const ranges = [
-  { label: "Last 7 days", duration: { days: 7 } },
-  { label: "Last 14 days", duration: { days: 14 } },
-  { label: "Last 30 days", duration: { days: 30 } },
-  { label: "Last 3 months", duration: { months: 3 } },
-  { label: "Last 6 months", duration: { months: 6 } },
-  { label: "Last year", duration: { years: 1 } },
-];
-const selected = ref({ start: sub(new Date(), { days: 14 }), end: new Date() });
-
-function isRangeSelected(duration: Duration) {
-  return (
-    isSameDay(selected.value.start, sub(new Date(), duration)) &&
-    isSameDay(selected.value.end, new Date())
-  );
-}
-
-function selectRange(duration: Duration) {
-  selected.value = { start: sub(new Date(), duration), end: new Date() };
-}
+import DatePicker from "@alireza-ab/vue3-persian-datepicker";
+import { useRouteQuery } from "@vueuse/router";
+const search = ref({
+  date: useRouteQuery<string>("start", '', { transform: String }),
+  search: useRouteQuery<string>("search", undefined, { transform: String }),
+});
 </script>
