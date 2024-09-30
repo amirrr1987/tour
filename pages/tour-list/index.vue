@@ -7,31 +7,95 @@
           <UForm
             :schema="schema"
             :state="state"
-            class="space-y-8 md:space-y-4 grid grid-cols-2 md:grid-cols-1 "
+            class="space-y-8 md:space-y-4 grid grid-cols-2 md:grid-cols-1"
             @submit.prevent="onSubmit"
           >
-            <UFormGroup
-              label="درجه سختی"
-              name="tourLevelType"
-              :ui="formGroupUi"
-            >
-              <URadioGroup
-                v-model="state.tourLevelType"
-                :options="TourLevelTypeEnumList"
+            <UFormGroup label="جستجو" name="name" :ui="formGroupUi">
+              <template #hint>
+                <UButton
+                  size="2xs"
+                  variant="soft"
+                  color="gray"
+                  icon="tabler:trash"
+                  @click="onReset('name')"
+                  v-if="state.name"
+                />
+              </template>
+              <UInput
+                v-model="state.name"
                 class="radio-filed"
+                @change="onSubmit"
               />
             </UFormGroup>
+            <UFormGroup label="تعداد روز" name="duration" :ui="formGroupUi">
+              <template #hint>
+                <UButton
+                  size="2xs"
+                  variant="soft"
+                  color="red"
+                  :trailing="true"
+                  icon="tabler:trash"
+                  @click="onReset('duration')"
+                />
+              </template>
+              <USelect
+                v-model="state.duration"
+                :options="DurationList"
+                class="radio-filed"
+                @change="onSubmit"
+              />
+            </UFormGroup>
+            <UFormGroup label="تاریخ شروع" name="startDate" :ui="formGroupUi">
+              <template #hint>
+                <UButton
+                  size="2xs"
+                  variant="soft"
+                  color="red"
+                  :trailing="true"
+                  icon="tabler:trash"
+                  @click="onReset('startDate')"
+                />
+              </template>
+              <DatePicker
+                v-model:modelValue="state.startDate"
+                color="red"
+                mode="single"
+                @change="onSubmit"
+              />
+            </UFormGroup>
+
             <UDivider class="hidden md:flex" />
             <UFormGroup label="نوع تور" name="tourType" :ui="formGroupUi">
+              <template #hint>
+                <UButton
+                  size="2xs"
+                  variant="soft"
+                  color="red"
+                  :trailing="true"
+                  icon="tabler:trash"
+                  @click="onReset('tourType')"
+                />
+              </template>
               <URadioGroup
                 v-model="state.tourType"
                 :options="TourTypeEnumList"
                 class="radio-filed"
+                @change="onSubmit"
               />
             </UFormGroup>
 
             <UDivider class="hidden md:flex" />
             <UFormGroup name="transferType" :ui="formGroupUi">
+              <template #hint>
+                <UButton
+                  size="2xs"
+                  variant="soft"
+                  color="red"
+                  :trailing="true"
+                  icon="tabler:trash"
+                  @click="onReset('transferType')"
+                />
+              </template>
               <template #label>
                 <UIcon name="tabler:car" />
                 وسیله نقلیه
@@ -40,23 +104,35 @@
                 v-model="state.transferType"
                 :options="TransferTypeEnumList"
                 class="radio-filed"
+                @change="onSubmit"
               />
             </UFormGroup>
             <UDivider class="hidden md:flex" />
             <UFormGroup label="محل اقامت" name="stayType" :ui="formGroupUi">
+              <template #hint>
+                <UButton
+                  size="2xs"
+                  variant="soft"
+                  color="red"
+                  :trailing="true"
+                  icon="tabler:trash"
+                  @click="onReset('stayType')"
+                />
+              </template>
               <URadioGroup
                 v-model="state.stayType"
                 :options="StayTypeEnumList"
                 class="radio-filed"
+                @change="onSubmit"
               />
             </UFormGroup>
-            <UDivider class="hidden md:flex" />
-            <div class="flex gap-x-4">
+            <!-- <UDivider class="hidden md:flex" /> -->
+            <!-- <div class="flex gap-x-4">
               <UButton size="xs" type="submit" icon="">اعمال فیلتر</UButton>
-              <UButton size="xs" type="" variant="ghost" @click="onReset"
-                >پاک کردن</UButton
-              >
-            </div>
+              <UButton size="xs" type="" variant="ghost" @click="onReset">
+                پاک کردن
+              </UButton>
+            </div> -->
           </UForm>
         </UCard>
       </div>
@@ -104,14 +180,14 @@ import {
   TransferTypeEnumList,
   StayTypeEnum,
   StayTypeEnumList,
+  DurationList,
 } from "~/enums";
+import DatePicker from "@alireza-ab/vue3-persian-datepicker";
 
 import { object, string, number, type InferType } from "yup";
-import type { FormSubmitEvent } from "#ui/types";
 
 definePageMeta({
   layout: "filter",
-  name: "تور‌ها",
 });
 const schema = object({
   tourLevelType: string(),
@@ -137,8 +213,11 @@ const state = reactive({
     undefined
   ),
   stayType: useRouteQuery<StayTypeEnum | undefined>("stayType", undefined),
-  page: useRouteQuery("page", "1", { transform: Number }),
+  page: useRouteQuery<number | string>("page", "1", { transform: Number }),
   size: useRouteQuery<number>("size", 5),
+  name: useRouteQuery<string | undefined>("name"),
+  startDate: useRouteQuery<string | undefined>("startDate"),
+  duration: useRouteQuery<string | undefined>("duration"),
 });
 
 const tourList = ref<TourDTO.Content[]>([]);
@@ -154,8 +233,11 @@ const fetchTours = async () => {
         transferTypeEnum: state.transferType,
         tourLevelTypeEnum: state.tourLevelType,
         tourTypeEnum: state.tourType,
-        page: state.page - 1,
+        page: Number(state.page) - 1,
         size: state.size,
+        name: state.name,
+        startDate: state.startDate,
+        duration: state.duration,
       },
     }
   );
@@ -170,12 +252,33 @@ const onSubmit = async () => {
   await fetchTours();
 };
 
-const onReset = async () => {
-  state.tourLevelType = undefined;
-  state.tourType = undefined;
-  state.transferType = undefined;
-  state.stayType = undefined;
+const onReset = async (key: string) => {
+  console.log("1");
+
+  switch (key) {
+    case "name":
+      return (state.name = undefined);
+    case "duration":
+      return (state.duration = undefined);
+    case "stayType":
+      return (state.stayType = undefined);
+    case "transferType":
+      return (state.transferType = undefined);
+    case "tourLevelType":
+      return (state.tourLevelType = undefined);
+    case "tourType":
+      return (state.tourType = undefined);
+    case "startDate":
+      return (state.startDate = undefined);
+    case "duration":
+      return (state.duration = undefined);
+    default:
+      break;
+  }
+  console.log("2");
+
   await fetchTours();
+  console.log("3");
 };
 
 await fetchTours();
@@ -186,13 +289,15 @@ watch(
 );
 
 const route = useRoute();
+console.log(route.name);
+
 const links = computed(() => [
   { label: "صفحه اصلی", to: "/" },
-  ...route.matched.map((item) => ({ label: item.meta.name, to: item.path })),
+  { label: "تورها", to: "/tour-list" },
 ]);
 
 const formGroupUi = {
-  label: { base: "mb-2 text-gray-400 dark:text-gray-300" },
+  label: { base: "w-full mb-2 text-gray-400 dark:text-gray-300" },
 };
 </script>
 <style lang="less">

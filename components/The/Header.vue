@@ -8,17 +8,32 @@
       </p>
 
       <UCard>
-        <UForm class="space-y-4 md:space-y-0 md:flex">
-          <UFormGroup label="جستجو" class="md:flex-1/2">
-            <UInput v-model:modelValue="search.search" />
-          </UFormGroup>
-          {{ search.date[0] }}
-          {{ search.date[1] }}
-          <UFormGroup label="تاریخ شروع">
-            <DatePicker v-model:modelValue="search.date" color="red" />
+        <UForm :state="{}" class="space-y-4 md:space-y-0 md:flex gap-x-4">
+          <UFormGroup label="جستجو" class="md:flex-1">
+            <UInput v-model="search.name" />
           </UFormGroup>
 
-          <UButton class="md:flex-1/2" icon="tabler-search">جستجو</UButton>
+          <UFormGroup label="تاریخ شروع">
+            <DatePicker
+              v-model:modelValue="search.startDate"
+              color="red"
+              mode="single"
+            />
+          </UFormGroup>
+
+          <UFormGroup label="تعداد روز">
+            <USelect
+              v-model:modelValue="search.duration"
+              :options="DurationList"
+              color="red"
+            />
+          </UFormGroup>
+
+          <div class="pt-4">
+            <UButton size="lg" icon="tabler-search" @click="searched">
+              جستجو
+            </UButton>
+          </div>
         </UForm>
       </UCard>
     </TheContainer>
@@ -27,8 +42,23 @@
 <script setup lang="ts">
 import DatePicker from "@alireza-ab/vue3-persian-datepicker";
 import { useRouteQuery } from "@vueuse/router";
+import { useRouter } from "nuxt/app";
+import { DurationList } from "~/enums";
 const search = ref({
-  date: useRouteQuery<string>("start", '', { transform: String }),
-  search: useRouteQuery<string>("search", undefined, { transform: String }),
+  startDate: undefined,
+  name: undefined,
+  duration: undefined,
 });
+
+const router = useRouter();
+const searched = () => {
+  router.push({
+    name: "tour-list", // Make sure this matches your route name
+    query: {
+      startDate: search.value.startDate,
+      name: search.value.name,
+      duration: search.value.duration,
+    },
+  });
+};
 </script>

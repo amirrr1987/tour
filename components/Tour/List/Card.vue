@@ -53,7 +53,6 @@ const cardUi = {
             class="w-full aspect-[3/2] object-cover"
             :src="props.tour.mainImageAddress"
             loading="lazy"
-            
           />
         </div>
       </template>
@@ -63,6 +62,7 @@ const cardUi = {
           <h4 class="mb-2">{{ props.tour.name }}</h4>
         </div>
         <div>
+          روز{{ props.tour.duration }} -
           {{ props.tour.rate }}
           <Icon name="heroicons:star-16-solid" style="color: gold" />
         </div>

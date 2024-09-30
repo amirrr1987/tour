@@ -4,11 +4,45 @@ interface Item {
   value: string;
   icon: string;
 }
+export type Duration =
+  | undefined
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14;
+export const DurationList = <Duration[]>[
+  undefined,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+];
 export const enum TourLevelTypeEnum {
   EASY = "EASY",
   MEDIUM = "MEDIUM",
   HARD = "HARD",
 }
+
 export const TourLevelTypeEnumList = [
   {
     label: "آسان",

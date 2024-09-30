@@ -27,16 +27,15 @@ interface Tour {
   categoryId: [];
   rate: number;
   id: number;
+  duration: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 }
-const x: TourDTO.Search.Request = {};
-console.log("🚀 ~ x:", x);
 
 export namespace TourDTO {
   export type Content = Tour;
 
   export namespace GetAll {
     export type Response = Content[];
-  }
+  } 
   export namespace Search {
     export interface Request
       extends Pick<
@@ -46,9 +45,13 @@ export namespace TourDTO {
         | "tourLevelTypeEnum"
         | "tourTypeEnum"
         | "transferTypeEnum"
+        | "duration"
       > {
+      name: string;
       page: number;
       size: number;
+
+      startDate: Date;
     }
     export interface Response extends Pagebale {
       content: Content[];
