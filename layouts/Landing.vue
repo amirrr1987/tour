@@ -1,6 +1,7 @@
 <template>
   <TheTagline />
   <TheNavbar />
+  <TheHeader />
   <main>
     <slot />
   </main>
