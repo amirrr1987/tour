@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const ui = {
-  constrained: "!container",
+  // constrained: "w-full lg:w-8/12",
 };
 </script>
 
