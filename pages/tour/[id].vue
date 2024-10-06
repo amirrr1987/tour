@@ -1,16 +1,16 @@
 <template>
   <section class="py-12 single-tour">
-    <TheContainer v-if="tour?.id" class="grid grid-cols-12 gap-4">
-      <div class="col-span-8">
-        <h4 class="text-2xl">{{ tour.name }}</h4>
-        <p>{{ tour.description }}</p>
-        <p>{{ tour.startDate }}</p>
-        <p>{{ tour.endDate }}</p>
-        <p>{{ tour.price }}</p>
-        <p>{{ tour.priceDiscount }}</p>
-        <p>{{ tour.priceOff }}</p>
+    <TheContainer v-if="tour?.id" class="grid md:grid-cols-12 gap-4">
+      <div class="md:col-span-8">
+        <h4 class="text-2xl font-bold mb-4">{{ tour.name }}</h4>
+        <p>description:{{ tour.description }}</p>
+        <p>startDate:{{ tour.startDate }}</p>
+        <p>endDate:{{ tour.endDate }}</p>
+        <p>price:{{ tour.price }}</p>
+        <p>priceDiscount:{{ tour.priceDiscount }}</p>
+        <p>priceOff:{{ tour.priceOff }}</p>
       </div>
-      <div class="col-span-4">
+      <div class="md:col-span-4">
         <UCard>
           <swiper
             class="h-80 w-full mx-auto"

@@ -2,12 +2,11 @@
   <section class="py-12">
     <TheContainer class="grid gap-4 grid-cols-12">
       <div class="col-span-12 lg:col-span-4 xl:col-span-2">
-        <!-- <TourListFilter  /> -->
         <UCard>
           <UForm
             :schema="schema"
             :state="state"
-            class="space-y-8 md:space-y-4 grid grid-cols-2 md:grid-cols-1"
+            class="grid grid-cols-2 md:grid-cols-1 gap-4"
             @submit.prevent="onSubmit"
           >
             <UFormGroup label="جستجو" name="name" :ui="formGroupUi">
@@ -148,7 +147,7 @@
             />
           </div>
         </div>
-        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
           <TourListCard
             v-for="tour in tourList"
             :tour="tour"

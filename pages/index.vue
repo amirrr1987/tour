@@ -17,7 +17,7 @@
           رسند.
         </p>
         <div>
-          <UButton >Learn more</UButton>
+          <UButton>Learn more</UButton>
         </div>
       </div>
       <div class="w-max grid gap-4 grid-cols-2 grid-rows-2 p-">
@@ -37,3 +37,8 @@
     </TheContainer>
   </section>
 </template>
+<script setup lang="ts">
+definePageMeta({
+  layout: 'landing'
+});
+</script>

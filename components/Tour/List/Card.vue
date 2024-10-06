@@ -63,10 +63,13 @@ const cardUi = {
         </div>
         <div>
           روز{{ props.tour.duration }} -
-          {{ props.tour.rate }}
+
           <Icon name="heroicons:star-16-solid" style="color: gold" />
         </div>
       </div>
+        <div>
+          امتیاز: {{ props.tour.rate }}
+        </div>
       <div>
         <span>ظرفیت : {{ props.tour.capacity }} نفر</span>
       </div>
