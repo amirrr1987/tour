@@ -11,23 +11,24 @@
   },
   "dependencies": {
     "@alireza-ab/vue3-persian-datepicker": "^1.0.4",
-    "@nuxt/icon": "^1.5.1",
-    "@nuxt/image": "^1.8.0",
-    "@nuxt/ui": "^2.18.4",
-    "@vueuse/core": "^11.1.0",
-    "@vueuse/nuxt": "^11.1.0",
-    "@vueuse/router": "^11.1.0",
+    "@nuxt/icon": "^1.10.3",
+    "@nuxt/image": "^1.8.1",
+    "@nuxt/ui": "^2.20.0",
+    "@pinia/nuxt": "0.9.0",
+    "@vueuse/core": "^12.2.0",
+    "@vueuse/nuxt": "^12.2.0",
+    "@vueuse/router": "^12.2.0",
     "lodash": "^4.17.21",
-    "nuxt": "^3.13.0",
-    "nuxt-swiper": "^1.2.2",
-    "swiper": "^11.1.14",
+    "nuxt": "^3.15.0",
+    "nuxt-swiper": "^2.0.0",
+    "swiper": "^11.1.15",
     "vue": "latest",
     "vue-router": "latest",
-    "yup": "^1.4.0"
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/nprogress": "^0.2.3",
-    "less": "^4.2.0",
+    "less": "^4.2.1",
     "nuxt-lodash": "^2.5.3"
   }
 }
