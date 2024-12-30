@@ -1,6 +1,6 @@
 <template>
   <main
-    class="h-screen flex items-center justify-center bg-[url('/images/bg/6.jpg')] before:content-[''] before:inset-0 before:absolute before:bg-black before:opacity-50"
+    class="h-screen flex items-center justify-center bg-[url('https://shreethemes.in/travosy/layouts/assets/images/bg/6.jpg')] before:content-[''] before:inset-0 before:absolute before:bg-black before:opacity-50"
   >
     <section class="absolute">
       <UCard
@@ -10,7 +10,7 @@
         }"
       >
         <UButton to="/" variant="link" class="mx-auto block">
-          <img class="mx-auto" src="/images/logo-icon.png" title="" alt="" />
+          <img class="mx-auto" src="https://shreethemes.in/travosy/layouts/assets/images/logo-icon.png" title="" alt="" />
         </UButton>
 
         <slot />
