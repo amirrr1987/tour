@@ -26,6 +26,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.3",
     "less": "^4.2.0",
     "nuxt-lodash": "^2.5.3"
   }
