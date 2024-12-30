@@ -8,7 +8,8 @@
 <script setup lang="ts">
 import { useLocalStorage } from "@vueuse/core";
 import { useRoute } from "vue-router";
-import nprogress from "nprogress";
+// import nprogress from "nprogress";
+import { useConfigStore } from "~/stores/configStore";
 const route = useRoute();
 const token = route.query.token as string;
 
@@ -18,14 +19,14 @@ definePageMeta({
 
 const router = useRouter();
 onMounted(async () => {
-  nprogress.start();
+  // nprogress.start();
   const { data: tokenData } = await useFetch(
     `/api/v1/auth/verify-email/${token}`
   );
   const configStore = useConfigStore();
   configStore.token = tokenData.value?.accessToken;
 
-  nprogress.done();
+  // nprogress.done();
   router.push("/");
 });
 </script>
