@@ -20,4 +20,5 @@ export default defineNuxtConfig({
   lodash: {
     prefix: "_",
   },
+  build: { rollupOptions: { external: ["nprogress"] } },
 });
