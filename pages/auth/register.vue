@@ -1,66 +1,54 @@
 <script setup lang="ts">
-import { boolean, object, string, type InferType } from "yup";
-import type { FormSubmitEvent } from "#ui/types";
+  import type { FormSubmitEvent } from '#ui/types'
+  import { boolean, object, string, type InferType } from 'yup'
 
-const schema = object({
-  username: string().min(8, "نام کاربری نامعتبر است").required("الزامی است"),
-  email: string().email("ایمیل نامعتبر است").required("الزامی است"),
-  password: string().min(8, "باید حداقل 8 کاراکتر باشد").required("الزامی است"),
-  remember: boolean(),
-});
+  const schema = object({
+    username: string().min(8, 'نام کاربری نامعتبر است').required('الزامی است'),
+    email: string().email('ایمیل نامعتبر است').required('الزامی است'),
+    password: string().min(8, 'باید حداقل 8 کاراکتر باشد').required('الزامی است'),
+    remember: boolean()
+  })
 
-type Schema = InferType<typeof schema>;
+  type Schema = InferType<typeof schema>
 
-const state = reactive({
-  username: undefined,
-  email: undefined,
-  password: undefined,
-  remember: undefined,
-});
-const loading = ref(false)
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  loading.value = !loading.value
-  await useFetch("/api/v1/auth/register", {
-    method: "post",
-    body: event.data,
-  });
-  loading.value = !loading.value
-}
-definePageMeta({
-  layout: "auth",
-});
+  const state = reactive({
+    username: undefined,
+    email: undefined,
+    password: undefined,
+    remember: undefined
+  })
+  const loading = ref(false)
+  async function onSubmit(event: FormSubmitEvent<Schema>) {
+    loading.value = !loading.value
+    await useFetch('/api/v1/auth/register', {
+      method: 'post',
+      body: event.data
+    })
+    loading.value = !loading.value
+  }
+  definePageMeta({
+    layout: 'auth'
+  })
 </script>
 
 <template>
   <h5 class="my-6 text-xl font-semibold">ثبت نام</h5>
   <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-    <UFormGroup label="نام کاربری" name="username">
+    <UFormField label="نام کاربری" name="username">
       <UInput v-model="state.username" />
-    </UFormGroup>
+    </UFormField>
 
-    <UFormGroup label="ایمیل" name="email">
-      <UInput
-        v-model="state.email"
-        type="email"
-        placeholder="name@example.com"
-      />
-    </UFormGroup>
+    <UFormField label="ایمیل" name="email">
+      <UInput v-model="state.email" type="email" placeholder="name@example.com" />
+    </UFormField>
 
-    <UFormGroup label="رمز عبور" name="password">
-      <UInput
-        v-model="state.password"
-        type="password"
-        placeholder="رمز عبور:"
-      />
-    </UFormGroup>
+    <UFormField label="رمز عبور" name="password">
+      <UInput v-model="state.password" type="password" placeholder="رمز عبور:" />
+    </UFormField>
 
-    <UFormGroup
-      label="شرایط و ضوابط را می‌پذیرم"
-      name="acceptCondition"
-      class="flex gap-x-4 py-1"
-    >
+    <UFormField label="شرایط و ضوابط را می‌پذیرم" name="acceptCondition" class="flex gap-x-4 py-1">
       <UCheckbox v-model="state.remember" />
-    </UFormGroup>
+    </UFormField>
 
     <UButton type="submit" block class="font-[Vazirmatn] text-md" :loading="loading">
       ثبت نام

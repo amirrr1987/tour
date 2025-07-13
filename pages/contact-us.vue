@@ -6,9 +6,9 @@
       <div>
         <h4>Get in touch !</h4>
         <UForm>
-          <UFormGroup label="Your Name">
+          <UFormField label="Your Name">
             <UInput />
-          </UFormGroup>
+          </UFormField>
         </UForm>
       </div>
       <NuxtImg

@@ -1,24 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
 export default defineNuxtConfig({
-  compatibilityDate: "2024-04-03",
+  compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
+
   modules: [
-    "@nuxt/ui",
-    "@nuxt/image",
-    "@nuxt/icon",
-    "nuxt-lodash",
-    "nuxt-swiper",
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    '@nuxt/test-utils',
+    '@nuxt/ui',
+    'nuxt-swiper',
+    '@vueuse/nuxt'
   ],
-  css: ["assets/css/main.css"],
+  css: ['assets/css/main.css'],
   app: {
     rootAttrs: {
-      dir: "rtl",
-      lang: "fa",
-    },
-  },
-  lodash: {
-    prefix: "_",
-  },
-  build: { rollupOptions: { external: ["nprogress"] } },
-});
+      dir: 'rtl',
+      lang: 'fa'
+    }
+  }
+})

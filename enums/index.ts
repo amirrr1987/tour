@@ -1,4 +1,4 @@
-import _ from "lodash";
+import {findIndex} from "lodash-es";
 interface Item {
   label: string;
   value: string;
@@ -61,7 +61,7 @@ export const TourLevelTypeEnumList = [
   },
 ];
 export const findTourLevelType = (e: TourLevelTypeEnum) => {
-  const index = _._.findIndex(TourLevelTypeEnumList, (val) => val.value == e);
+  const index = findIndex(TourLevelTypeEnumList, (val) => val.value == e);
   if (index < 0) return {} as Item;
   return TourLevelTypeEnumList[index];
 };
@@ -88,7 +88,7 @@ export const TourTypeEnumList = [
   },
 ];
 export const findTourType = (e: TourTypeEnum) => {
-  const index = _.findIndex(TourTypeEnumList, (val) => val.value == e);
+  const index = findIndex(TourTypeEnumList, (val) => val.value == e);
   if (index < 0) return {} as Item;
   return TourTypeEnumList[index];
 };
@@ -133,7 +133,7 @@ export const MealTypeEnumList = [
   },
 ];
 export const findMealType = (e: MealTypeEnum) => {
-  const index = _.findIndex(MealTypeEnumList, (val) => val.value == e);
+  const index = findIndex(MealTypeEnumList, (val) => val.value == e);
   if (index < 0) return {} as Item;
   return MealTypeEnumList[index];
 };
@@ -166,7 +166,7 @@ export const TransferTypeEnumList = [
   },
 ];
 export const findTransferType = (e: TransferTypeEnum) => {
-  const index = _.findIndex(TransferTypeEnumList, (val) => val.value == e);
+  const index = findIndex(TransferTypeEnumList, (val) => val.value == e);
   if (index < 0) return {} as Item;
   return TransferTypeEnumList[index];
 };
@@ -206,7 +206,7 @@ export const StayTypeEnumList = [
   },
 ];
 export const findStayType = (e: StayTypeEnum) => {
-  const index = _.findIndex(StayTypeEnumList, (val) => val.value == e);
+  const index = findIndex(StayTypeEnumList, (val) => val.value == e);
   if (index < 0) return {} as Item;
   return StayTypeEnumList[index];
 };

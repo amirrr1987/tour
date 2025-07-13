@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { findTourType, TourTypeEnum, TourTypeEnumList } from "~/enums";
 import type { TourDTO } from "~/types/TourModel";
-import _ from "lodash";
+import _ from "lodash-es";
 interface Props {
   tour: TourDTO.Content;
 }
