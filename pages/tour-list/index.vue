@@ -246,10 +246,8 @@
         return (state.startDate = undefined)
       case 'duration':
         return (state.duration = undefined)
-      default:
-        break
+ 
     }
-    console.log('2')
 
     await fetchTours()
     console.log('3')
