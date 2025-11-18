@@ -1,7 +1,6 @@
 [build]
-  command = "bun run build"
-  publish = ".output/public"
+  command = "npx nuxi build"
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
-  BUN_VERSION = "1.1.30"    # یا latest
+  NODE_VERSION = "22"
