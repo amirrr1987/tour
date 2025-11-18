@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "build": "nuxi build",
-    "generate": "nuxi generate --prerender",
+    "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "dev": "nuxi dev"
+    "dev": "nuxi dev",
+    "dev:bun": "bun run dev",
+    "build:bun": "bun run build"
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",
