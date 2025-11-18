@@ -1,8 +1,6 @@
 <template>
-  <div class="font-vazirmatn">
-    <nuxt-layout>
-      <Nuxt-route-announcer />
-      <Nuxt-page />
-    </nuxt-layout>
+  <div>
+    <NuxtRouteAnnouncer />
+    <NuxtWelcome />
   </div>
 </template>
