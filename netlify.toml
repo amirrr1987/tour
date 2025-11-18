@@ -1,0 +1,4 @@
+# netlify.toml
+[build]
+  command = "nuxi build"
+  publish = ".output/public"
