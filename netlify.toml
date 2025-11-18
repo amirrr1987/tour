@@ -1,0 +1,14 @@
+# netlify.toml
+[build]
+  # فرمان build
+  command = "npx nuxi build"
+  # دایرکتوری خروجی برای Netlify
+  publish = "output/public"
+  # branch پیش‌فرض
+  base = "/"
+
+# برای redirect همه درخواست‌ها به Nuxt
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
