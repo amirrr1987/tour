@@ -13,6 +13,19 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/ui",
+    "nuxt-swiper",
+    "@vueuse/nuxt",
   ],
-  ssr: true
+  ssr: true,
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "fa",
+        dir: "rtl",
+      },
+      bodyAttrs: {
+        class: "font-vazirmatn",
+      },
+    },
+  },
 });

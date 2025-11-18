@@ -1,9 +1,15 @@
 <template>
-  <div class="h-screen flex flex-col">
-    <the-header />
-    <the-main>
+  <div class="font-vazirmatn">
+    <TheTagline />
+    <TheNavbar />
+    <main>
       <slot />
-    </the-main>
-    <the-footer />
+    </main>
+    <TheFooter />
   </div>
 </template>
+<style>
+body {
+  background-color: #f1f1f1;
+}
+</style>
