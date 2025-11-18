@@ -10,4 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxt/ui",
   ],
+  nitro: {
+    preset: "netlify",
+  },
 });

@@ -3,11 +3,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--no-deprecation nuxt build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation nuxt dev",
-    "generate": "cross-env NODE_OPTIONS=--no-deprecation nuxt generate",
-    "preview": "cross-env NODE_OPTIONS=--no-deprecation nuxt preview",
-    "postinstall": "nuxt prepare"
+    "build": "nuxi build",
+    "generate": "nuxi generate --prerender",
+    "preview": "nuxi preview",
+    "dev": "nuxi dev"
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",
@@ -21,8 +20,5 @@
     "typescript": "^5.6.3",
     "vue": "^3.5.24",
     "vue-router": "^4.6.3"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3"
   }
 }
