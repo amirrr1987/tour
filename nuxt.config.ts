@@ -3,6 +3,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
+  devServer: {
+    host: "localhost",
+    port: 3000,
+  },
   modules: [
     "@nuxt/eslint",
     "@nuxt/hints",
