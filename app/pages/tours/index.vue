@@ -1,10 +1,10 @@
 <template>
   <section class="py-12">
     <u-container class="grid md:grid-cols-12 gap-4">
-      <div class="col-span-3">
+      <div class="col-span-12 md:col-span-3">
         <u-card class="h-full">sdf</u-card>
       </div>
-      <div class="col-span-9 space-y-4">
+      <div class="col-span-12 md:col-span-9 space-y-4">
         <u-card v-for="tour in tours" :key="tour.id">
           <h2>{{ tour.name }}</h2>
           <p>{{ tour.description }}</p>
