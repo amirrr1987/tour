@@ -1,27 +1,7 @@
-# netlify.toml
 [build]
   command = "bun run build"
   publish = ".output/public"
 
 [build.environment]
   NODE_VERSION = "20"
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/server"
-  status = 200
-
-[[headers]]
-  for = "/_nuxt/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/_fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/_scripts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+  BUN_VERSION = "1.1.30"    # یا latest

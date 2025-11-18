@@ -12,11 +12,25 @@
             View Details
           </NuxtLink>
         </u-card>
+        <div class="col-span-12 flex justify-center">
+          <UPagination
+            v-model:page="page"
+            :total="total"
+            :page-size="pageSize"
+            show-edges
+            :sibling-count="1"
+            active-color="primary"
+            active-variant="subtle"
+          />
+        </div>
       </div>
     </u-container>
   </section>
 </template>
 <script setup lang="ts">
+const page = ref(5);
+const pageSize = ref(10);
+const total = ref(100);
 const tours = [
   { id: 1, slag: "tour-1", name: "Tour 1", description: "Description 1" },
   { id: 2, slag: "tour-2", name: "Tour 2", description: "Description 2" },
