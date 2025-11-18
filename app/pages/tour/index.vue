@@ -1,6 +1,6 @@
 <template>
-  <div>{{ data }}</div>
   <div>
+    <div>{{ data }}</div>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi rerum illum
     dolore ad hic voluptates veritatis, dignissimos autem est, numquam laborum
     dolor voluptate facilis inventore nesciunt minus vitae voluptatem officiis.

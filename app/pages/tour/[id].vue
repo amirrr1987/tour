@@ -12,54 +12,61 @@
       </div>
       <div class="md:col-span-4">
         <UCard>
-          <swiper
+          <Swiper
             class="h-80 w-full mx-auto"
             :style="{
               '--swiper-navigation-color': '#fff',
               '--swiper-pagination-color': '#fff',
             }"
             :loop="true"
-            :spaceBetween="10"
+            :space-between="10"
             :navigation="true"
             :thumbs="{ swiper: thumbsSwiper }"
             :modules="[FreeMode, Navigation, Thumbs]"
           >
-            <SwiperSlide v-for="item in tour.imagesAddress">
+            <SwiperSlide
+              v-for="(item, index) in tour.imagesAddress"
+              :key="index"
+            >
               <NuxtImg
                 class="rounded-t-3xl w-full h-full object-cover"
                 :src="item"
               />
             </SwiperSlide>
-          </swiper>
-          <swiper
-            @swiper="setThumbsSwiper"
+          </Swiper>
+          <Swiper
             :loop="true"
-            :spaceBetween="10"
-            :slidesPerView="4"
-            :freeMode="true"
-            :watchSlidesProgress="true"
+            :space-between="10"
+            :slides-per-view="4"
+            :free-mode="true"
+            :watch-slides-progress="true"
             :modules="[FreeMode, Navigation, Thumbs]"
-            class="mySwiper !pt-2"
+            class="mySwiper pt-2!"
+            @swiper="setThumbsSwiper"
           >
-            <SwiperSlide v-for="item in tour.imagesAddress">
-              <NuxtImg class="w-full !h-16 object-cover" :src="item" />
+            <SwiperSlide
+              v-for="(item, index) in tour.imagesAddress"
+              :key="index"
+            >
+              <NuxtImg class="w-full h-16! object-cover" :src="item" />
             </SwiperSlide>
-          </swiper>
+          </Swiper>
         </UCard>
       </div>
     </TheContainer>
   </section>
 </template>
 <script setup lang="ts">
-import type { TourDTO } from "~/types/TourModel";
+import type { TourDTOGetOneResponse } from "~/types/TourModel";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
-
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs, Pagination } from "swiper/modules";
-import { SwiperSlide } from "swiper/vue";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+
 definePageMeta({
   layout: "single",
   name: "single",
@@ -67,15 +74,15 @@ definePageMeta({
 
 const route = useRoute();
 
-const { data: tour } = await useFetch<TourDTO.GetOne.Response>(
-  `http://10.0.202.34:8081/tour/find/${route.query.id}`
+const { data: tour } = await useFetch<TourDTOGetOneResponse>(
+  `http://10.0.202.34:8081/tour/find/${route.params.id}`
 );
 useHead({
   title: `${tour.value?.name} | تور کده`,
 });
-const thumbsSwiper = ref(null);
+const thumbsSwiper = ref<SwiperType | null>(null);
 
-const setThumbsSwiper = (swiper: any) => {
+const setThumbsSwiper = (swiper: SwiperType) => {
   thumbsSwiper.value = swiper;
 };
 </script>

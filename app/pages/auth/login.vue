@@ -1,53 +1,77 @@
 <script setup lang="ts">
-  import type { FormSubmitEvent } from '#ui/types'
-  import { boolean, object, string, type InferType } from 'yup'
+import type { FormSubmitEvent } from "#ui/types";
+import { z } from "zod";
+import { useConfigStore } from "~/stores/configStore"; // Update the path as needed
 
-  const schema = object({
-    username: string().required('الزامی است'),
-    password: string().min(8, 'باید حداقل 8 کاراکتر باشد').required('الزامی است'),
-    remember: boolean()
-  })
+const schema = z.object({
+  username: z.string(),
+  password: z.string().min(8, "باید حداقل 8 کاراکتر باشد"),
+  remember: z.boolean(),
+});
 
-  type Schema = InferType<typeof schema>
+type Schema = z.infer<typeof schema>;
 
-  const state = reactive({
-    username: 'fwn01411@zccck.com',
-    password: 'fwn01411@zccck.com'
-  })
-  const router = useRouter()
-  async function onSubmit(event: FormSubmitEvent<Schema>) {
-    const { data: tokenData } = await useFetch('/api/v1/auth/login', {
-      method: 'post',
-      body: event.data
-    })
-    const configStore = useConfigStore()
-    configStore.token = tokenData.value?.accessToken
-    router.push('/')
-  }
-  definePageMeta({
-    layout: 'auth'
-  })
+const state = reactive({
+  username: "fwn01411@zccck.com",
+  password: "fwn01411@zccck.com",
+  remember: false,
+});
+const router = useRouter();
+async function onSubmit(event: FormSubmitEvent<Schema>) {
+  const { data: tokenData } = await useFetch("/api/v1/auth/login", {
+    method: "post",
+    body: event.data,
+  });
+  // Ensure useConfigStore is imported
+
+  const configStore = useConfigStore();
+  // Fix for typing: fallback to empty object if tokenData.value is undefined
+  configStore.token =
+    (tokenData.value &&
+      (tokenData.value as { accessToken?: string }).accessToken) ||
+    "";
+  router.push("/");
+}
+definePageMeta({
+  layout: "auth",
+});
 </script>
 
 <template>
-  <h5 class="my-6 text-xl font-semibold">ورود</h5>
-  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-    <UFormField v-slot="{ error }" label="نام کاربری" name="username">
-      <UInput v-model="state.username" type="text" />
-    </UFormField>
+  <div>
+    <h5 class="my-6 text-xl font-semibold">ورود</h5>
+    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+      <UFormField label="نام کاربری" name="username">
+        <UInput v-model="state.username" type="text" />
+      </UFormField>
 
-    <UFormField label="رمز عبور" name="password">
-      <UInput v-model="state.password" type="password" placeholder="رمز عبور:" />
-    </UFormField>
+      <UFormField label="رمز عبور" name="password">
+        <UInput
+          v-model="state.password"
+          type="password"
+          placeholder="رمز عبور:"
+        />
+      </UFormField>
 
-    <UFormField label="مرا به خاطر بسپار" name="remember" class="flex gap-x-4 py-1">
-      <UCheckbox v-model="state.remember" />
-    </UFormField>
+      <UFormField
+        label="مرا به خاطر بسپار"
+        name="remember"
+        class="flex gap-x-4 py-1"
+      >
+        <UCheckbox v-model="state.remember" />
+      </UFormField>
 
-    <UButton type="submit" block class="font-[Vazirmatn] text-md"> ورود </UButton>
-    <div class="flex justify-center gap-4 pt-8">
-      <UButton to="/auth/register" color="gray" variant="link">ثبت نام</UButton>
-      <UButton to="/auth/forget" color="gray" variant="link"> فراموشی رمز عبور </UButton>
-    </div>
-  </UForm>
+      <UButton type="submit" block class="font-[Vazirmatn] text-md">
+        ورود
+      </UButton>
+      <div class="flex justify-center gap-4 pt-8">
+        <UButton to="/auth/register" color="neutral" variant="link"
+          >ثبت نام</UButton
+        >
+        <UButton to="/auth/forget" color="neutral" variant="link">
+          فراموشی رمز عبور
+        </UButton>
+      </div>
+    </UForm>
+  </div>
 </template>

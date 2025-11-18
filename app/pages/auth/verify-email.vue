@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useLocalStorage } from "@vueuse/core";
+// import { useLocalStorage } from "@vueuse/core";
 import { useRoute } from "vue-router";
 import nprogress from "nprogress";
 import { useConfigStore } from "~/stores/configStore";
@@ -24,7 +24,11 @@ onMounted(async () => {
     `/api/v1/auth/verify-email/${token}`
   );
   const configStore = useConfigStore();
-  configStore.token = tokenData.value?.accessToken;
+  // Fix type issue by asserting shape or fallback
+  const accessToken = (tokenData.value as { accessToken?: string } | undefined)?.accessToken;
+  if (accessToken) {
+    configStore.token = accessToken;
+  }
 
   nprogress.done();
   router.push("/");

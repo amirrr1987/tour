@@ -9,25 +9,13 @@ export interface Category {
   subCategoryModel: Category[];
 }
 
-export namespace CategoryDTO {
-  export type Content = Category;
+export type CategoryDTOContent = Category;
 
-  export namespace GetAll {
-    export type Response = Content[];
-  }
-  export namespace CreateOne {
-    export type Request = Content;
-    export type Response = Content;
-  }
-  export namespace UpdateOne {
-    export type Request = Omit<Content, "id">;
-    export type Response = Content;
-  }
-  export namespace GetOne {
-    export type Request = Content["id"];
-    export type Response = Content;
-  }
-  export namespace DeleteOne {
-    export type Request = Content["id"];
-  }
-}
+export type CategoryDTOGetAllResponse = CategoryDTOContent[];
+export type CategoryDTOCreateOneRequest = CategoryDTOContent;
+export type CategoryDTOCreateOneResponse = CategoryDTOContent;
+export type CategoryDTOUpdateOneRequest = Omit<CategoryDTOContent, "id">;
+export type CategoryDTOUpdateOneResponse = CategoryDTOContent;
+export type CategoryDTOGetOneRequest = CategoryDTOContent["id"];
+export type CategoryDTOGetOneResponse = CategoryDTOContent;
+export type CategoryDTODeleteOneRequest = CategoryDTOContent["id"];

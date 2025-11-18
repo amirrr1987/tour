@@ -5,19 +5,18 @@
         <UCard>
           <UForm
             :schema="schema"
-            :state="state"
             class="grid grid-cols-2 md:grid-cols-1 gap-4"
             @submit.prevent="onSubmit"
           >
-            <UFormField label="جستجو" name="name" :ui="formGroupUi">
+            <UFormField label="جستجو" name="name">
               <template #hint>
                 <UButton
-                  size="2xs"
+                  v-if="state.name"
+                  size="xs"
                   variant="soft"
-                  color="gray"
+                  color="neutral"
                   icon="tabler:trash"
                   @click="onReset('name')"
-                  v-if="state.name"
                 />
               </template>
               <UInput
@@ -26,12 +25,12 @@
                 @change="onSubmit"
               />
             </UFormField>
-            <UFormField label="تعداد روز" name="duration" :ui="formGroupUi">
+            <UFormField label="تعداد روز" name="duration">
               <template #hint>
                 <UButton
-                  size="2xs"
+                  size="xs"
                   variant="soft"
-                  color="red"
+                  color="error"
                   :trailing="true"
                   icon="tabler:trash"
                   @click="onReset('duration')"
@@ -44,19 +43,19 @@
                 @change="onSubmit"
               />
             </UFormField>
-            <UFormField label="تاریخ شروع" name="startDate" :ui="formGroupUi">
+            <UFormField label="تاریخ شروع" name="startDate">
               <template #hint>
                 <UButton
-                  size="2xs"
+                  size="xs"
                   variant="soft"
-                  color="red"
+                  color="error"
                   :trailing="true"
                   icon="tabler:trash"
                   @click="onReset('startDate')"
                 />
               </template>
               <DatePicker
-                v-model:modelValue="state.startDate"
+                v-model:model-value="state.startDate"
                 color="red"
                 mode="single"
                 @change="onSubmit"
@@ -64,12 +63,12 @@
             </UFormField>
 
             <USeparator class="hidden md:flex" />
-            <UFormField label="نوع تور" name="tourType" :ui="formGroupUi">
+            <UFormField label="نوع تور" name="tourType">
               <template #hint>
                 <UButton
-                  size="2xs"
+                  size="xs"
                   variant="soft"
-                  color="red"
+                  color="error"
                   :trailing="true"
                   icon="tabler:trash"
                   @click="onReset('tourType')"
@@ -84,7 +83,7 @@
             </UFormField>
 
             <USeparator class="hidden md:flex" />
-            <UFormField name="transferType" :ui="formGroupUi">
+            <UFormField name="transferType">
               <template #hint>
                 <UButton
                   size="sm"
@@ -107,12 +106,12 @@
               />
             </UFormField>
             <USeparator class="hidden md:flex" />
-            <UFormField label="محل اقامت" name="stayType" :ui="formGroupUi">
+            <UFormField label="محل اقامت" name="stayType">
               <template #hint>
                 <UButton
-                  size="2xs"
+                  size="xs"
                   variant="soft"
-                  color="red"
+                  color="error"
                   :trailing="true"
                   icon="tabler:trash"
                   @click="onReset('stayType')"
@@ -150,14 +149,14 @@
         <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
           <TourListCard
             v-for="tour in tourList"
-            :tour="tour"
             :key="`tour-${tour.id}`"
+            :tour="tour"
           />
         </div>
         <div class="flex justify-center py-4">
           <UPagination
             v-model="state.page"
-            :pageCount="state.size"
+            :page-count="state.size"
             :total="totalElements"
           />
         </div>
@@ -174,29 +173,34 @@ import type {
   StayTypeEnum,
   TourLevelTypeEnum,
   TourTypeEnum,
-  TransferTypeEnum} from "~/enums";
+  TransferTypeEnum,
+} from "~/enums";
 import {
   DurationList,
   StayTypeEnumList,
   TourTypeEnumList,
   TransferTypeEnumList,
 } from "~/enums";
-import type { TourDTO } from "~/types/TourModel";
-
-import { number, object, string } from "valibot";
+import type { TourDTOContent, TourDTOSearchResponse } from "~/types/TourModel";
+import { z } from "zod";
 
 definePageMeta({
   layout: "filter",
 });
-const schema = object({
-  tourLevelType: string(),
-  tourType: string(),
-  mealType: string(),
-  transferType: string(),
-  stayType: string(),
-  page: number(),
-  size: number(),
-});
+const schema = z
+  .object({
+    tourLevelType: z.string(),
+    tourType: z.string(),
+    mealType: z.string(),
+    transferType: z.string(),
+    stayType: z.string(),
+    page: z.number(),
+    size: z.number(),
+    name: z.string(),
+    startDate: z.string(),
+    duration: z.string(),
+  })
+  .partial();
 
 const state = reactive({
   tourLevelType: useRouteQuery<TourLevelTypeEnum | undefined>(
@@ -217,11 +221,11 @@ const state = reactive({
   duration: useRouteQuery<string | undefined>("duration"),
 });
 
-const tourList = ref<TourDTO.Content[]>([]);
+const tourList = ref<TourDTOContent[]>([]);
 const totalElements = ref(0);
 
 const fetchTours = async () => {
-  const { data } = await useFetch<TourDTO.Search.Response>(
+  const { data } = await useFetch<TourDTOSearchResponse>(
     "http://10.0.202.34:8081/tour/search",
     {
       method: "POST",
@@ -250,13 +254,9 @@ const onSubmit = async () => {
 };
 
 const onReset = async (key: string) => {
-  console.log("1");
-
   switch (key) {
     case "name":
       return (state.name = undefined);
-    case "duration":
-      return (state.duration = undefined);
     case "stayType":
       return (state.stayType = undefined);
     case "transferType":
@@ -289,10 +289,6 @@ const links = computed(() => [
   { label: "صفحه اصلی", to: "/" },
   { label: "تورها", to: "/tour-list" },
 ]);
-
-const formGroupUi = {
-  label: { base: "w-full mb-2 text-gray-400 dark:text-gray-300" },
-};
 </script>
 <style lang="less">
 label {
