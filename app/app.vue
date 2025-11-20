@@ -1,7 +1,7 @@
 <template>
-  <UApp>
+  <UApp class="bg-gray-100 dark:bg-gray-900">
+    <NuxtRouteAnnouncer />
     <NuxtLayout>
-      <NuxtRouteAnnouncer />
       <NuxtPage />
     </NuxtLayout>
   </UApp>
