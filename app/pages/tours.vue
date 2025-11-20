@@ -107,11 +107,11 @@ const search = ref('')
 const showFilters = ref(false)
 
 const categories = ref([
-  { id: 'all', name: 'All Categories' },
-  { id: 'Adventure', name: 'Adventure' },
-  { id: 'Cultural', name: 'Cultural' },
-  { id: 'Relaxation', name: 'Relaxation' },
-  { id: 'Urban', name: 'Urban' }
+  { id: 'all', label: 'All Categories' },
+  { id: 'Adventure', label: 'Adventure' },
+  { id: 'Cultural', label: 'Cultural' },
+  { id: 'Relaxation', label: 'Relaxation' },
+  { id: 'Urban', label: 'Urban' }
 ])
 
 const category = ref('all')
@@ -125,33 +125,33 @@ const price = ref([0, 2000])
 
 const sortBy = ref('popular')
 const sortByOptions = ref([
-  { id: 'popular', name: 'Most Popular' },
-  { id: 'price-low', name: 'Price: Low to High' },
-  { id: 'price-high', name: 'Price: High to Low' },
-  { id: 'rating', name: 'Highest Rated' },
-  { id: 'duration', name: 'Duration' }
+  { id: 'popular', label: 'Most Popular' },
+  { id: 'price-low', label: 'Price: Low to High' },
+  { id: 'price-high', label: 'Price: High to Low' },
+  { id: 'rating', label: 'Highest Rated' },
+  { id: 'duration', label: 'Duration' }
 ])
 
 const locations = ref([
-  { id: 'all', name: 'All Locations' },
-  { id: 'Switzerland', name: 'Switzerland' },
-  { id: 'Egypt', name: 'Egypt' },
-  { id: 'Maldives', name: 'Maldives' },
-  { id: 'Tokyo', name: 'Tokyo' },
-  { id: 'Kenya', name: 'Kenya' },
-  { id: 'Morocco', name: 'Morocco' },
-  { id: 'Philippines', name: 'Philippines' },
-  { id: 'Europe', name: 'Europe' }
+  { id: 'all', label: 'All Locations' },
+  { id: 'Switzerland', label: 'Switzerland' },
+  { id: 'Egypt', label: 'Egypt' },
+  { id: 'Maldives', label: 'Maldives' },
+  { id: 'Tokyo', label: 'Tokyo' },
+  { id: 'Kenya', label: 'Kenya' },
+  { id: 'Morocco', label: 'Morocco' },
+  { id: 'Philippines', label: 'Philippines' },
+  { id: 'Europe', label: 'Europe' }
 ])
 
 const location = ref('all')
 
 const vehicles = ref([
-  { id: 'all', name: 'All Vehicles' },
-  { id: 'Car', name: 'Car' },
-  { id: 'Bus', name: 'Bus' },
-  { id: 'Train', name: 'Train' },
-  { id: 'Flight', name: 'Flight' }
+  { id: 'all', label: 'All Vehicles' },
+  { id: 'Car', label: 'Car' },
+  { id: 'Bus', label: 'Bus' },
+  { id: 'Train', label: 'Train' },
+  { id: 'Flight', label: 'Flight' }
 ])
 
 const vehicle = ref('all')
@@ -249,7 +249,7 @@ const clearFilters = () => {
             <UIcon :name="showFilters ? 'i-lucide-x' : 'i-lucide-filter'" class="w-4 h-4 mr-2" />
             Filters
           </UButton>
-          <USelect v-model="sortBy" :options="sortByOptions" option-attribute="name" value-attribute="id"
+          <USelectMenu v-model="sortBy" :items="sortByOptions" value-key="id" placeholder="Sort by"
             class="w-full sm:w-48" />
           <div class="flex border rounded-lg overflow-hidden">
             <UButton :variant="viewMode === 'grid' ? 'solid' : 'ghost'" color="neutral" size="sm" square
@@ -280,13 +280,13 @@ const clearFilters = () => {
             <form @submit.prevent="filterTours" class="space-y-6">
               <!-- Category -->
               <UFormField label="Category">
-                <USelect v-model="category" :options="categories" option-attribute="name" value-attribute="id"
+                <USelectMenu v-model="category" :items="categories" value-key="id" placeholder="Select category"
                   class="w-full" @update:model-value="filterTours" />
               </UFormField>
 
               <!-- Location -->
               <UFormField label="Location">
-                <USelect v-model="location" :options="locations" option-attribute="name" value-attribute="id"
+                <USelectMenu v-model="location" :items="locations" value-key="id" placeholder="Select location"
                   class="w-full" @update:model-value="filterTours" />
               </UFormField>
 
@@ -317,7 +317,7 @@ const clearFilters = () => {
 
               <!-- Vehicle Type -->
               <UFormField label="Vehicle Type">
-                <USelect v-model="vehicle" :options="vehicles" option-attribute="name" value-attribute="id"
+                <USelectMenu v-model="vehicle" :items="vehicles" value-key="id" placeholder="Select vehicle"
                   class="w-full" @update:model-value="filterTours" />
               </UFormField>
 
