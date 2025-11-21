@@ -1,4 +1,4 @@
-export interface ICategory {
+export interface ILocation {
   id: string
   name: string
   description: string
