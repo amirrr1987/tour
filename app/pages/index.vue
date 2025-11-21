@@ -127,9 +127,10 @@ const testimonials = [
   }
 ]
 
-const searchQuery = ref('')
-const searchDestination = ref(null)
-const searchDate = ref(null)
+// Use localStorage for search preferences
+const searchQuery = useLocalStorage('tour-search-query', '')
+const searchDestination = useLocalStorage('tour-search-destination', '')
+const searchDate = useLocalStorage('tour-search-date', '')
 
 const handleSearch = () => {
   // Build query object with only non-empty values

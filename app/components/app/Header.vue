@@ -22,14 +22,15 @@ const items = computed<NavigationMenuItem[]>(() => [
   }
 ])
 
-const phoneNumber = '+1 (555) 123-4567'
+const phoneNumber = '+989198881400'
 </script>
 
 <template>
   <UHeader>
     <template #title>
       <NuxtLink to="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-        <Logo class="h-6 w-auto" />
+        <Logo class="h-11 w-auto fill-primary" />
+        <span class="text-2xl font-bold text-primary">TourCode</span>
       </NuxtLink>
     </template>
 

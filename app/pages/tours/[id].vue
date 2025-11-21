@@ -3,6 +3,13 @@ import { CalendarDate } from '@internationalized/date'
 
 const route = useRoute()
 const { tours } = storeToRefs(useTourStore())
+const { categories } = storeToRefs(useCategoryStore())
+
+// Helper function to get category name from ID
+const getCategoryName = (categoryId: number) => {
+  const cat = categories.value.find(c => c.id === categoryId)
+  return cat?.name || 'Unknown'
+}
 
 // Get tour ID from route params
 const tourId = computed(() => parseInt(route.params.id as string))
@@ -131,7 +138,7 @@ useHead({
                   </div>
                 </div>
               </div>
-              <UBadge variant="subtle" size="lg">{{ tour.category }}</UBadge>
+              <UBadge variant="subtle" size="lg">{{ getCategoryName(tour.category) }}</UBadge>
             </div>
           </div>
 
