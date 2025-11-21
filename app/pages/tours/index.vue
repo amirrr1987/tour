@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { CalendarDate } from '@internationalized/date'
 
+const route = useRoute()
+const router = useRouter()
+
 // read tours from store
 const { tours } = storeToRefs(useTourStore())
 
@@ -62,6 +65,86 @@ const page = ref(1)
 const perPage = ref(12)
 const total = computed(() => filteredTours.value.length)
 
+// Function to update URL with current filters
+const updateURL = () => {
+  const query: Record<string, string> = {}
+
+  if (search.value) {
+    query.search = search.value
+  }
+  if (category.value && category.value !== 'all') {
+    query.category = category.value
+  }
+  if (location.value && location.value !== 'all') {
+    query.location = location.value
+  }
+  if ((price.value[0] ?? 0) > 0 || (price.value[1] ?? 2000) < 2000) {
+    query.priceMin = (price.value[0] ?? 0).toString()
+    query.priceMax = (price.value[1] ?? 2000).toString()
+  }
+  if (sortBy.value && sortBy.value !== 'popular') {
+    query.sort = sortBy.value
+  }
+  if (vehicle.value && vehicle.value !== 'all') {
+    query.vehicle = vehicle.value
+  }
+  if (page.value > 1) {
+    query.page = page.value.toString()
+  }
+
+  // Update URL without triggering navigation
+  router.replace({ query: Object.keys(query).length > 0 ? query : {} })
+}
+
+// Function to load filters from URL
+const loadFiltersFromURL = () => {
+  const query = route.query || {}
+
+  if (query.search && typeof query.search === 'string') {
+    search.value = query.search
+  }
+  if (query.category && typeof query.category === 'string') {
+    category.value = query.category
+  }
+  if (query.location && typeof query.location === 'string') {
+    location.value = query.location
+  }
+  if (query.priceMin && typeof query.priceMin === 'string') {
+    price.value[0] = parseInt(query.priceMin) || 0
+  }
+  if (query.priceMax && typeof query.priceMax === 'string') {
+    price.value[1] = parseInt(query.priceMax) || 2000
+  }
+  if (query.sort && typeof query.sort === 'string') {
+    sortBy.value = query.sort
+  }
+  if (query.vehicle && typeof query.vehicle === 'string') {
+    vehicle.value = query.vehicle
+  }
+  if (query.page && typeof query.page === 'string') {
+    page.value = parseInt(query.page) || 1
+  }
+}
+
+// Flag to prevent watch from triggering during initial load
+const isInitialLoad = ref(true)
+
+// Load filters from URL on mount
+onMounted(() => {
+  loadFiltersFromURL()
+  // Allow watch to trigger after initial load
+  nextTick(() => {
+    isInitialLoad.value = false
+  })
+})
+
+// Watch for filter changes and update URL
+watch([search, category, location, price, sortBy, vehicle, page], () => {
+  if (!isInitialLoad.value) {
+    updateURL()
+  }
+}, { deep: true })
+
 const filteredTours = computed(() => {
   let result = [...tours.value]
 
@@ -118,6 +201,7 @@ const paginatedTours = computed(() => {
 
 const filterTours = () => {
   page.value = 1
+  updateURL()
 }
 
 const clearFilters = () => {
@@ -128,6 +212,7 @@ const clearFilters = () => {
   price.value = [0, 2000]
   tourCount.value = 1
   page.value = 1
+  updateURL()
 }
 </script>
 <template>
@@ -282,7 +367,7 @@ const clearFilters = () => {
                       <span v-else class="text-lg font-bold text-primary">${{ tour.price }}</span>
                       <span class="text-xs text-muted">/person</span>
                     </div>
-                    <UButton size="sm" icon="i-lucide-arrow-right">
+                    <UButton :to="`/tours/${tour.id}`" size="sm" icon="i-lucide-arrow-right">
                       View
                     </UButton>
                   </div>
@@ -339,7 +424,7 @@ const clearFilters = () => {
                         <UIcon name="i-lucide-heart" class="w-4 h-4 mr-2" />
                         Save
                       </UButton>
-                      <UButton class="flex-1" icon="i-lucide-arrow-right">
+                      <UButton :to="`/tours/${tour.id}`" class="flex-1" icon="i-lucide-arrow-right">
                         View Details
                       </UButton>
                     </div>
