@@ -1,51 +1,86 @@
 <script setup lang="ts">
 import { CalendarDate } from '@internationalized/date'
+import { VehicleEnum } from '~/enums'
+
+const route = useRoute()
+const router = useRouter()
 
 // read tours from store
 const { tours } = storeToRefs(useTourStore())
+const { categories: categoryStore } = storeToRefs(useCategoryStore())
+const { sorts } = storeToRefs(useSortStore())
 
-const search = ref('')
+// Read initial values from URL query params (one-time read on mount)
+const getQueryParam = (key: string, defaultValue: any) => {
+  const value = route.query[key]
+  if (value === undefined || value === null) return defaultValue
+  return value
+}
+
+// Initialize form inputs from URL query params or defaults
+const search = ref<string>(getQueryParam('search', '') as string)
+const categoryVal = getQueryParam('category', 'all')
+const category = ref<string | number>(categoryVal === 'all' ? 'all' : Number(categoryVal))
+const location = ref<string>(getQueryParam('location', 'all') as string)
+const sortBy = ref<string>(getQueryParam('sort', 'popular') as string)
+const vehicle = ref<string>(getQueryParam('vehicle', 'all') as string)
+const page = ref<number>(Number(getQueryParam('page', 1)) || 1)
+
+// User preferences (no localStorage)
+const viewMode = ref<'grid' | 'list'>('grid')
 const showFilters = ref(false)
+// Initialize tourCount from URL or default
+const initialTravelersParam = getQueryParam('travelers', null)
+const tourCount = ref(initialTravelersParam ? Number(initialTravelersParam) : 1)
 
-const categories = ref([
-  { id: 'all', label: 'All Categories' },
-  { id: 'Adventure', label: 'Adventure' },
-  { id: 'Cultural', label: 'Cultural' },
-  { id: 'Relaxation', label: 'Relaxation' },
-  { id: 'Urban', label: 'Urban' }
+// Initialize price from URL or defaults
+const urlPriceMin = getQueryParam('priceMin', null)
+const urlPriceMax = getQueryParam('priceMax', null)
+const price = ref<[number, number]>([
+  urlPriceMin ? Number(urlPriceMin) : 0,
+  urlPriceMax ? Number(urlPriceMax) : 2000
 ])
 
-const category = ref('all')
+// Build categories list from store with "All" option
+const categories = computed(() => [
+  { id: 'all', label: 'All Categories' },
+  ...categoryStore.value.map(cat => ({ id: cat.id, label: cat.name }))
+])
 
 const startInputDateRef = useTemplateRef('startInputDateRef')
-const startModelValue = shallowRef(new CalendarDate(2025, 1, 10))
+// Initialize start date from URL or default
+const initialStartDateStr = getQueryParam('startDate', null) as string | null
+const getInitialStartDate = () => {
+  if (initialStartDateStr) {
+    const parts = initialStartDateStr.split('-').map(Number)
+    if (parts.length === 3 && parts[0] && parts[1] && parts[2]) {
+      return new CalendarDate(parts[0], parts[1], parts[2])
+    }
+  }
+  return new CalendarDate(2025, 1, 10)
+}
+const startModelValue = shallowRef(getInitialStartDate())
 
-const tourCount = ref(1)
+// Build sort options from store
+const sortByOptions = computed(() => sorts.value.map(sort => ({
+  id: sort.value,
+  label: sort.label
+})))
 
-const price = ref([0, 2000])
+// Build locations list dynamically from tours
+const locations = computed(() => {
+  const uniqueLocations = [...new Set(tours.value.map(tour => tour.location))]
+  return [
+    { id: 'all', label: 'All Locations' },
+    ...uniqueLocations.sort().map(loc => ({ id: loc, label: loc }))
+  ]
+})
 
-const sortBy = ref('popular')
-const sortByOptions = ref([
-  { id: 'popular', label: 'Most Popular' },
-  { id: 'price-low', label: 'Price: Low to High' },
-  { id: 'price-high', label: 'Price: High to Low' },
-  { id: 'rating', label: 'Highest Rated' },
-  { id: 'duration', label: 'Duration' }
-])
-
-const locations = ref([
-  { id: 'all', label: 'All Locations' },
-  { id: 'Switzerland', label: 'Switzerland' },
-  { id: 'Egypt', label: 'Egypt' },
-  { id: 'Maldives', label: 'Maldives' },
-  { id: 'Tokyo', label: 'Tokyo' },
-  { id: 'Kenya', label: 'Kenya' },
-  { id: 'Morocco', label: 'Morocco' },
-  { id: 'Philippines', label: 'Philippines' },
-  { id: 'Europe', label: 'Europe' }
-])
-
-const location = ref('all')
+// Helper function to get category name from ID
+const getCategoryName = (categoryId: number) => {
+  const cat = categoryStore.value.find(c => c.id === categoryId)
+  return cat?.name || 'Unknown'
+}
 
 const vehicles = ref([
   { id: 'all', label: 'All Vehicles' },
@@ -55,19 +90,40 @@ const vehicles = ref([
   { id: 'Flight', label: 'Flight' }
 ])
 
-const vehicle = ref('all')
-
-const viewMode = ref<'grid' | 'list'>('grid')
-const page = ref(1)
 const perPage = ref(12)
+
+// Applied filters - these are the actual values used for filtering (only updated on submit)
+const appliedCategory = ref(category.value)
+const appliedLocation = ref(location.value)
+const appliedVehicle = ref(vehicle.value)
+const appliedPrice = ref<[number, number]>([price.value[0], price.value[1]])
+const getInitialAppliedStartDate = (): Date | null => {
+  if (initialStartDateStr) {
+    const parts = initialStartDateStr.split('-').map(Number)
+    if (parts.length === 3 && parts[0] && parts[1] && parts[2]) {
+      return new Date(parts[0], parts[1] - 1, parts[2])
+    }
+  }
+  return null
+}
+const appliedStartDate = ref<Date | null>(getInitialAppliedStartDate())
+const appliedTourCount = ref(initialTravelersParam ? Number(initialTravelersParam) : tourCount.value)
+
+// Helper function to compare dates (ignoring time)
+const compareDates = (date1: Date, date2: Date): boolean => {
+  const d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate())
+  const d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate())
+  return d1.getTime() === d2.getTime()
+}
+
 const total = computed(() => filteredTours.value.length)
 
 const filteredTours = computed(() => {
   let result = [...tours.value]
 
-  // Search filter
+  // Search filter (reactive - works immediately)
   if (search.value) {
-    const query = search.value.toLowerCase()
+    const query = (search.value as string).toLowerCase()
     result = result.filter(tour =>
       tour.name.toLowerCase().includes(query) ||
       tour.description.toLowerCase().includes(query) ||
@@ -75,32 +131,58 @@ const filteredTours = computed(() => {
     )
   }
 
-  // Category filter
-  if (category.value && category.value !== 'all') {
-    result = result.filter(tour => tour.category === category.value)
+  // Category filter (applied filters)
+  if (appliedCategory.value && appliedCategory.value !== 'all') {
+    const categoryId = typeof appliedCategory.value === 'string' ? parseInt(appliedCategory.value) : appliedCategory.value
+    result = result.filter(tour => tour.category === categoryId)
   }
 
-  // Location filter
-  if (location.value && location.value !== 'all') {
-    result = result.filter(tour => tour.location === location.value)
+  // Location filter (applied filters)
+  if (appliedLocation.value && appliedLocation.value !== 'all') {
+    result = result.filter(tour => tour.location === appliedLocation.value)
   }
 
-  // Price filter
-  result = result.filter(tour => tour.price >= (price.value[0] ?? 0) && tour.price <= (price.value[1] ?? 2000))
+  // Vehicle filter (applied filters)
+  if (appliedVehicle.value && appliedVehicle.value !== 'all') {
+    const vehicleValue = appliedVehicle.value as VehicleEnum
+    result = result.filter(tour => tour.vehicle === vehicleValue)
+  }
+
+  // Price filter (applied filters)
+  result = result.filter(tour =>
+    tour.price >= (appliedPrice.value[0] ?? 0) &&
+    tour.price <= (appliedPrice.value[1] ?? 2000)
+  )
+
+  // Start Date filter (applied filters)
+  if (appliedStartDate.value) {
+    result = result.filter(tour => {
+      const tourStartDate = new Date(tour.startDate)
+      return compareDates(tourStartDate, appliedStartDate.value!)
+    })
+  }
+
+  // Number of Travelers filter (applied filters)
+  if (appliedTourCount.value && appliedTourCount.value > 0) {
+    result = result.filter(tour => tour.numberOfTravelers >= appliedTourCount.value)
+  }
 
   // Sort
   switch (sortBy.value) {
-    case 'price-low':
+    case 'price-asc':
       result.sort((a, b) => a.price - b.price)
       break
-    case 'price-high':
+    case 'price-desc':
       result.sort((a, b) => b.price - a.price)
       break
-    case 'rating':
+    case 'rating-desc':
       result.sort((a, b) => b.rating - a.rating)
       break
-    case 'duration':
+    case 'duration-asc':
       result.sort((a, b) => parseInt(a.duration) - parseInt(b.duration))
+      break
+    case 'duration-desc':
+      result.sort((a, b) => parseInt(b.duration) - parseInt(a.duration))
       break
     default:
       // Popular (by reviews)
@@ -117,17 +199,56 @@ const paginatedTours = computed(() => {
 })
 
 const filterTours = () => {
+  // Apply all filter values when submit is clicked
+  appliedCategory.value = category.value
+  appliedLocation.value = location.value
+  appliedVehicle.value = vehicle.value
+  appliedPrice.value = [price.value[0], price.value[1]]
+  // Convert CalendarDate to Date for filtering
+  appliedStartDate.value = startModelValue.value ? new Date(startModelValue.value.year, startModelValue.value.month - 1, startModelValue.value.day) : null
+  appliedTourCount.value = tourCount.value
   page.value = 1
+
+  // Update URL query parameters only when submit is clicked
+  const query: Record<string, any> = {}
+
+  if (search.value) query.search = search.value
+  if (category.value && category.value !== 'all') query.category = category.value
+  if (location.value && location.value !== 'all') query.location = location.value
+  if (vehicle.value && vehicle.value !== 'all') query.vehicle = vehicle.value
+  if (sortBy.value && sortBy.value !== 'popular') query.sort = sortBy.value
+  if (price.value[0] > 0) query.priceMin = price.value[0]
+  if (price.value[1] < 2000) query.priceMax = price.value[1]
+  if (startModelValue.value) {
+    query.startDate = `${startModelValue.value.year}-${String(startModelValue.value.month).padStart(2, '0')}-${String(startModelValue.value.day).padStart(2, '0')}`
+  }
+  if (tourCount.value > 1) query.travelers = tourCount.value
+  if (page.value > 1) query.page = page.value
+
+  // Update URL without triggering navigation
+  router.push({ query })
 }
 
 const clearFilters = () => {
   search.value = ''
-  category.value = 'all'
+  category.value = 'all' as any
   location.value = 'all'
   vehicle.value = 'all'
   price.value = [0, 2000]
   tourCount.value = 1
+  startModelValue.value = new CalendarDate(2025, 1, 10)
+
+  // Clear applied filters
+  appliedCategory.value = 'all' as any
+  appliedLocation.value = 'all'
+  appliedVehicle.value = 'all'
+  appliedPrice.value = [0, 2000]
+  appliedStartDate.value = null
+  appliedTourCount.value = 1
   page.value = 1
+
+  // Clear URL query parameters
+  router.push({ query: {} })
 }
 </script>
 <template>
@@ -143,15 +264,15 @@ const clearFilters = () => {
       <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div class="flex-1 w-full sm:max-w-md">
           <UInput v-model="search" type="text" placeholder="Search tours, destinations..." icon="i-lucide-search"
-            class="w-full" @input="filterTours" />
+            class="w-full" />
         </div>
         <div class="flex gap-2 items-center w-full sm:w-auto">
           <UButton variant="outline" @click="showFilters = !showFilters" class="sm:hidden">
             <UIcon :name="showFilters ? 'i-lucide-x' : 'i-lucide-filter'" class="w-4 h-4 mr-2" />
             Filters
           </UButton>
-          <USelectMenu v-model="sortBy" :items="sortByOptions" value-key="id" placeholder="Sort by"
-            class="w-full sm:w-48" />
+          <USelectMenu v-model="sortBy" :items="sortByOptions" value-key="id" option-attribute="label"
+            placeholder="Sort by" class="w-full sm:w-48" />
           <div class="flex border rounded-lg overflow-hidden">
             <UButton :variant="viewMode === 'grid' ? 'solid' : 'ghost'" color="neutral" size="sm" square
               @click="viewMode = 'grid'">
@@ -182,18 +303,18 @@ const clearFilters = () => {
               <!-- Category -->
               <UFormField label="Category">
                 <USelectMenu v-model="category" :items="categories" value-key="id" placeholder="Select category"
-                  class="w-full" @update:model-value="filterTours" />
+                  class="w-full" />
               </UFormField>
 
               <!-- Location -->
               <UFormField label="Location">
                 <USelectMenu v-model="location" :items="locations" value-key="id" placeholder="Select location"
-                  class="w-full" @update:model-value="filterTours" />
+                  class="w-full" />
               </UFormField>
 
               <!-- Price Range -->
               <UFormField :label="`Price: $${price[0] ?? 0} - $${price[1] ?? 2000}`">
-                <USlider v-model="price" tooltip :min="0" :max="2000" :step="50" @update:model-value="filterTours" />
+                <USlider v-model="price" tooltip :min="0" :max="2000" :step="50" />
               </UFormField>
 
               <!-- Start Date -->
@@ -219,7 +340,7 @@ const clearFilters = () => {
               <!-- Vehicle Type -->
               <UFormField label="Vehicle Type">
                 <USelectMenu v-model="vehicle" :items="vehicles" value-key="id" placeholder="Select vehicle"
-                  class="w-full" @update:model-value="filterTours" />
+                  class="w-full" />
               </UFormField>
 
               <UButton type="submit" block>
@@ -282,7 +403,7 @@ const clearFilters = () => {
                       <span v-else class="text-lg font-bold text-primary">${{ tour.price }}</span>
                       <span class="text-xs text-muted">/person</span>
                     </div>
-                    <UButton size="sm" icon="i-lucide-arrow-right">
+                    <UButton :to="`/tours/${tour.id}`" size="sm" icon="i-lucide-arrow-right">
                       View
                     </UButton>
                   </div>
@@ -331,7 +452,7 @@ const clearFilters = () => {
                           <UIcon name="i-lucide-star" class="w-4 h-4 text-yellow-500 fill-yellow-500" />
                           {{ tour.rating }} ({{ tour.reviews }} reviews)
                         </div>
-                        <UBadge variant="subtle">{{ tour.category }}</UBadge>
+                        <UBadge variant="subtle">{{ getCategoryName(tour.category) }}</UBadge>
                       </div>
                     </div>
                     <div class="flex gap-2 mt-4 pt-4 border-t">
@@ -339,7 +460,7 @@ const clearFilters = () => {
                         <UIcon name="i-lucide-heart" class="w-4 h-4 mr-2" />
                         Save
                       </UButton>
-                      <UButton class="flex-1" icon="i-lucide-arrow-right">
+                      <UButton :to="`/tours/${tour.id}`" class="flex-1" icon="i-lucide-arrow-right">
                         View Details
                       </UButton>
                     </div>

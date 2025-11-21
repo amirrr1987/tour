@@ -127,19 +127,29 @@ const testimonials = [
   }
 ]
 
-const searchQuery = ref('')
-const searchDestination = ref(null)
-const searchDate = ref(null)
+// Use localStorage for search preferences
+const searchQuery = useLocalStorage('tour-search-query', '')
+const searchDestination = useLocalStorage('tour-search-destination', '')
+const searchDate = useLocalStorage('tour-search-date', '')
 
 const handleSearch = () => {
+  // Build query object with only non-empty values
+  const query: Record<string, string> = {}
+
+  if (searchQuery.value) {
+    query.search = searchQuery.value
+  }
+  if (searchDestination.value) {
+    query.location = searchDestination.value
+  }
+  if (searchDate.value) {
+    query.date = searchDate.value
+  }
+
   // Navigate to tours page with search params
   navigateTo({
     path: '/tours',
-    query: {
-      search: searchQuery.value,
-      destination: searchDestination.value,
-      date: searchDate.value
-    }
+    query: Object.keys(query).length > 0 ? query : undefined
   })
 }
 
@@ -253,7 +263,7 @@ const handleSubscribe = async () => {
                 <UBadge variant="subtle" color="neutral">{{ tour.duration }}</UBadge>
               </div>
               <p class="text-sm text-muted mb-4 line-clamp-2">{{ tour.description }}</p>
-              <UButton to="/tours" variant="outline" block size="sm">
+              <UButton :to="`/tours/${tour.id}`" variant="outline" block size="sm">
                 Learn More
               </UButton>
             </div>
