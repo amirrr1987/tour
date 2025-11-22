@@ -53,8 +53,6 @@ const onReset = () => {
 };
 
 const viewMode = ref<"grid" | "list">("grid");
-
-const showFilters = ref(false);
 </script>
 <template>
   <UPage class="py-6 md:py-8">
@@ -82,18 +80,9 @@ const showFilters = ref(false);
               :count="tourStore.tours.length"
             />
             <div class="flex gap-2 items-center w-full sm:w-auto">
-              <!-- <UButton
-            class="sm:hidden"
-            variant="outline"
-            @click="showFilters = !showFilters"
-          >
-            <UIcon
-              :name="showFilters ? 'i-lucide-x' : 'i-lucide-filter'"
-              class="w-4 h-4 mr-2"
-            />
-            Filters
-          </UButton> -->
-              <ToggleListView :view-mode="viewMode" />
+              <ClientOnly>
+                <ToggleView v-model:view-mode="viewMode" />
+              </ClientOnly>
             </div>
           </div>
 
