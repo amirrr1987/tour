@@ -45,10 +45,13 @@ const count = useRouteQuery<number>("count", 0);
 const vehicle = useRouteQuery<string>("vehicle", "all");
 const startDate = useRouteQuery<string>("startDate", "");
 const onSubmit = () => {
+  console.log(formData.value);
+
   setFilterInParams();
 };
 const onReset = () => {
   clearFilter();
+  console.log(formData.value);
   setFilterInParams();
 };
 
@@ -65,20 +68,12 @@ const viewMode = ref<"grid" | "list">("grid");
       </div>
       <div class="grid md:grid-cols-12 gap-6">
         <div class="md:col-span-5 lg:col-span-4 xl:col-span-3">
-          <TourFilter
-            :form-data="formData"
-            :categories="categoryStore.categories"
-            :locations="locationStore.locations"
-            @submit="onSubmit"
-            @reset="onReset"
-          />
+          <TourFilter :form-data="formData" :categories="categoryStore.categories" :locations="locationStore.locations"
+            @submit="onSubmit" @reset="onReset" />
         </div>
         <div class="md:col-span-7 lg:col-span-8 xl:col-span-9">
           <div class="mb-4 flex items-center justify-between">
-            <TourTotalCount
-              :total="tourStore.tours.length"
-              :count="tourStore.tours.length"
-            />
+            <TourTotalCount :total="tourStore.tours.length" :count="tourStore.tours.length" />
             <div class="flex gap-2 items-center w-full sm:w-auto">
               <ClientOnly>
                 <ToggleView v-model:view-mode="viewMode" />
@@ -87,12 +82,8 @@ const viewMode = ref<"grid" | "list">("grid");
           </div>
 
           <div class="grid grid-cols-12 gap-4">
-            <TourCard
-              v-for="tour in tourStore.tours"
-              :key="tour.id"
-              :tour="tour"
-              class="col-span-full md:col-span-6 lg:col-span-4"
-            />
+            <TourCard v-for="tour in tourStore.tours" :key="tour.id" :tour="tour" class=""
+              :class="viewMode === 'grid' ? 'col-span-full lg:col-span-6 xl:col-span-4' : 'col-span-full'" />
           </div>
         </div>
       </div>
