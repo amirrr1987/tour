@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useCategoryStore } from "~/stores/category.store";
 import { useLocationStore } from "~/stores/location.store";
-
+import { useTourStore } from "~/stores/tour.store";
+const tourStore = useTourStore();
 const categoryStore = useCategoryStore();
 const locationStore = useLocationStore();
 const formData = ref({
@@ -51,6 +52,7 @@ const onReset = () => {
 };
 
 const viewMode = ref<"grid" | "list">("grid");
+
 const showFilters = ref(false);
 
 const searchInput = ref("");
@@ -68,7 +70,6 @@ const onSearch = () => {
         </p>
       </div>
 
-      <!-- Search and Sort Bar -->
       <div
         class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between"
       >
@@ -101,14 +102,6 @@ const onSearch = () => {
             />
             Filters
           </UButton>
-          <USelectMenu
-            v-model="sortBy"
-            :items="sortByOptions"
-            value-key="id"
-            option-attribute="label"
-            placeholder="Sort by"
-            class="w-full sm:w-48"
-          />
           <div class="flex border rounded-lg overflow-hidden">
             <UButton
               :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
@@ -131,72 +124,173 @@ const onSearch = () => {
           </div>
         </div>
       </div>
+      <div class="grid md:grid-cols-12 gap-6">
+        <div class="md:col-span-5 lg:col-span-4 xl:col-span-3">
+          <UCard>
+            <template #header>
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold">Filters</h3>
+                <UButton
+                  class="text-xs"
+                  variant="ghost"
+                  size="sm"
+                  @click="onReset"
+                >
+                  Clear All
+                </UButton>
+              </div>
+            </template>
+            <form class="space-y-8" @submit.prevent="onSubmit">
+              <UFormField label="Search">
+                <UInput
+                  v-model="formData.search"
+                  type="text"
+                  placeholder="Search tours"
+                  icon="i-lucide-search"
+                  class="w-full"
+                />
+              </UFormField>
+              <UFormField label="Category">
+                <USelectMenu
+                  v-model="formData.category"
+                  :items="categoryStore.categories"
+                  value-key="id"
+                  placeholder="Select category"
+                  icon="i-lucide-tag"
+                  class="w-full"
+                />
+              </UFormField>
+              <UFormField label="Location">
+                <USelectMenu
+                  v-model="formData.location"
+                  :items="locationStore.locations"
+                  value-key="id"
+                  placeholder="Select location"
+                  class="w-full"
+                  icon="i-lucide-map"
+                />
+              </UFormField>
+              <UFormField label="Price">
+                <USlider
+                  v-model="formData.price"
+                  tooltip
+                  :min="0"
+                  :max="2000"
+                  :step="50"
+                  icon="i-lucide-dollar-sign"
+                />
+              </UFormField>
+              <UFormField label="Count">
+                <UInput
+                  v-model="formData.count"
+                  type="number"
+                  placeholder="Count"
+                  icon="i-lucide-users"
+                  class="w-full"
+                />
+              </UFormField>
+              <UFormField label="Start Date">
+                <UInput
+                  v-model="formData.startDate"
+                  type="date"
+                  placeholder="Start date"
+                  icon="i-lucide-calendar"
+                  class="w-full"
+                />
+              </UFormField>
+              <UButton type="submit" block> Apply Filters </UButton>
+            </form>
+          </UCard>
+        </div>
+        <div class="md:col-span-7 lg:col-span-8 xl:col-span-9">
+          <div class="mb-4 flex items-center justify-between">
+            <p class="text-sm text-muted">
+              Showing
+              {{ tourStore.tours.length }}
+              of
+              {{ tourStore.tours.length }}
+              tours
+            </p>
+          </div>
 
-      <form class="space-y-8" @submit.prevent="onSubmit">
-        <UFormField label="Search">
-          <UInput
-            v-model="formData.search"
-            type="text"
-            placeholder="Search tours"
-            icon="i-lucide-search"
-            class="w-full"
-          />
-        </UFormField>
-        <UFormField label="Category">
-          <USelectMenu
-            v-model="formData.category"
-            :items="categoryStore.categories"
-            value-key="id"
-            placeholder="Select category"
-            icon="i-lucide-tag"
-            class="w-full"
-          />
-        </UFormField>
-        <UFormField label="Location">
-          <USelectMenu
-            v-model="formData.location"
-            :items="locationStore.locations"
-            value-key="id"
-            placeholder="Select location"
-            class="w-full"
-            icon="i-lucide-map"
-          />
-        </UFormField>
-        <UFormField label="Price">
-          <USlider
-            v-model="formData.price"
-            tooltip
-            :min="0"
-            :max="2000"
-            :step="50"
-            icon="i-lucide-dollar-sign"
-          />
-        </UFormField>
-        <UFormField label="Count">
-          <UInput
-            v-model="formData.count"
-            type="number"
-            placeholder="Count"
-            icon="i-lucide-users"
-            class="w-full"
-          />
-        </UFormField>
-        <UFormField label="Start Date">
-          <UInput
-            v-model="formData.startDate"
-            type="date"
-            placeholder="Start date"
-            icon="i-lucide-calendar"
-            class="w-full"
-          />
-        </UFormField>
-        <UFormField>
-          <UButton type="submit">Filter</UButton>
-          <UButton type="reset" variant="outline" @click="onReset">
-            Clear
-          </UButton>
-        </UFormField>
-      </form>
+          <div class="grid grid-cols-12">
+            <UCard
+              v-for="tour in tourStore.tours"
+              :key="tour.id"
+              class="col-span-full md:col-span-6 lg:col-span-4 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+            >
+              <div class="relative h-48 overflow-hidden">
+                <img
+                  :src="tour.image"
+                  :alt="tour.name"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div class="absolute top-3 left-3 flex gap-2">
+                  <UBadge v-if="tour.featured" color="primary">Featured</UBadge>
+                  <UBadge v-if="tour.originalPrice" color="success"
+                    >Sale</UBadge
+                  >
+                </div>
+                <div class="absolute top-3 right-3">
+                  <UBadge color="neutral" variant="solid" class="bg-black/50">
+                    <UIcon name="i-lucide-map-pin" class="w-3 h-3 mr-1" />
+                    {{ tour.location }}
+                  </UBadge>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-lg font-semibold line-clamp-1">
+                    {{ tour.name }}
+                  </h3>
+                </div>
+                <p class="text-sm text-muted mb-3 line-clamp-2">
+                  {{ tour.description }}
+                </p>
+                <div class="flex items-center gap-4 mb-3 text-sm text-muted">
+                  <div class="flex items-center gap-1">
+                    <UIcon name="i-lucide-clock" class="w-4 h-4" />
+                    {{ tour.duration }}
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <UIcon
+                      name="i-lucide-star"
+                      class="w-4 h-4 text-yellow-500 fill-yellow-500"
+                    />
+                    {{ tour.rating }} ({{ tour.reviews }})
+                  </div>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t">
+                  <div>
+                    <div
+                      v-if="tour.originalPrice"
+                      class="flex items-center gap-2"
+                    >
+                      <span class="text-lg font-bold text-primary"
+                        >${{ tour.price }}</span
+                      >
+                      <span class="text-sm text-muted line-through"
+                        >${{ tour.originalPrice }}</span
+                      >
+                    </div>
+                    <span v-else class="text-lg font-bold text-primary"
+                      >${{ tour.price }}</span
+                    >
+                    <span class="text-xs text-muted">/person</span>
+                  </div>
+                  <UButton
+                    :to="`/tours/${tour.id}`"
+                    size="sm"
+                    icon="i-lucide-arrow-right"
+                  >
+                    View
+                  </UButton>
+                </div>
+              </div>
+            </UCard>
+          </div>
+        </div>
+      </div>
     </UContainer>
   </UPage>
 </template>
