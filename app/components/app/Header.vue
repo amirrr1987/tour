@@ -23,7 +23,22 @@ const phoneNumber = "+989198881400";
 </script>
 
 <template>
-  <UHeader to="/">
+  <div class="py-1">
+    <UContainer>
+      <div class="flex justify-end gap-x-2 items-center">
+        <a
+          :href="`tel:${phoneNumber}`"
+          class="text-muted text-sm hover:text-primary transition-colors flex items-center gap-2"
+        >
+          <UIcon name="i-lucide-phone" class="w-4 h-4" />
+          {{ phoneNumber }}
+        </a>
+        <UColorModeButton class="cursor-pointer" size="xs" />
+      </div>
+    </UContainer>
+    <USeparator />
+  </div>
+  <UHeader to="/" :ui="{}">
     <template #title>
       <div class="flex items-center gap-2">
         <Logo class="h-11 w-auto fill-primary" />
@@ -34,19 +49,10 @@ const phoneNumber = "+989198881400";
     <UNavigationMenu :items="items" />
 
     <template #right>
-      <a
-        :href="`tel:${phoneNumber}`"
-        class="text-muted hover:text-primary transition-colors flex items-center gap-2"
-      >
-        <UIcon name="i-lucide-phone" class="w-4 h-4" />
-        {{ phoneNumber }}
-      </a>
-      <UColorModeButton class="cursor-pointer" />
       <UButton
         color="primary"
         variant="soft"
         to="/tours"
-        target="_blank"
         icon="i-lucide-calendar-check"
       >
         Book Now
