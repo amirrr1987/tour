@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { IFilter } from "~/interfaces/filter.model";
+import type { AppModel } from "~/models/app.model";
+import type { IFilter } from "~/models/filter.model";
 import { useCategoryStore } from "~/stores/category.store";
 import { useLocationStore } from "~/stores/location.store";
 import { useTourStore } from "~/stores/tour.store";
@@ -55,7 +56,7 @@ const onReset = () => {
   setFilterInParams();
 };
 
-const viewMode = ref<"grid" | "list">("grid");
+const viewMode = ref<AppModel>("grid");
 </script>
 <template>
   <UPage class="py-6 md:py-8">

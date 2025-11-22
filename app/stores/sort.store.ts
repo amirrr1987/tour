@@ -1,4 +1,4 @@
-import type { ISort } from '~/interfaces/sort.model'
+import type { ISort } from '~/models/sort.model'
 
 export const useSortStore = defineStore('sort', () => {
   const sorts = ref<ISort[]>([

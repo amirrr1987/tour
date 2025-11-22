@@ -1,4 +1,4 @@
-import type { ITag } from '~/interfaces/tag.model'
+import type { ITag } from '~/models/tag.model'
 
 export const useTagStore = defineStore('tag', () => {
   const tags = ref<ITag[]>([

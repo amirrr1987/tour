@@ -1,5 +1,5 @@
 import { VehicleEnum } from '~/enums'
-import type { ITour } from '~/interfaces/tour.model'
+import type { ITour } from '~/models/tour.model'
 
 export const useTourStore = defineStore('tour', () => {
   const tours = ref<ITour[]>([
