@@ -1,25 +1,29 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+  import type { NavigationMenuItem } from '@nuxt/ui'
 
-const items = computed<NavigationMenuItem[]>(() => [
-  {
-    label: "Home",
-    to: "/",
-  },
-  {
-    label: "About Us",
-    to: "/about-us",
-  },
-  {
-    label: "Tours",
-    to: "/tours",
-  },
-  {
-    label: "Contact Us",
-    to: "/contact-us",
-  },
-]);
-const phoneNumber = "+989198881400";
+  const items = computed<NavigationMenuItem[]>(() => [
+    {
+      label: 'Home',
+      icon: 'i-lucide-home',
+      to: '/'
+    },
+    {
+      label: 'About Us',
+      icon: 'i-lucide-info',
+      to: '/about-us'
+    },
+    {
+      label: 'Tours',
+      icon: 'i-lucide-calendar-check',
+      to: '/tours'
+    },
+    {
+      label: 'Contact Us',
+      icon: 'i-lucide-phone',
+      to: '/contact-us'
+    }
+  ])
+  const phoneNumber = '+989198881400'
 </script>
 
 <template>
@@ -38,25 +42,20 @@ const phoneNumber = "+989198881400";
     </UContainer>
     <USeparator />
   </div>
-  <UHeader to="/" :ui="{}">
-    <template #title>
+  <nav>
+    <UContainer class="flex items-center justify-between pb-2">
       <div class="flex items-center gap-2">
         <Logo class="h-11 w-auto fill-primary" />
-        <span class="text-2xl font-bold text-primary">TourCode</span>
+        <span class="text-2xl font-bold text-primary hidden md:block">TourCode</span>
       </div>
-    </template>
-
-    <UNavigationMenu :items="items" />
-
-    <template #right>
-      <UButton
-        color="primary"
-        variant="soft"
-        to="/tours"
-        icon="i-lucide-calendar-check"
-      >
-        Book Now
+      <UNavigationMenu
+        :items="items"
+        variant="link"
+        class="flex-col items-start gap-2 md:flex-row md:gap-4"
+      />
+      <UButton color="primary" variant="soft" to="/tours" icon="i-lucide-calendar-check">
+        <span class="hidden md:block">Book Now</span>
       </UButton>
-    </template>
-  </UHeader>
+    </UContainer>
+  </nav>
 </template>
