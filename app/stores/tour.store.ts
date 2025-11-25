@@ -1,5 +1,5 @@
 import { VehicleEnum } from '~/enums'
-import type { ITour } from '~/interfaces/tour.model'
+import type { ITour } from '~/models/tour.model'
 
 export const useTourStore = defineStore('tour', () => {
   const tours = ref<ITour[]>([
@@ -11,17 +11,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 299,
       originalPrice: 399,
       startDate: new Date('2025-03-15'),
-      duration: '5 Days',
+      endDate: new Date('2025-03-20'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Car,
       rating: 4.8,
       reviews: 124,
       location: 'Switzerland',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [1, 9], // Adventure, Mountain
+      tags: ['1', '9'], // Adventure, Mountain
       keywords: ['mountain', 'adventure', 'hiking', 'switzerland', 'alps', 'outdoor']
     },
     {
@@ -31,17 +31,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 399,
       originalPrice: 0,
       startDate: new Date('2025-04-01'),
-      duration: '7 Days',
+      endDate: new Date('2025-04-08'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Bus,
       rating: 4.9,
       reviews: 89,
       location: 'Egypt',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['egypt', 'pyramids', 'culture', 'history', 'ancient', 'heritage']
     },
     {
@@ -51,17 +51,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 249,
       originalPrice: 0,
       startDate: new Date('2025-05-10'),
-      duration: '4 Days',
+      endDate: new Date('2025-05-14'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.7,
       reviews: 156,
       location: 'Maldives',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['beach', 'maldives', 'relaxation', 'tropical', 'island', 'paradise']
     },
     {
@@ -71,17 +71,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 199,
       originalPrice: 0,
       startDate: new Date('2025-03-20'),
-      duration: '3 Days',
+      endDate: new Date('2025-03-23'),
       numberOfTravelers: 1,
       vehicle: VehicleEnum.Train,
       rating: 4.6,
       reviews: 203,
       location: 'Tokyo',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['tokyo', 'city', 'urban', 'japan', 'culture', 'nightlife']
     },
     {
@@ -91,17 +91,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 549,
       originalPrice: 0,
       startDate: new Date('2025-06-01'),
-      duration: '8 Days',
+      endDate: new Date('2025-06-09'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Bus,
       rating: 5.0,
       reviews: 67,
       location: 'Kenya',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['safari', 'kenya', 'wildlife', 'animals', 'nature', 'adventure']
     },
     {
@@ -111,17 +111,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 349,
       originalPrice: 0,
       startDate: new Date('2025-04-15'),
-      duration: '6 Days',
+      endDate: new Date('2025-04-21'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Car,
       rating: 4.5,
       reviews: 92,
       location: 'Morocco',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 2], // Adventure, Cultural
+      tags: ['1', '2'], // Adventure, Cultural
       keywords: ['desert', 'morocco', 'adventure', 'culture', 'bedouin', 'sahara']
     },
     {
@@ -131,17 +131,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 449,
       originalPrice: 0,
       startDate: new Date('2025-05-20'),
-      duration: '7 Days',
+      endDate: new Date('2025-05-27'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 134,
       location: 'Philippines',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['island', 'philippines', 'tropical', 'beach', 'diving', 'relaxation']
     },
     {
@@ -151,17 +151,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1299,
       originalPrice: 0,
       startDate: new Date('2025-06-15'),
-      duration: '14 Days',
+      endDate: new Date('2025-06-29'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Train,
       rating: 4.9,
       reviews: 78,
       location: 'Europe',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5, 8], // Cultural, History, City
+      tags: ['2', '5', '8'], // Cultural, History, City
       keywords: ['europe', 'culture', 'history', 'cities', 'grand tour', 'heritage']
     },
     {
@@ -172,17 +172,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 899,
       originalPrice: 1099,
       startDate: new Date('2025-09-01'),
-      duration: '6 Days',
+      endDate: new Date('2025-09-07'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 145,
       location: 'Iceland',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['northern lights', 'iceland', 'aurora', 'arctic', 'adventure', 'photography']
     },
     {
@@ -192,17 +192,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 379,
       originalPrice: 0,
       startDate: new Date('2025-04-10'),
-      duration: '5 Days',
+      endDate: new Date('2025-04-15'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Bus,
       rating: 4.7,
       reviews: 198,
       location: 'Italy',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['rome', 'italy', 'history', 'ancient', 'culture', 'archaeology']
     },
     {
@@ -212,17 +212,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 599,
       originalPrice: 0,
       startDate: new Date('2025-05-05'),
-      duration: '7 Days',
+      endDate: new Date('2025-05-12'),
       numberOfTravelers: 1,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 112,
       location: 'Bali',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['bali', 'wellness', 'yoga', 'spa', 'relaxation', 'retreat']
     },
     {
@@ -232,17 +232,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 449,
       originalPrice: 0,
       startDate: new Date('2025-03-25'),
-      duration: '4 Days',
+      endDate: new Date('2025-03-29'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.6,
       reviews: 267,
       location: 'New York',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['new york', 'city', 'broadway', 'urban', 'usa', 'landmarks']
     },
     {
@@ -252,17 +252,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 799,
       originalPrice: 0,
       startDate: new Date('2025-07-01'),
-      duration: '10 Days',
+      endDate: new Date('2025-07-11'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 89,
       location: 'Brazil',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['amazon', 'rainforest', 'brazil', 'nature', 'wildlife', 'adventure']
     },
     {
@@ -272,17 +272,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 549,
       originalPrice: 0,
       startDate: new Date('2025-04-20'),
-      duration: '6 Days',
+      endDate: new Date('2025-04-26'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Bus,
       rating: 4.7,
       reviews: 156,
       location: 'India',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['taj mahal', 'india', 'culture', 'monuments', 'heritage', 'golden triangle']
     },
     {
@@ -292,17 +292,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1299,
       originalPrice: 1599,
       startDate: new Date('2025-06-10'),
-      duration: '8 Days',
+      endDate: new Date('2025-06-18'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 98,
       location: 'Seychelles',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['seychelles', 'beach', 'luxury', 'resort', 'tropical', 'relaxation']
     },
     {
@@ -312,17 +312,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 699,
       originalPrice: 0,
       startDate: new Date('2025-03-30'),
-      duration: '5 Days',
+      endDate: new Date('2025-04-04'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 178,
       location: 'Dubai',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['dubai', 'modern', 'luxury', 'shopping', 'architecture', 'urban']
     },
     {
@@ -332,17 +332,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1199,
       originalPrice: 0,
       startDate: new Date('2025-10-01'),
-      duration: '12 Days',
+      endDate: new Date('2025-10-13'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Flight,
       rating: 5.0,
       reviews: 67,
       location: 'Chile',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 9], // Adventure, Mountain
+      tags: ['1', '9'], // Adventure, Mountain
       keywords: ['patagonia', 'trekking', 'chile', 'mountains', 'glaciers', 'adventure']
     },
     {
@@ -352,17 +352,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 649,
       originalPrice: 0,
       startDate: new Date('2025-04-05'),
-      duration: '6 Days',
+      endDate: new Date('2025-04-11'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Train,
       rating: 4.9,
       reviews: 134,
       location: 'Japan',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['kyoto', 'japan', 'traditional', 'temples', 'culture', 'gardens']
     },
     {
@@ -372,17 +372,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1499,
       originalPrice: 0,
       startDate: new Date('2025-05-15'),
-      duration: '7 Days',
+      endDate: new Date('2025-05-22'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 87,
       location: 'Maldives',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['maldives', 'overwater', 'villa', 'luxury', 'diving', 'beach']
     },
     {
@@ -392,17 +392,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 499,
       originalPrice: 0,
       startDate: new Date('2025-04-12'),
-      duration: '5 Days',
+      endDate: new Date('2025-04-17'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.7,
       reviews: 223,
       location: 'London',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 5, 8], // Urban, History, City
+      tags: ['4', '5', '8'], // Urban, History, City
       keywords: ['london', 'royal', 'palaces', 'history', 'museums', 'urban']
     },
     {
@@ -413,17 +413,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 999,
       originalPrice: 0,
       startDate: new Date('2025-09-15'),
-      duration: '14 Days',
+      endDate: new Date('2025-09-29'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 112,
       location: 'Nepal',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 9], // Adventure, Mountain
+      tags: ['1', '9'], // Adventure, Mountain
       keywords: ['everest', 'nepal', 'trekking', 'mountains', 'base camp', 'adventure']
     },
     {
@@ -433,17 +433,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 579,
       originalPrice: 0,
       startDate: new Date('2025-05-01'),
-      duration: '7 Days',
+      endDate: new Date('2025-05-08'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Bus,
       rating: 4.8,
       reviews: 167,
       location: 'Greece',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['greece', 'acropolis', 'ancient', 'history', 'culture', 'ruins']
     },
     {
@@ -453,17 +453,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 399,
       originalPrice: 499,
       startDate: new Date('2025-05-25'),
-      duration: '6 Days',
+      endDate: new Date('2025-05-31'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.7,
       reviews: 189,
       location: 'Thailand',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['thailand', 'beach', 'tropical', 'massage', 'islands', 'relaxation']
     },
     {
@@ -473,17 +473,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 349,
       originalPrice: 0,
       startDate: new Date('2025-03-18'),
-      duration: '4 Days',
+      endDate: new Date('2025-03-22'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.6,
       reviews: 201,
       location: 'Singapore',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['singapore', 'city', 'culture', 'cuisine', 'modern', 'urban']
     },
     {
@@ -493,17 +493,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1099,
       originalPrice: 0,
       startDate: new Date('2025-08-01'),
-      duration: '10 Days',
+      endDate: new Date('2025-08-11'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Car,
       rating: 4.9,
       reviews: 145,
       location: 'New Zealand',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['new zealand', 'adventure', 'bungee', 'skydiving', 'nature', 'extreme']
     },
     {
@@ -513,17 +513,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 849,
       originalPrice: 0,
       startDate: new Date('2025-06-20'),
-      duration: '8 Days',
+      endDate: new Date('2025-06-28'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 134,
       location: 'Peru',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 2, 5], // Adventure, Cultural, History
+      tags: ['1', '2', '5'], // Adventure, Cultural, History
       keywords: ['machu picchu', 'peru', 'inca trail', 'ancient', 'hiking', 'culture']
     },
     {
@@ -533,17 +533,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1299,
       originalPrice: 0,
       startDate: new Date('2025-07-15'),
-      duration: '7 Days',
+      endDate: new Date('2025-07-22'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 178,
       location: 'Caribbean',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['caribbean', 'cruise', 'islands', 'beach', 'sailing', 'relaxation']
     },
     {
@@ -553,17 +553,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 599,
       originalPrice: 0,
       startDate: new Date('2025-04-25'),
-      duration: '5 Days',
+      endDate: new Date('2025-04-30'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 256,
       location: 'France',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 5, 8], // Urban, History, City
+      tags: ['4', '5', '8'], // Urban, History, City
       keywords: ['paris', 'eiffel tower', 'louvre', 'france', 'culture', 'urban']
     },
     {
@@ -573,17 +573,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 749,
       originalPrice: 0,
       startDate: new Date('2025-07-20'),
-      duration: '9 Days',
+      endDate: new Date('2025-07-29'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Bus,
       rating: 4.8,
       reviews: 123,
       location: 'Costa Rica',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['costa rica', 'wildlife', 'rainforest', 'nature', 'animals', 'adventure']
     },
     {
@@ -593,17 +593,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 679,
       originalPrice: 0,
       startDate: new Date('2025-05-08'),
-      duration: '8 Days',
+      endDate: new Date('2025-05-16'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Bus,
       rating: 4.7,
       reviews: 145,
       location: 'Turkey',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['turkey', 'istanbul', 'cappadocia', 'history', 'culture', 'ancient']
     },
     {
@@ -613,17 +613,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1399,
       originalPrice: 1699,
       startDate: new Date('2025-06-05'),
-      duration: '7 Days',
+      endDate: new Date('2025-06-12'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 94,
       location: 'Fiji',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['fiji', 'resort', 'luxury', 'diving', 'beach', 'island']
     },
     {
@@ -633,17 +633,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 429,
       originalPrice: 0,
       startDate: new Date('2025-03-22'),
-      duration: '4 Days',
+      endDate: new Date('2025-03-26'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.6,
       reviews: 187,
       location: 'Hong Kong',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['hong kong', 'city', 'dim sum', 'markets', 'urban', 'skyline']
     },
     {
@@ -653,17 +653,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1199,
       originalPrice: 0,
       startDate: new Date('2025-08-15'),
-      duration: '8 Days',
+      endDate: new Date('2025-08-23'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.9,
       reviews: 112,
       location: 'Norway',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['norway', 'fjords', 'cruise', 'nordic', 'nature', 'scenery']
     },
     {
@@ -673,17 +673,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 449,
       originalPrice: 0,
       startDate: new Date('2025-04-18'),
-      duration: '5 Days',
+      endDate: new Date('2025-04-23'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.8,
       reviews: 156,
       location: 'Cambodia',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['angkor wat', 'cambodia', 'temples', 'khmer', 'history', 'culture']
     },
     {
@@ -693,17 +693,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 899,
       originalPrice: 0,
       startDate: new Date('2025-06-12'),
-      duration: '6 Days',
+      endDate: new Date('2025-06-18'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.7,
       reviews: 134,
       location: 'Mauritius',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['mauritius', 'beach', 'resort', 'tropical', 'relaxation', 'luxury']
     },
     {
@@ -713,17 +713,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 479,
       originalPrice: 0,
       startDate: new Date('2025-05-12'),
-      duration: '4 Days',
+      endDate: new Date('2025-05-16'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.7,
       reviews: 198,
       location: 'Spain',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['barcelona', 'gaudi', 'spain', 'tapas', 'culture', 'urban']
     },
     {
@@ -733,17 +733,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1299,
       originalPrice: 0,
       startDate: new Date('2025-08-20'),
-      duration: '10 Days',
+      endDate: new Date('2025-08-30'),
       numberOfTravelers: 4,
       vehicle: VehicleEnum.Bus,
       rating: 5.0,
       reviews: 89,
       location: 'Tanzania',
-      category: 1, // Adventure
+      category: '1', // Adventure
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [1, 6], // Adventure, Nature
+      tags: ['1', '6'], // Adventure, Nature
       keywords: ['tanzania', 'safari', 'serengeti', 'wildlife', 'migration', 'adventure']
     },
     {
@@ -753,17 +753,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 799,
       originalPrice: 0,
       startDate: new Date('2025-05-18'),
-      duration: '7 Days',
+      endDate: new Date('2025-05-25'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Bus,
       rating: 4.8,
       reviews: 167,
       location: 'China',
-      category: 2, // Cultural
+      category: '2', // Cultural
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [2, 5], // Cultural, History
+      tags: ['2', '5'], // Cultural, History
       keywords: ['china', 'great wall', 'beijing', 'forbidden city', 'history', 'culture']
     },
     {
@@ -773,17 +773,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 1999,
       originalPrice: 2499,
       startDate: new Date('2025-07-01'),
-      duration: '7 Days',
+      endDate: new Date('2025-07-07'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 5.0,
       reviews: 76,
       location: 'French Polynesia',
-      category: 3, // Relaxation
+      category: '3', // Relaxation
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: true,
-      tags: [3, 7], // Relaxation, Beach
+      tags: ['3', '7'], // Relaxation, Beach
       keywords: ['bora bora', 'overwater', 'luxury', 'lagoon', 'paradise', 'relaxation']
     },
     {
@@ -793,17 +793,17 @@ export const useTourStore = defineStore('tour', () => {
       price: 549,
       originalPrice: 0,
       startDate: new Date('2025-06-25'),
-      duration: '5 Days',
+      endDate: new Date('2025-06-30'),
       numberOfTravelers: 2,
       vehicle: VehicleEnum.Flight,
       rating: 4.7,
       reviews: 189,
       location: 'Australia',
-      category: 4, // Urban
+      category: '4', // Urban
       image:
         'https://irandestination.com/wp-content/uploads/2021/10/Best-iranian-tours-in-2021-Iran-Destination.jpg',
       featured: false,
-      tags: [4, 8], // Urban, City
+      tags: ['4', '8'], // Urban, City
       keywords: ['sydney', 'opera house', 'australia', 'harbor', 'coastal', 'urban']
     }
   ])

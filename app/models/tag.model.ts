@@ -1,4 +1,5 @@
 export interface ITag {
-  id: number
+  id: string
   name: string
+  slug: string
 }

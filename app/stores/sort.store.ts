@@ -1,36 +1,36 @@
-import type { ISort } from '~/interfaces/sort.model'
+import type { ISort } from '~/models/sort.model'
 
 export const useSortStore = defineStore('sort', () => {
   const sorts = ref<ISort[]>([
     {
       id: '1',
       label: 'Most Popular',
-      value: 'popular'
+      slug: 'popular'
     },
     {
       id: '2',
       label: 'Price: Low to High',
-      value: 'price-asc'
+      slug: 'price-asc'
     },
     {
       id: '3',
       label: 'Price: High to Low',
-      value: 'price-desc'
+      slug: 'price-desc'
     },
     {
       id: '4',
       label: 'Highest Rated',
-      value: 'rating-desc'
+      slug: 'rating-desc'
     },
     {
       id: '5',
       label: 'Duration',
-      value: 'duration-asc'
+      slug: 'duration-asc'
     },
     {
       id: '6',
       label: 'Duration: Long to Short',
-      value: 'duration-desc'
+      slug: 'duration-desc'
     }
   ])
 

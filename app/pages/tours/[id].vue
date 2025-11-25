@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { CalendarDate } from '@internationalized/date'
+import type { ICategory } from '~/models/category.model'
 
 const route = useRoute()
 const { tours } = storeToRefs(useTourStore())
 const { categories } = storeToRefs(useCategoryStore())
 
 // Helper function to get category name from ID
-const getCategoryName = (categoryId: number) => {
+const getCategoryName = (categoryId: ICategory['id']) => {
   const cat = categories.value.find(c => c.id === categoryId)
   return cat?.name || 'Unknown'
 }
@@ -87,7 +88,7 @@ useHead({
 </script>
 
 <template>
-  <UPage class="py-6 md:py-8" v-if="tour">
+  <UPage v-if="tour && tour.id" class="py-6 md:py-8">
     <UContainer>
       <!-- Breadcrumb -->
       <div class="mb-6">
@@ -213,7 +214,8 @@ useHead({
                     </div>
                   </div>
                   <p class="text-muted text-sm">
-                    "An absolutely amazing experience! The tour guides were knowledgeable and friendly, and the itinerary
+                    "An absolutely amazing experience! The tour guides were knowledgeable and friendly, and the
+                    itinerary
                     was perfect. Highly recommend!"
                   </p>
                 </div>
@@ -282,53 +284,64 @@ useHead({
               </div>
 
               <!-- Booking Form -->
-              <form @submit.prevent="handleBooking" class="space-y-4">
-                <UFormField label="Number of Travelers">
-                  <UInputNumber v-model="bookingForm.travelers" type="number" class="w-full" :min="1" :max="20"
-                    :step="1" />
-                </UFormField>
+              <ClientOnly>
+                <form @submit.prevent="handleBooking" class="space-y-4">
+                  <UFormField label="Number of Travelers">
+                    <UInputNumber v-model="bookingForm.travelers" type="number" class="w-full" :min="1" :max="20"
+                      :step="1" />
+                  </UFormField>
 
-                <UFormField label="Start Date" required>
-                  <UInputDate ref="startInputDateRef" v-model="startModelValue" class="w-full">
-                    <template #trailing>
-                      <UPopover :reference="startInputDateRef?.inputsRef[3]?.$el">
-                        <UButton color="neutral" variant="link" size="sm" icon="i-lucide-calendar"
-                          aria-label="Select a date" class="px-0" />
-                        <template #content>
-                          <UCalendar v-model="startModelValue" class="p-2" />
-                        </template>
-                      </UPopover>
-                    </template>
-                  </UInputDate>
-                </UFormField>
+                  <UFormField label="Start Date" required>
+                    <UInputDate ref="startInputDateRef" v-model="startModelValue" class="w-full">
+                      <template #trailing>
+                        <UPopover :reference="startInputDateRef?.inputsRef[3]?.$el">
+                          <UButton color="neutral" variant="link" size="sm" icon="i-lucide-calendar"
+                            aria-label="Select a date" class="px-0" />
+                          <template #content>
+                            <UCalendar v-model="startModelValue" class="p-2" />
+                          </template>
+                        </UPopover>
+                      </template>
+                    </UInputDate>
+                  </UFormField>
 
-                <UFormField label="Special Requests">
-                  <UTextarea v-model="bookingForm.specialRequests" placeholder="Any special requirements?"
-                    :rows="3" class="w-full" />
-                </UFormField>
+                  <UFormField label="Special Requests">
+                    <UTextarea v-model="bookingForm.specialRequests" placeholder="Any special requirements?" :rows="3"
+                      class="w-full" />
+                  </UFormField>
 
-                <!-- Total Price -->
-                <div class="pt-4 border-t">
-                  <div class="flex items-center justify-between mb-4">
-                    <span class="font-semibold">Total Price</span>
-                    <span class="text-2xl font-bold text-primary">${{ totalPrice }}</span>
+                  <!-- Total Price -->
+                  <div class="pt-4 border-t">
+                    <div class="flex items-center justify-between mb-4">
+                      <span class="font-semibold">Total Price</span>
+                      <span class="text-2xl font-bold text-primary">${{ totalPrice }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <UButton type="submit" size="lg" block :loading="isBooking" icon="i-lucide-calendar-check">
-                  Book Now
-                </UButton>
+                  <UButton type="submit" size="lg" block :loading="isBooking" icon="i-lucide-calendar-check">
+                    Book Now
+                  </UButton>
 
-                <UButton variant="outline" size="lg" block icon="i-lucide-heart">
-                  Save for Later
-                </UButton>
-              </form>
+                  <UButton variant="outline" size="lg" block icon="i-lucide-heart">
+                    Save for Later
+                  </UButton>
+                </form>
+                <template #fallback>
+                  <div class="space-y-4">
+                    <div class="h-20 bg-default/50 rounded animate-pulse" />
+                    <div class="h-20 bg-default/50 rounded animate-pulse" />
+                    <div class="h-24 bg-default/50 rounded animate-pulse" />
+                    <div class="h-12 bg-default/50 rounded animate-pulse" />
+                  </div>
+                </template>
+              </ClientOnly>
 
               <!-- Contact Info -->
               <div class="mt-6 pt-6 border-t">
                 <p class="text-sm text-muted mb-3">Need help? Contact us:</p>
                 <div class="space-y-2 text-sm">
-                  <a href="tel:+15551234567" class="flex items-center gap-2 text-muted hover:text-primary transition-colors">
+                  <a href="tel:+15551234567"
+                    class="flex items-center gap-2 text-muted hover:text-primary transition-colors">
                     <UIcon name="i-lucide-phone" class="w-4 h-4" />
                     +1 (555) 123-4567
                   </a>
@@ -346,4 +359,3 @@ useHead({
     </UContainer>
   </UPage>
 </template>
-
