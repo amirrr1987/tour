@@ -28,8 +28,8 @@
         <UButton class="text-xs" variant="ghost" size="sm" @click="onReset"> Clear All </UButton>
       </div>
     </template>
-    <form class="space-y-8" @submit.prevent="onSubmit">
-      <UFormField label="Search">
+    <form class="grid grid-cols-2 gap-4" @submit.prevent="onSubmit">
+      <UFormField label="Search" class="col-span-2">
         <UInput
           v-model="formData.search"
           type="text"
@@ -50,7 +50,7 @@
           </template>
         </UInput>
       </UFormField>
-      <UFormField label="Category">
+      <UFormField label="Category" class="col-span-1 md:col-span-2">
         <USelectMenu
           v-model="formData.category"
           :items="props.categories"
@@ -72,7 +72,7 @@
             /> </template
         ></USelectMenu>
       </UFormField>
-      <UFormField label="Location">
+      <UFormField label="Location" class="col-span-1 md:col-span-2">
         <USelectMenu
           v-model="formData.location"
           :items="props.locations"
@@ -94,7 +94,7 @@
             /> </template
         ></USelectMenu>
       </UFormField>
-      <UFormField label="Price">
+      <UFormField label="Price" class="col-span-2">
         <USlider
           v-model="formData.price"
           tooltip
@@ -105,7 +105,7 @@
         />
       </UFormField>
 
-      <UFormField label="Start Date">
+      <UFormField label="Start Date" class="col-span-1 md:col-span-2">
         <UInput
           v-model="formData.startDate"
           type="date"
@@ -115,7 +115,7 @@
           :max="formData.endDate"
         />
       </UFormField>
-      <UFormField label="End Date">
+      <UFormField label="End Date" class="col-span-1 md:col-span-2">
         <UInput
           v-model="formData.endDate"
           type="date"
@@ -125,7 +125,7 @@
           :min="formData.startDate"
         />
       </UFormField>
-      <UFormField label="Vehicle">
+      <UFormField label="Vehicle" class="col-span-1 md:col-span-2">
         <USelectMenu
           v-model="formData.vehicle as VehicleEnum"
           :items="[
@@ -153,7 +153,17 @@
           </template>
         </USelectMenu>
       </UFormField>
-      <UButton type="submit" block> Apply Filters </UButton>
+
+      <UFormField label="count" class="col-span-1 md:col-span-2">
+        <UInputNumber
+          v-model="formData.count"
+          placeholder="Count"
+          icon="i-lucide-users"
+          class="w-full"
+        />
+      </UFormField>
+      <USeparator class="col-span-2" />
+      <UButton type="submit" block class="col-span-2"> Apply Filters </UButton>
     </form>
   </UCard>
 </template>

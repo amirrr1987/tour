@@ -15,7 +15,8 @@
     price: [0, 2000],
     startDate: '',
     endDate: '',
-    vehicle: ''
+    vehicle: '',
+    count: 1
   })
   const clearFilter = () => {
     formData.value.search = ''
