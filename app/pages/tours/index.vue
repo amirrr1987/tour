@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AppModel } from "~/models/app.model";
+import type { ViewMode } from "~/models/app.model";
 import type { IFilter } from "~/models/filter.model";
 import { useCategoryStore } from "~/stores/category.store";
 import { useLocationStore } from "~/stores/location.store";
@@ -12,20 +12,18 @@ const formData = ref<IFilter>({
   category: "",
   location: "",
   price: [0, 2000],
-  count: 0,
   startDate: "",
+  endDate: "",
   vehicle: "all",
 });
 const clearFilter = () => {
-  formData.value = {
-    search: "",
-    category: "",
-    location: "",
-    startDate: "",
-    price: [0, 2000],
-    count: 0,
-    vehicle: "all",
-  };
+  formData.value.search = "";
+  formData.value.category = "";
+  formData.value.location = "";
+  formData.value.startDate = "";
+  formData.value.endDate = "";
+  formData.value.price = [0, 2000];
+  formData.value.vehicle = "all";
 };
 const setFilterInParams = () => {
   search.value = formData.value.search;
@@ -33,7 +31,8 @@ const setFilterInParams = () => {
   location.value = formData.value.location;
   priceMin.value = formData.value.price[0] ?? 0;
   priceMax.value = formData.value.price[1] ?? 2000;
-  count.value = formData.value.count;
+  startDate.value = formData.value.startDate;
+  endDate.value = formData.value.endDate;
   vehicle.value = formData.value.vehicle;
   startDate.value = formData.value.startDate;
 };
@@ -42,9 +41,9 @@ const category = useRouteQuery<string>("category", "");
 const location = useRouteQuery<string>("location", "");
 const priceMin = useRouteQuery<number>("priceMin", 0);
 const priceMax = useRouteQuery<number>("priceMax", 2000);
-const count = useRouteQuery<number>("count", 0);
 const vehicle = useRouteQuery<string>("vehicle", "all");
 const startDate = useRouteQuery<string>("startDate", "");
+const endDate = useRouteQuery<string>("endDate", "");
 const onSubmit = () => {
   console.log(formData.value);
 
@@ -56,7 +55,7 @@ const onReset = () => {
   setFilterInParams();
 };
 
-const viewMode = ref<AppModel>("grid");
+const viewMode = ref<ViewMode>("grid");
 </script>
 <template>
   <UPage class="py-6 md:py-8">

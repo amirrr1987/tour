@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { CalendarDate } from '@internationalized/date'
+import type { ICategory } from '~/models/category.model'
 
 const route = useRoute()
 const { tours } = storeToRefs(useTourStore())
 const { categories } = storeToRefs(useCategoryStore())
 
 // Helper function to get category name from ID
-const getCategoryName = (categoryId: number) => {
+const getCategoryName = (categoryId: ICategory['id']) => {
   const cat = categories.value.find(c => c.id === categoryId)
   return cat?.name || 'Unknown'
 }
@@ -213,7 +214,8 @@ useHead({
                     </div>
                   </div>
                   <p class="text-muted text-sm">
-                    "An absolutely amazing experience! The tour guides were knowledgeable and friendly, and the itinerary
+                    "An absolutely amazing experience! The tour guides were knowledgeable and friendly, and the
+                    itinerary
                     was perfect. Highly recommend!"
                   </p>
                 </div>
@@ -304,8 +306,8 @@ useHead({
                   </UFormField>
 
                   <UFormField label="Special Requests">
-                    <UTextarea v-model="bookingForm.specialRequests" placeholder="Any special requirements?"
-                      :rows="3" class="w-full" />
+                    <UTextarea v-model="bookingForm.specialRequests" placeholder="Any special requirements?" :rows="3"
+                      class="w-full" />
                   </UFormField>
 
                   <!-- Total Price -->
@@ -338,7 +340,8 @@ useHead({
               <div class="mt-6 pt-6 border-t">
                 <p class="text-sm text-muted mb-3">Need help? Contact us:</p>
                 <div class="space-y-2 text-sm">
-                  <a href="tel:+15551234567" class="flex items-center gap-2 text-muted hover:text-primary transition-colors">
+                  <a href="tel:+15551234567"
+                    class="flex items-center gap-2 text-muted hover:text-primary transition-colors">
                     <UIcon name="i-lucide-phone" class="w-4 h-4" />
                     +1 (555) 123-4567
                   </a>
@@ -356,4 +359,3 @@ useHead({
     </UContainer>
   </UPage>
 </template>
-

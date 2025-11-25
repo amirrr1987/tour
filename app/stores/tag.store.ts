@@ -4,43 +4,53 @@ export const useTagStore = defineStore('tag', () => {
   const tags = ref<ITag[]>([
     {
       id: '1',
-      name: 'Adventure'
+      name: 'Adventure',
+      slug: 'adventure'
     },
     {
       id: '2',
-      name: 'Cultural'
+      name: 'Cultural',
+      slug: 'cultural'
     },
     {
       id: '3',
-      name: 'Relaxation'
+      name: 'Relaxation',
+      slug: 'relaxation'
     },
     {
       id: '4',
-      name: 'Urban'
+      name: 'Urban',
+      slug: 'urban'
     },
     {
       id: '5',
-      name: 'History'
+      name: 'History',
+      slug: 'history'
     },
     {
       id: '6',
-      name: 'Nature'
+      name: 'Nature',
+      slug: 'nature'
     },
     {
       id: '7',
-      name: 'Beach'
+      name: 'Beach',
+      slug: 'beach'
     },
     {
       id: '8',
-      name: 'City'
+      name: 'City',
+      slug: 'city'
     },
     {
       id: '9',
-      name: 'Mountain'
+      name: 'Mountain',
+      slug: 'mountain'
     },
     {
       id: '10',
-      name: 'River'
+      name: 'River',
+      slug: 'river'
     }
   ])
 

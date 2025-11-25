@@ -3,7 +3,7 @@ export interface IFilter {
   category: string;
   location: string;
   price: [number, number];
-  count: number;
   startDate: string;
+  endDate: string;
   vehicle: string;
 }
