@@ -94,11 +94,9 @@
             /> </template
         ></USelectMenu>
       </UFormField>
-      <UFormField  class="col-span-2">
+      <UFormField class="col-span-2">
         <template #label>Price ($)</template>
-        <template #hint>
-          {{ formData.price[0] }} - {{ formData.price[1] }}
-        </template>
+        <template #hint> {{ formData.price[0] }} - {{ formData.price[1] }} </template>
         <USlider
           v-model="formData.price"
           tooltip
@@ -159,12 +157,25 @@
       </UFormField>
 
       <UFormField label="Count" class="col-span-1 md:col-span-2">
+        <template #hint>
+          <template v-if="formData.count !== undefined">
+            <UButton
+              color="neutral"
+              variant="link"
+              size="sm"
+              icon="i-lucide-circle-x"
+              aria-label="Clear input"
+              @click="formData.count = undefined"
+            />
+          </template>
+        </template>
         <UInputNumber
           v-model="formData.count"
           placeholder="Count"
           icon="i-lucide-users"
           class="w-full"
-          :min="0"
+          :min="1"
+          :default-value="undefined"
         />
       </UFormField>
       <USeparator class="col-span-2" />

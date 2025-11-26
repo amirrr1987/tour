@@ -16,7 +16,7 @@
     startDate: '',
     endDate: '',
     vehicle: '',
-    count: 1
+    count: undefined
   })
   const clearFilter = () => {
     formData.value.search = ''
@@ -26,7 +26,7 @@
     formData.value.endDate = ''
     formData.value.price = [0, 2000]
     formData.value.vehicle = ''
-    formData.value.count = 0  
+    formData.value.count = undefined  
   }
   const setFilterInParams = () => {
     search.value = formData.value.search
@@ -37,7 +37,7 @@
     startDate.value = formData.value.startDate
     endDate.value = formData.value.endDate
     vehicle.value = formData.value.vehicle
-    count.value = formData.value.count
+    count.value = formData.value.count ?? undefined
   }
   const search = useRouteQuery<string>('search', '')
   const category = useRouteQuery<string>('category', '')
@@ -47,7 +47,7 @@
   const vehicle = useRouteQuery<VehicleEnum | string>('vehicle', '')
   const startDate = useRouteQuery<string>('start-date', '')
   const endDate = useRouteQuery<string>('end-date', '')
-  const count = useRouteQuery<number>('count', 0)
+  const count = useRouteQuery<number | undefined>('count', undefined)
   const onSubmit = () => {
     setFilterInParams()
   }
