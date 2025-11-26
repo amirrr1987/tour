@@ -35,13 +35,16 @@
     <UNavigationMenu :items="items" />
 
     <template #right>
-      <a
+      <!-- <a
         :href="`tel:${phoneNumber}`"
         class="text-muted text-sm hover:text-primary transition-colors flex items-center gap-2"
       >
         <UIcon name="i-lucide-phone" class="w-4 h-4" />
         {{ phoneNumber }}
-      </a>
+      </a> -->
+         <UButton color="primary" variant="soft" to="/tours" icon="i-lucide-calendar-check">
+        <span class="hidden md:block">Book Now</span>
+      </UButton>
       <UColorModeButton />
     </template>
 
