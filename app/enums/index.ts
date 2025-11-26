@@ -1,6 +1,6 @@
 export enum VehicleEnum {
-  Car = 'Car',
-  Bus = 'Bus',
-  Train = 'Train',
-  Flight = 'Flight'
+  Car = 'car',
+  Bus = 'bus',
+  Train = 'train',
+  Flight = 'flight'
 }

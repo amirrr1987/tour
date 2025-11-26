@@ -16,7 +16,7 @@
     startDate: '',
     endDate: '',
     vehicle: '',
-    count: 1
+    count: undefined
   })
   const clearFilter = () => {
     formData.value.search = ''
@@ -26,7 +26,7 @@
     formData.value.endDate = ''
     formData.value.price = [0, 2000]
     formData.value.vehicle = ''
-    formData.value.count = 1
+    formData.value.count = undefined  
   }
   const setFilterInParams = () => {
     search.value = formData.value.search
@@ -37,17 +37,17 @@
     startDate.value = formData.value.startDate
     endDate.value = formData.value.endDate
     vehicle.value = formData.value.vehicle
-    count.value = formData.value.count
+    count.value = formData.value.count ?? undefined
   }
   const search = useRouteQuery<string>('search', '')
   const category = useRouteQuery<string>('category', '')
   const location = useRouteQuery<string>('location', '')
-  const priceMin = useRouteQuery<number>('priceMin', 0)
-  const priceMax = useRouteQuery<number>('priceMax', 2000)
+  const priceMin = useRouteQuery<number>('price-min', 0)
+  const priceMax = useRouteQuery<number>('price-max', 2000)
   const vehicle = useRouteQuery<VehicleEnum | string>('vehicle', '')
-  const startDate = useRouteQuery<string>('startDate', '')
-  const endDate = useRouteQuery<string>('endDate', '')
-  const count = useRouteQuery<number>('count', 1)
+  const startDate = useRouteQuery<string>('start-date', '')
+  const endDate = useRouteQuery<string>('end-date', '')
+  const count = useRouteQuery<number | undefined>('count', undefined)
   const onSubmit = () => {
     setFilterInParams()
   }
@@ -60,6 +60,35 @@
 
   const filterTours = computed(() => {
     return tourStore.tours
+  })
+  onMounted(() => {
+    if (search.value) {
+      formData.value.search = search.value
+    }
+    if (category.value) {
+      formData.value.category = category.value
+    }
+    if (location.value) {
+      formData.value.location = location.value
+    }
+    if (priceMin.value) {
+      formData.value.price[0] = priceMin.value
+    }
+    if (priceMax.value) {
+      formData.value.price[1] = priceMax.value
+    }
+    if (startDate.value) {
+      formData.value.startDate = startDate.value
+    }
+    if (endDate.value) {
+      formData.value.endDate = endDate.value
+    }
+    if (vehicle.value) {
+      formData.value.vehicle = vehicle.value
+    }
+    if (count.value) {
+      formData.value.count = count.value
+    }
   })
 </script>
 <template>

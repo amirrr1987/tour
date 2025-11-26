@@ -10,5 +10,5 @@ export interface IFilter {
   startDate: string;
   endDate: string;
   vehicle: VehicleEnum | string;
-  count: number;
+  count: number | undefined;
 }

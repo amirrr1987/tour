@@ -28,7 +28,7 @@
         <UButton class="text-xs" variant="ghost" size="sm" @click="onReset"> Clear All </UButton>
       </div>
     </template>
-    <form class="grid grid-cols-2 gap-4" @submit.prevent="onSubmit">
+    <form class="grid grid-cols-2 gap-8" @submit.prevent="onSubmit">
       <UFormField label="Search" class="col-span-2">
         <UInput
           v-model="formData.search"
@@ -94,7 +94,9 @@
             /> </template
         ></USelectMenu>
       </UFormField>
-      <UFormField label="Price" class="col-span-2">
+      <UFormField class="col-span-2">
+        <template #label>Price ($)</template>
+        <template #hint> {{ formData.price[0] }} - {{ formData.price[1] }} </template>
         <USlider
           v-model="formData.price"
           tooltip
@@ -154,12 +156,26 @@
         </USelectMenu>
       </UFormField>
 
-      <UFormField label="count" class="col-span-1 md:col-span-2">
+      <UFormField label="Count" class="col-span-1 md:col-span-2">
+        <template #hint>
+          <template v-if="formData.count !== undefined">
+            <UButton
+              color="neutral"
+              variant="link"
+              size="sm"
+              icon="i-lucide-circle-x"
+              aria-label="Clear input"
+              @click="formData.count = undefined"
+            />
+          </template>
+        </template>
         <UInputNumber
           v-model="formData.count"
           placeholder="Count"
           icon="i-lucide-users"
           class="w-full"
+          :min="1"
+          :default-value="undefined"
         />
       </UFormField>
       <USeparator class="col-span-2" />
