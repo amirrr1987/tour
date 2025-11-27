@@ -23,7 +23,6 @@
       to: '/contact-us'
     }
   ])
-  const phoneNumber = '+989198881400'
 </script>
 <template>
   <UHeader>
@@ -35,17 +34,10 @@
     <UNavigationMenu :items="items" />
 
     <template #right>
-      <!-- <a
-        :href="`tel:${phoneNumber}`"
-        class="text-muted text-sm hover:text-primary transition-colors flex items-center gap-2"
-      >
-        <UIcon name="i-lucide-phone" class="w-4 h-4" />
-        {{ phoneNumber }}
-      </a> -->
-         <UButton color="primary" variant="soft" to="/tours" icon="i-lucide-calendar-check">
+      <UButton color="primary" variant="soft" to="/tours" icon="i-lucide-calendar-check">
         <span class="hidden md:block">Book Now</span>
       </UButton>
-      <UColorModeButton />
+      <UColorModeButton class="cursor-pointer" />
     </template>
 
     <template #body>
