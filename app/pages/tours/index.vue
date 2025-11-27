@@ -26,7 +26,7 @@
     formData.value.endDate = ''
     formData.value.price = [0, 2000]
     formData.value.vehicle = ''
-    formData.value.count = undefined  
+    formData.value.count = undefined
   }
   const setFilterInParams = () => {
     search.value = formData.value.search
@@ -90,6 +90,11 @@
       formData.value.count = count.value
     }
   })
+  const currentPage = ref(1)
+  const perPage = ref(10)
+  const totalPages = computed(() => {
+    return tourStore.tours.length
+  })
 </script>
 <template>
   <UPage class="py-6 md:py-8">
@@ -117,17 +122,25 @@
               </ClientOnly>
             </div>
           </div>
-
-          <div class="grid grid-cols-12 gap-4">
-            <TourCard
-              v-for="tour in filterTours"
-              :key="tour.id"
-              :tour="tour"
-              class=""
-              :class="
-                viewMode === 'grid' ? 'col-span-full lg:col-span-6 xl:col-span-4' : 'col-span-full'
-              "
-            />
+          <div class="">
+            <div class="overflow-y-auto h-200">
+              <div class="grid grid-cols-12 gap-4">
+                <TourCard
+                  v-for="tour in filterTours"
+                  :key="tour.id"
+                  :tour="tour"
+                  class=""
+                  :class="
+                    viewMode === 'grid'
+                      ? 'col-span-full lg:col-span-6 xl:col-span-4'
+                      : 'col-span-full'
+                  "
+                />
+              </div>
+            </div>
+            <div class="flex justify-center pt-4">
+              <UPagination v-model="currentPage" :total="totalPages" :per-page="perPage" />
+            </div>
           </div>
         </div>
       </div>
