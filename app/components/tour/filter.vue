@@ -46,6 +46,7 @@
               icon="i-lucide-circle-x"
               aria-label="Clear input"
               @click="formData.search = ''"
+              class="cursor-pointer"
             />
           </template>
         </UInput>
@@ -69,6 +70,7 @@
               icon="i-lucide-circle-x"
               aria-label="Clear input"
               @click="formData.category = ''"
+              class="cursor-pointer"
             /> </template
         ></USelectMenu>
       </UFormField>
@@ -91,6 +93,7 @@
               icon="i-lucide-circle-x"
               aria-label="Clear input"
               @click="formData.location = ''"
+              class="cursor-pointer"
             /> </template
         ></USelectMenu>
       </UFormField>
@@ -151,12 +154,13 @@
               icon="i-lucide-circle-x"
               aria-label="Clear input"
               @click="formData.vehicle = ''"
+              class="cursor-pointer"
             />
           </template>
         </USelectMenu>
       </UFormField>
 
-      <UFormField label="Count" class="col-span-1 md:col-span-2">
+      <UFormField label="Count" class="col-span-1 md:col-span-2 count-field">
         <template #hint>
           <template v-if="formData.count !== undefined">
             <UButton
@@ -166,6 +170,7 @@
               icon="i-lucide-circle-x"
               aria-label="Clear input"
               @click="formData.count = undefined"
+              class="cursor-pointer text-sm"
             />
           </template>
         </template>
@@ -183,3 +188,14 @@
     </form>
   </UCard>
 </template>
+<style lang="less">
+  .count-field {
+    & > div[data-slot='wrapper'] {
+      & > div[data-slot='labelWrapper'] {
+        span {
+          height: 29px;
+        }
+      }
+    }
+  }
+</style>
