@@ -1,61 +1,61 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
+  import type { NavigationMenuItem } from '@nuxt/ui'
 
-const quickLinks: NavigationMenuItem[] = [
-  {
-    label: 'Home',
-    to: '/'
-  },
-  {
-    label: 'About Us',
-    to: '/about-us'
-  },
-  {
-    label: 'Tours',
-    to: '/tours'
-  },
-  {
-    label: 'Contact Us',
-    to: '/contact-us'
+  const quickLinks: NavigationMenuItem[] = [
+    {
+      label: 'Home',
+      to: '/'
+    },
+    {
+      label: 'About Us',
+      to: '/about-us'
+    },
+    {
+      label: 'Tours',
+      to: '/tours'
+    },
+    {
+      label: 'Contact Us',
+      to: '/contact-us'
+    }
+  ]
+
+  const socialLinks = [
+    {
+      icon: 'i-simple-icons-facebook',
+      label: 'Facebook',
+      to: '#',
+      ariaLabel: 'Facebook'
+    },
+    {
+      icon: 'i-simple-icons-instagram',
+      label: 'Instagram',
+      to: '#',
+      ariaLabel: 'Instagram'
+    },
+    {
+      icon: 'i-simple-icons-twitter',
+      label: 'Twitter',
+      to: '#',
+      ariaLabel: 'Twitter'
+    },
+    {
+      icon: 'i-simple-icons-youtube',
+      label: 'YouTube',
+      to: '#',
+      ariaLabel: 'YouTube'
+    }
+  ]
+
+  const contactInfo = {
+    phone: '+1 (555) 123-4567',
+    email: 'info@toursite.com',
+    address: '123 Tour Street, Travel City, TC 12345'
   }
-]
-
-const socialLinks = [
-  {
-    icon: 'i-simple-icons-facebook',
-    label: 'Facebook',
-    to: '#',
-    ariaLabel: 'Facebook'
-  },
-  {
-    icon: 'i-simple-icons-instagram',
-    label: 'Instagram',
-    to: '#',
-    ariaLabel: 'Instagram'
-  },
-  {
-    icon: 'i-simple-icons-twitter',
-    label: 'Twitter',
-    to: '#',
-    ariaLabel: 'Twitter'
-  },
-  {
-    icon: 'i-simple-icons-youtube',
-    label: 'YouTube',
-    to: '#',
-    ariaLabel: 'YouTube'
-  }
-]
-
-const contactInfo = {
-  phone: '+1 (555) 123-4567',
-  email: 'info@toursite.com',
-  address: '123 Tour Street, Travel City, TC 12345'
-}
 </script>
 
 <template>
-  <UFooter>
+  <UFooter class="border-t border-gray-200 pb-0">
     <template #left>
       <div class="space-y-6">
         <div>
@@ -67,16 +67,24 @@ const contactInfo = {
         <div class="space-y-4">
           <div>
             <h3 class="font-semibold text-sm mb-3">Quick Links</h3>
-            <UNavigationMenu :items="quickLinks" variant="link" class="flex-col items-start gap-2" />
+            <UNavigationMenu
+              :items="quickLinks"
+              variant="link"
+              class="flex-col items-start gap-2"
+            />
           </div>
           <div class="flex flex-col gap-2 text-sm">
-            <a :href="`tel:${contactInfo.phone}`"
-              class="text-muted hover:text-primary transition-colors flex items-center gap-2">
+            <a
+              :href="`tel:${contactInfo.phone}`"
+              class="text-muted hover:text-primary transition-colors flex items-center gap-2"
+            >
               <UIcon name="i-lucide-phone" class="w-4 h-4" />
               {{ contactInfo.phone }}
             </a>
-            <a :href="`mailto:${contactInfo.email}`"
-              class="text-muted hover:text-primary transition-colors flex items-center gap-2">
+            <a
+              :href="`mailto:${contactInfo.email}`"
+              class="text-muted hover:text-primary transition-colors flex items-center gap-2"
+            >
               <UIcon name="i-lucide-mail" class="w-4 h-4" />
               {{ contactInfo.email }}
             </a>
@@ -94,8 +102,16 @@ const contactInfo = {
         <div>
           <h3 class="font-semibold text-sm mb-3">Follow Us</h3>
           <div class="flex gap-2">
-            <UButton v-for="social in socialLinks" :key="social.label" :icon="social.icon" color="neutral"
-              variant="ghost" :to="social.to" :aria-label="social.ariaLabel" size="sm" />
+            <UButton
+              v-for="social in socialLinks"
+              :key="social.label"
+              :icon="social.icon"
+              color="neutral"
+              variant="ghost"
+              :to="social.to"
+              :aria-label="social.ariaLabel"
+              size="sm"
+            />
           </div>
         </div>
         <div class="text-sm text-muted">
@@ -109,8 +125,10 @@ const contactInfo = {
     </template>
 
     <template #bottom>
-      <div class="w-full pt-6 border-t">
-        <UContainer class=" flex flex-col sm:flex-row justify-between items-center gap-4">
+      <UContainer class="">
+        <div
+          class="w-full  pt-4 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4"
+        >
           <p class="text-muted text-sm">
             Copyright © {{ new Date().getFullYear() }} Tour Site. All rights reserved.
           </p>
@@ -118,8 +136,8 @@ const contactInfo = {
             <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
           </div>
-        </UContainer>
-      </div>
+        </div>
+      </UContainer>
     </template>
   </UFooter>
 </template>
