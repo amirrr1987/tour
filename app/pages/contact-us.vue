@@ -43,19 +43,19 @@ const contactInfo = [
   {
     icon: 'i-lucide-phone',
     title: 'Phone',
-    content: '+1 (555) 123-4567',
-    link: 'tel:+15551234567'
+    content: '+989198881400',
+    link: 'tel:+989198881400'
   },
   {
     icon: 'i-lucide-mail',
     title: 'Email',
-    content: 'info@toursite.com',
-    link: 'mailto:info@toursite.com'
+    content: 'info@tourcode.ir',
+    link: 'mailto:info@tourcode.ir'
   },
   {
     icon: 'i-lucide-clock',
     title: 'Business Hours',
-    content: 'Mon - Fri: 9:00 AM - 6:00 PM',
+    content: 'Sat - Wed: 9:00 AM - 6:00 PM',
     link: '#'
   }
 ]
