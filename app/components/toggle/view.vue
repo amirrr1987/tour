@@ -10,7 +10,7 @@
   <div class="flex border rounded-lg overflow-hidden">
     <UButton
       :variant="modelValue === 'grid' ? 'solid' : 'ghost'"
-      color="neutral"
+      :color="modelValue === 'grid' ? 'primary' : 'neutral'"
       size="sm"
       square
       @click="modelValue = 'grid'"
@@ -20,7 +20,7 @@
     </UButton>
     <UButton
       :variant="modelValue === 'list' ? 'solid' : 'ghost'"
-      color="neutral"
+      :color="modelValue === 'list' ? 'primary' : 'neutral'"
       size="sm"
       square
       @click="modelValue = 'list'"
