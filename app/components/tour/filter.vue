@@ -25,7 +25,7 @@
     <template #header>
       <div class="flex items-center justify-between">
         <h3 class="font-semibold">Filters</h3>
-        <UButton class="text-xs" variant="ghost" size="sm" @click="onReset"> Clear All </UButton>
+        <UButton class="text-xs cursor-pointer" variant="ghost" size="sm" @click="onReset"> Clear All </UButton>
       </div>
     </template>
     <form class="grid grid-cols-2 gap-y-6 gap-x-4" @submit.prevent="onSubmit">
