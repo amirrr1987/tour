@@ -55,7 +55,7 @@
 </script>
 
 <template>
-  <UFooter class="border-t border-gray-200 pb-0">
+  <UFooter class="border-t border-gray-200 pb-0" :ui="{ bottom: 'py-2 lg:py-2' }">
     <template #left>
       <div class="space-y-6">
         <div>
@@ -125,10 +125,8 @@
     </template>
 
     <template #bottom>
-      <UContainer class="">
-        <div
-          class="w-full  pt-4 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4"
-        >
+      <UContainer class="border-t border-gray-200 pt-2">
+        <div class="w-full flex flex-col sm:flex-row justify-between items-center gap-4">
           <p class="text-muted text-sm">
             Copyright © {{ new Date().getFullYear() }} Tour Site. All rights reserved.
           </p>
@@ -141,3 +139,5 @@
     </template>
   </UFooter>
 </template>
+<style lang="less">
+</style>
