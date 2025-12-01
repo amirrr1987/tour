@@ -59,6 +59,34 @@
   const viewMode = ref<ViewMode>('grid')
 
   const filterTours = computed(() => {
+    if (search.value) {
+      return tourStore.tours.filter(tour =>
+        tour.name.toLowerCase().includes(search.value.toLowerCase())
+      )
+    }
+    if (category.value) {
+      return tourStore.tours.filter(tour => tour.category === category.value)
+    }
+    if (location.value) {
+      return tourStore.tours.filter(tour => tour.location === location.value)
+    }
+    if (priceMin.value && priceMax.value) {
+      return tourStore.tours.filter(
+        tour => tour.price >= priceMin.value && tour.price <= priceMax.value
+      )
+    }
+    if (startDate.value) {
+      return tourStore.tours.filter(tour => tour.startDate >= startDate.value)
+    }
+    if (endDate.value) {
+      return tourStore.tours.filter(tour => tour.endDate <= endDate.value)
+    }
+    if (vehicle.value) {
+      return tourStore.tours.filter(tour => tour.vehicle === vehicle.value)
+    }
+    if (count.value) {
+      return tourStore.tours.filter(tour => tour.count >= count.value!)
+    }
     return tourStore.tours
   })
   onMounted(() => {
@@ -91,9 +119,9 @@
     }
   })
   const currentPage = ref(1)
-  const perPage = ref(10)
+  const perPage = useRouteQuery<number>('per-page', 10)
   const totalPages = computed(() => {
-    return tourStore.tours.length
+    return Math.ceil(filterTours.value.length / perPage.value)
   })
 </script>
 <template>
@@ -119,7 +147,9 @@
             <div class="flex gap-2 items-center w-full sm:w-auto">
               <ClientOnly>
                 <ToggleView v-model:view-mode="viewMode" />
+                <!--per page -->
               </ClientOnly>
+              <USelect v-model="perPage" :items="[3,5,10, 20, 30, 40, 50]" />
             </div>
           </div>
           <div class="">
