@@ -25,7 +25,9 @@
     <template #header>
       <div class="flex items-center justify-between">
         <h3 class="font-semibold">Filters</h3>
-        <UButton class="text-xs cursor-pointer" variant="ghost" size="sm" @click="onReset"> Clear All </UButton>
+        <UButton class="text-xs cursor-pointer" variant="ghost" size="sm" @click="onReset">
+          Clear All
+        </UButton>
       </div>
     </template>
     <form class="grid grid-cols-2 gap-y-6 gap-x-4" @submit.prevent="onSubmit">
@@ -170,7 +172,7 @@
               icon="i-lucide-circle-x"
               aria-label="Clear input"
               @click="formData.count = undefined"
-              class="cursor-pointer text-sm"
+              class="cursor-pointer text-sm absolute end-2.5 -top-4"
             />
           </template>
         </template>
@@ -193,7 +195,7 @@
     & > div[data-slot='wrapper'] {
       & > div[data-slot='labelWrapper'] {
         span {
-          height: 29px;
+          position: relative;
         }
       }
     }
