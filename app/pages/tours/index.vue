@@ -118,7 +118,7 @@
       formData.value.count = count.value
     }
   })
-  const currentPage = ref(1)
+  const currentPage = useRouteQuery('current-page', 1)
   const perPage = useRouteQuery<number>('per-page', 10)
   const totalPages = computed(() => {
     return Math.ceil(filterTours.value.length / perPage.value)
@@ -149,7 +149,7 @@
                 <ToggleView v-model:view-mode="viewMode" />
                 <!--per page -->
               </ClientOnly>
-              <USelect v-model="perPage" :items="[3,5,10, 20, 30, 40, 50]" />
+              <USelect v-model="perPage" :items="[3, 5, 10, 20, 30, 40, 50]" />
             </div>
           </div>
           <div class="">
