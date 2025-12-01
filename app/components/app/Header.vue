@@ -56,7 +56,7 @@
       <ULocaleSelect
         v-model="locale"
         @update:model-value="(value: string) => handleLocaleChange(value as 'en' | 'fa-IR')"
-        :locales="[en, fa_ir]"
+        :locales="[fa_ir, en]"
         class="w-30"
       />
     </template>
