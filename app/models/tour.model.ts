@@ -8,9 +8,9 @@ export interface ITour {
   description: string
   price: number
   originalPrice: number
-  startDate: Date
-  endDate: Date
-  numberOfTravelers: number
+  startDate: string
+  endDate: string
+  count: number
   vehicle: VehicleEnum
   rating: number
   reviews: number
