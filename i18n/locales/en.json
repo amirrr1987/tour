@@ -1,0 +1,18 @@
+{
+  "home": {
+    "title": "Home",
+    "description": "This is a test text"
+  },
+  "tours": {
+    "title": "Tours",
+    "description": "This is a test text"
+  },
+  "about-us": {
+    "title": "About Us",
+    "description": "This is a test text"
+  },
+  "contact-us": {
+    "title": "Contact Us",
+    "description": "This is a test text"
+  }
+}

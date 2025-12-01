@@ -1,0 +1,18 @@
+{
+  "home": {
+    "title": "خانه",
+    "description": "این یک متن تستی است"
+  },
+  "tours": {
+    "title": "تورها",
+    "description": "این یک متن تستی است"
+  },
+  "about-us": {
+    "title": "درباره ما",
+    "description": "این یک متن تستی است"
+  },
+  "contact-us": {
+    "title": "تماس با ما",
+    "description": "این یک متن تستی است"
+  }
+}

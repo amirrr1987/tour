@@ -13,5 +13,12 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/i18n'
-  ]
+  ],
+  i18n: {
+    locales: [
+      { code: 'fa', name: 'فارسی', file: 'fa.json' },
+      { code: 'en', name: 'English', file: 'en.json' }
+    ],
+    defaultLocale: 'fa',
+  }
 })
