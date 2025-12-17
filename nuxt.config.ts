@@ -19,6 +19,6 @@ export default defineNuxtConfig({
       { code: 'fa', name: 'فارسی', file: 'fa.json' },
       { code: 'en', name: 'English', file: 'en.json' }
     ],
-    defaultLocale: 'fa',
+    defaultLocale: 'fa'
   }
 })
