@@ -27,14 +27,18 @@
   ])
   const switchLocalePath = useSwitchLocalePath()
 
-  const locale = ref('fa')
+  const locale = ref('fa-IR')
   const handleLocaleChange = (locale: 'en' | 'fa-IR') => {
     console.log(locale)
     if (locale === 'en') {
       navigateTo(switchLocalePath('en'))
+      window.document.documentElement.lang = 'en'
+      window.document.dir = 'ltr'
     }
     if (locale === 'fa-IR') {
       navigateTo(switchLocalePath('fa'))
+      window.document.documentElement.lang = 'fa'
+      window.document.dir = 'rtl'
     }
   }
 </script>
