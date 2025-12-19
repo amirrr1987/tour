@@ -10,55 +10,56 @@ const form = ref({
 const isLoading = ref(false)
 const toast = useToast()
 
+const { t } = useI18n()
 const schema = {
   name: {
     required: true,
-    message: 'Name is required'
+    message: t('contactUs.form.nameRequired')
   },
   email: {
     required: true,
     type: 'email',
-    message: 'Please enter a valid email address'
+    message: t('contactUs.form.emailRequired')
   },
   phone: {
     required: false
   },
   subject: {
     required: true,
-    message: 'Subject is required'
+    message: t('contactUs.form.subjectRequired')
   },
   message: {
     required: true,
-    message: 'Message is required'
+    message: t('contactUs.form.messageRequired')
   }
 }
 
-const contactInfo = [
+const contactInfo = computed(() => [
   {
     icon: 'i-lucide-map-pin',
-    title: 'Address',
+    title: t('contactUs.info.address'),
     content: '123 Tour Street, Travel City, TC 12345',
     link: '#'
   },
   {
     icon: 'i-lucide-phone',
-    title: 'Phone',
+    title: t('contactUs.info.phone'),
     content: '+989198881400',
     link: 'tel:+989198881400'
   },
   {
     icon: 'i-lucide-mail',
-    title: 'Email',
+    title: t('contactUs.info.email'),
     content: 'info@tourcode.ir',
     link: 'mailto:info@tourcode.ir'
   },
   {
     icon: 'i-lucide-clock',
-    title: 'Business Hours',
+    title: t('contactUs.info.businessHours'),
     content: 'Sat - Wed: 9:00 AM - 6:00 PM',
     link: '#'
   }
-]
+])
 
 const handleSubmit = async () => {
   isLoading.value = true
@@ -68,8 +69,8 @@ const handleSubmit = async () => {
 
   isLoading.value = false
   toast.add({
-    title: 'Message Sent!',
-    description: 'Thank you for contacting us. We will get back to you soon.',
+    title: t('contactUs.toast.messageSent'),
+    description: t('contactUs.toast.messageSentDescription'),
     color: 'success'
   })
 
@@ -89,10 +90,9 @@ const handleSubmit = async () => {
     <UContainer>
       <!-- Hero Section -->
       <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('contactUs.hero.title') }}</h1>
         <p class="text-lg text-muted max-w-2xl mx-auto">
-          Have questions about our tours? We'd love to hear from you. Send us a message and we'll respond as soon as
-          possible.
+          {{ $t('contactUs.hero.description') }}
         </p>
       </div>
 
@@ -102,38 +102,38 @@ const handleSubmit = async () => {
         <div class="md:col-span-8">
           <UCard>
             <template #header>
-              <h2 class="text-2xl font-semibold">Send us a Message</h2>
+              <h2 class="text-2xl font-semibold">{{ $t('contactUs.form.title') }}</h2>
             </template>
 
             <UForm :schema="schema" :state="form" @submit="handleSubmit" class="space-y-6">
               <div class="grid md:grid-cols-2 gap-6">
-                <UFormField label="Full Name" name="name" required>
-                  <UInput v-model="form.name" placeholder="John Doe" icon="i-lucide-user" class="w-full" />
+                <UFormField :label="$t('contactUs.form.fullName')" name="name" required>
+                  <UInput v-model="form.name" :placeholder="$t('contactUs.form.namePlaceholder')" icon="i-lucide-user" class="w-full" />
                 </UFormField>
 
-                <UFormField label="Email Address" name="email" required>
-                  <UInput v-model="form.email" type="email" placeholder="john@example.com" icon="i-lucide-mail" class="w-full" />
+                <UFormField :label="$t('contactUs.form.email')" name="email" required>
+                  <UInput v-model="form.email" type="email" :placeholder="$t('contactUs.form.emailPlaceholder')" icon="i-lucide-mail" class="w-full" />
                 </UFormField>
               </div>
 
               <div class="grid md:grid-cols-2 gap-6">
-                <UFormField label="Phone Number" name="phone">
-                  <UInput v-model="form.phone" type="tel" placeholder="+1 (555) 123-4567" icon="i-lucide-phone" class="w-full" />
+                <UFormField :label="$t('contactUs.form.phone')" name="phone">
+                  <UInput v-model="form.phone" type="tel" :placeholder="$t('contactUs.form.phonePlaceholder')" icon="i-lucide-phone" class="w-full" />
                 </UFormField>
 
-                <UFormField label="Subject" name="subject" required>
-                  <UInput v-model="form.subject" placeholder="Tour inquiry" icon="i-lucide-tag" class="w-full" />
+                <UFormField :label="$t('contactUs.form.subject')" name="subject" required>
+                  <UInput v-model="form.subject" :placeholder="$t('contactUs.form.subjectPlaceholder')" icon="i-lucide-tag" class="w-full" />
                 </UFormField>
               </div>
 
-              <UFormField label="Message" name="message" required>
+              <UFormField :label="$t('contactUs.form.message')" name="message" required>
                 <UTextarea v-model="form.message"
-                  placeholder="Tell us about your tour preferences, questions, or any special requirements..."
+                  :placeholder="$t('contactUs.form.messagePlaceholder')"
                   :rows="6" class="w-full" />
               </UFormField>
 
               <UButton type="submit" size="lg" block :loading="isLoading" icon="i-lucide-send">
-                Send Message
+                {{ $t('contactUs.form.sendMessage') }}
               </UButton>
             </UForm>
           </UCard>
@@ -165,7 +165,7 @@ const handleSubmit = async () => {
             <!-- Social Media -->
             <UCard>
               <template #header>
-                <h3 class="font-semibold">Follow Us</h3>
+                <h3 class="font-semibold">{{ $t('contactUs.info.followUs') }}</h3>
               </template>
               <div class="flex gap-3 justify-center">
                 <UButton color="neutral" variant="outline" icon="i-simple-icons-facebook" aria-label="Facebook"
@@ -184,12 +184,12 @@ const handleSubmit = async () => {
       <div class="mt-12">
         <UCard>
           <template #header>
-            <h2 class="text-2xl font-semibold">Find Us</h2>
+            <h2 class="text-2xl font-semibold">{{ $t('contactUs.map.title') }}</h2>
           </template>
           <div class="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
             <div class="text-center">
               <UIcon name="i-lucide-map" class="w-16 h-16 text-muted mb-4 mx-auto" />
-              <p class="text-muted">Map integration can be added here</p>
+              <p class="text-muted">{{ $t('contactUs.map.placeholder') }}</p>
             </div>
           </div>
         </UCard>

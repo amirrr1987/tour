@@ -7,9 +7,9 @@ const props = defineProps<{
   <UContainer>
     <div class="mb-16">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ $t('aboutUs.why.title') }}</h2>
         <p class="text-lg text-muted max-w-2xl mx-auto">
-          We go above and beyond to ensure your travel experience is nothing short of extraordinary.
+          {{ $t('aboutUs.why.description') }}
         </p>
       </div>
 

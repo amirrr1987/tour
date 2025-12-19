@@ -11,8 +11,8 @@ const props = defineProps<{
       <img :src="props.tour.image" :alt="props.tour.name"
         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
       <div class="absolute top-3 left-3 flex gap-2">
-        <UBadge v-if="props.tour.featured" color="primary">Featured</UBadge>
-        <UBadge v-if="props.tour.originalPrice" color="success">Sale</UBadge>
+        <UBadge v-if="props.tour.featured" color="primary">{{ $t('components.tour.card.featured') }}</UBadge>
+        <UBadge v-if="props.tour.originalPrice" color="success">{{ $t('components.tour.card.sale') }}</UBadge>
       </div>
       <div class="absolute top-3 right-3">
         <UBadge color="neutral" variant="solid" class="bg-black/50">
@@ -47,10 +47,10 @@ const props = defineProps<{
             <span class="text-sm text-muted line-through">${{ props.tour.originalPrice }}</span>
           </div>
           <span v-else class="text-lg font-bold text-primary">${{ props.tour.price }}</span>
-          <span class="text-xs text-muted">/person</span>
+          <span class="text-xs text-muted">{{ $t('components.tour.card.person') }}</span>
         </div>
         <UButton :to="`/tours/${props.tour.id}`" size="sm" icon="i-lucide-arrow-right">
-          View
+          {{ $t('components.tour.card.view') }}
         </UButton>
       </div>
     </div>

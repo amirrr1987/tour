@@ -7,9 +7,9 @@
   <UContainer class="">
     <div class="mb-16">
       <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-2">Why Choose Us</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-2">{{ $t('components.landing.why.title') }}</h2>
         <p class="text-muted">
-          We go above and beyond to ensure your travel experience is extraordinary
+          {{ $t('components.landing.why.description') }}
         </p>
       </div>
 

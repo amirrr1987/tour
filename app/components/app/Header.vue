@@ -15,12 +15,12 @@
       to: '/tours'
     },
     {
-      label: t('about-us.title'),
+      label: t('aboutUs.title'),
       icon: 'i-lucide-info',
       to: '/about-us'
     },
     {
-      label: t('contact-us.title'),
+      label: t('contactUs.title'),
       icon: 'i-lucide-phone',
       to: '/contact-us'
     }
@@ -53,7 +53,7 @@
 
     <template #right>
       <UButton color="primary" variant="soft" to="/tours" icon="i-lucide-calendar-check">
-        <span class="hidden md:block">Book Now</span>
+        <span class="hidden md:block">{{ $t('components.header.bookNow') }}</span>
       </UButton>
       <UColorModeButton class="cursor-pointer" />
 

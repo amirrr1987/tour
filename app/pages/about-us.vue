@@ -1,23 +1,24 @@
 <script setup lang="ts">
+  const { t } = useI18n()
   const stats = [
     {
       number: '10,000+',
-      label: 'Happy Travelers',
+      label: t('stats.happyTravelers'),
       icon: 'i-lucide-users'
     },
     {
       number: '500+',
-      label: 'Tours Completed',
+      label: t('stats.toursCompleted'),
       icon: 'i-lucide-map'
     },
     {
       number: '50+',
-      label: 'Destinations',
+      label: t('stats.destinations'),
       icon: 'i-lucide-globe'
     },
     {
       number: '15+',
-      label: 'Years Experience',
+      label: t('stats.yearsExperience'),
       icon: 'i-lucide-award'
     }
   ]
@@ -25,64 +26,56 @@
   const features = [
     {
       icon: 'i-lucide-shield-check',
-      title: 'Safe & Secure',
-      description:
-        'Your safety is our top priority. All our tours are carefully planned and executed with the highest safety standards.'
+      title: t('features.safeSecure'),
+      description: t('features.safeSecureDesc')
     },
     {
       icon: 'i-lucide-heart',
-      title: 'Passionate Guides',
-      description:
-        'Our experienced and passionate tour guides are dedicated to making your journey unforgettable.'
+      title: t('features.passionateGuides'),
+      description: t('features.passionateGuidesDesc')
     },
     {
       icon: 'i-lucide-sparkles',
-      title: 'Unique Experiences',
-      description:
-        'We curate unique and authentic experiences that go beyond the typical tourist attractions.'
+      title: t('features.uniqueExperiences'),
+      description: t('features.uniqueExperiencesDesc')
     },
     {
       icon: 'i-lucide-dollar-sign',
-      title: 'Best Value',
-      description:
-        'We offer competitive prices without compromising on quality, ensuring you get the best value for your money.'
+      title: t('features.bestValue'),
+      description: t('features.bestValueDesc')
     },
     {
       icon: 'i-lucide-headphones',
-      title: '24/7 Support',
-      description:
-        'Our customer support team is available around the clock to assist you with any questions or concerns.'
+      title: t('features.support24'),
+      description: t('features.support24Desc')
     },
     {
       icon: 'i-lucide-leaf',
-      title: 'Eco-Friendly',
-      description:
-        'We are committed to sustainable tourism and environmental conservation in all our operations.'
+      title: t('features.ecoFriendly'),
+      description: t('features.ecoFriendlyDesc')
     }
   ]
 
   const values = [
     {
       icon: 'i-lucide-target',
-      title: 'Excellence',
-      description:
-        'We strive for excellence in every aspect of our service, from planning to execution.'
+      title: t('values.excellence'),
+      description: t('values.excellenceDesc')
     },
     {
       icon: 'i-lucide-handshake',
-      title: 'Integrity',
-      description: 'We conduct our business with honesty, transparency, and ethical practices.'
+      title: t('values.integrity'),
+      description: t('values.integrityDesc')
     },
     {
       icon: 'i-lucide-smile',
-      title: 'Customer First',
-      description: 'Your satisfaction and happiness are at the heart of everything we do.'
+      title: t('values.customerFirst'),
+      description: t('values.customerFirstDesc')
     },
     {
       icon: 'i-lucide-lightbulb',
-      title: 'Innovation',
-      description:
-        'We continuously innovate to provide better experiences and stay ahead of the curve.'
+      title: t('values.innovation'),
+      description: t('values.innovationDesc')
     }
   ]
 </script>

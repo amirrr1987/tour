@@ -7,8 +7,8 @@
   <UContainer class="">
     <div class="mb-16">
       <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-2">Popular Destinations</h2>
-        <p class="text-muted">Explore our most loved travel destinations</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-2">{{ $t('components.landing.destinations.title') }}</h2>
+        <p class="text-muted">{{ $t('components.landing.destinations.description') }}</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

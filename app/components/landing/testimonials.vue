@@ -7,8 +7,8 @@
   <UContainer class="py-12 md:py-16">
     <div class="mb-16">
       <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-2">What Our Travelers Say</h2>
-        <p class="text-muted">Real experiences from real travelers</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-2">{{ $t('components.landing.testimonials.title') }}</h2>
+        <p class="text-muted">{{ $t('components.landing.testimonials.description') }}</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">

@@ -1,21 +1,22 @@
 <script setup lang="ts">
   import type { NavigationMenuItem } from '@nuxt/ui'
 
+  const { t } = useI18n()
   const quickLinks: NavigationMenuItem[] = [
     {
-      label: 'Home',
+      label: t('home.title'),
       to: '/'
     },
     {
-      label: 'About Us',
+      label: t('aboutUs.title'),
       to: '/about-us'
     },
     {
-      label: 'Tours',
+      label: t('tours.title'),
       to: '/tours'
     },
     {
-      label: 'Contact Us',
+      label: t('contactUs.title'),
       to: '/contact-us'
     }
   ]
@@ -61,12 +62,12 @@
         <div>
           <Logo class="h-6 w-auto mb-3" />
           <p class="text-sm text-muted max-w-xs">
-            Your trusted partner for unforgettable travel experiences. Explore the world with us.
+            {{ $t('components.footer.description') }}
           </p>
         </div>
         <div class="space-y-4">
           <div>
-            <h3 class="font-semibold text-sm mb-3">Quick Links</h3>
+            <h3 class="font-semibold text-sm mb-3">{{ $t('components.footer.quickLinks') }}</h3>
             <UNavigationMenu
               :items="quickLinks"
               variant="link"
@@ -100,7 +101,7 @@
     <template #right>
       <div class="space-y-6">
         <div>
-          <h3 class="font-semibold text-sm mb-3">Follow Us</h3>
+          <h3 class="font-semibold text-sm mb-3">{{ $t('components.footer.followUs') }}</h3>
           <div class="flex gap-2">
             <UButton
               v-for="social in socialLinks"
@@ -115,10 +116,10 @@
           </div>
         </div>
         <div class="text-sm text-muted">
-          <h3 class="font-semibold text-sm mb-3 text-foreground">Business Hours</h3>
+          <h3 class="font-semibold text-sm mb-3 text-foreground">{{ $t('components.footer.businessHours') }}</h3>
           <div class="space-y-1">
-            <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
-            <p>Sat - Sun: 10:00 AM - 4:00 PM</p>
+            <p>{{ $t('components.footer.businessHoursWeekday') }}</p>
+            <p>{{ $t('components.footer.businessHoursWeekend') }}</p>
           </div>
         </div>
       </div>
@@ -128,11 +129,11 @@
       <UContainer class="border-t border-gray-200 pt-2">
         <div class="w-full flex flex-col sm:flex-row justify-between items-center gap-4">
           <p class="text-muted text-sm">
-            Copyright © {{ new Date().getFullYear() }} Tour Site. All rights reserved.
+            {{ $t('components.footer.copyright', { year: new Date().getFullYear() }) }}
           </p>
           <div class="flex gap-4 text-sm text-muted">
-            <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" class="hover:text-primary transition-colors">{{ $t('components.footer.privacyPolicy') }}</a>
+            <a href="#" class="hover:text-primary transition-colors">{{ $t('components.footer.termsOfService') }}</a>
           </div>
         </div>
       </UContainer>

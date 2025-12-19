@@ -20,11 +20,12 @@ const tour = computed(() => {
   return tours.value.find(t => t.id === tourId.value)
 })
 
+const { t } = useI18n()
 // Handle 404 if tour not found
 if (!tour.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Tour not found'
+    statusMessage: t('components.tour.detail.tourNotFound')
   })
 }
 
@@ -57,8 +58,8 @@ const relatedTours = computed(() => {
 const handleBooking = async () => {
   if (!bookingForm.value.startDate) {
     toast.add({
-      title: 'Date Required',
-      description: 'Please select a start date for your tour.',
+      title: t('components.tour.detail.dateRequired'),
+      description: t('components.tour.detail.dateRequiredDescription'),
       color: 'warning'
     })
     return
@@ -69,8 +70,8 @@ const handleBooking = async () => {
   isBooking.value = false
 
   toast.add({
-    title: 'Booking Successful!',
-    description: `Your booking for ${tour.value?.name} has been confirmed. We'll send you a confirmation email shortly.`,
+    title: t('components.tour.detail.bookingSuccessful'),
+    description: t('components.tour.detail.bookingSuccessfulDescription', { tourName: tour.value?.name }),
     color: 'success'
   })
 }
@@ -93,9 +94,9 @@ useHead({
       <!-- Breadcrumb -->
       <div class="mb-6">
         <nav class="flex items-center gap-2 text-sm text-muted">
-          <NuxtLink to="/" class="hover:text-primary transition-colors">Home</NuxtLink>
+          <NuxtLink to="/" class="hover:text-primary transition-colors">{{ $t('components.tour.detail.breadcrumbHome') }}</NuxtLink>
           <UIcon name="i-lucide-chevron-right" class="w-4 h-4" />
-          <NuxtLink to="/tours" class="hover:text-primary transition-colors">Tours</NuxtLink>
+          <NuxtLink to="/tours" class="hover:text-primary transition-colors">{{ $t('components.tour.detail.breadcrumbTours') }}</NuxtLink>
           <UIcon name="i-lucide-chevron-right" class="w-4 h-4" />
           <span class="text-foreground">{{ tour.name }}</span>
         </nav>
@@ -108,8 +109,8 @@ useHead({
           <div class="relative h-96 md:h-[500px] rounded-lg overflow-hidden">
             <img :src="tour.image" :alt="tour.name" class="w-full h-full object-cover" />
             <div class="absolute top-4 left-4 flex gap-2">
-              <UBadge v-if="tour.featured" color="primary" size="lg">Featured</UBadge>
-              <UBadge v-if="tour.originalPrice" color="success" size="lg">Sale</UBadge>
+              <UBadge v-if="tour.featured" color="primary" size="lg">{{ $t('components.tour.detail.featured') }}</UBadge>
+              <UBadge v-if="tour.originalPrice" color="success" size="lg">{{ $t('components.tour.detail.sale') }}</UBadge>
             </div>
             <div class="absolute top-4 right-4">
               <UBadge color="neutral" variant="solid" size="lg" class="bg-black/50">
@@ -135,7 +136,7 @@ useHead({
                   </div>
                   <div class="flex items-center gap-1">
                     <UIcon name="i-lucide-star" class="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                    {{ tour.rating }} ({{ tour.reviews }} reviews)
+                    {{ tour.rating }} ({{ tour.reviews }} {{ $t('components.tour.detail.reviews') }})
                   </div>
                 </div>
               </div>
@@ -146,7 +147,7 @@ useHead({
           <!-- Description -->
           <UCard>
             <template #header>
-              <h2 class="text-2xl font-semibold">About This Tour</h2>
+              <h2 class="text-2xl font-semibold">{{ $t('components.tour.detail.aboutTour') }}</h2>
             </template>
             <p class="text-muted leading-relaxed">{{ tour.description }}</p>
           </UCard>
@@ -154,35 +155,35 @@ useHead({
           <!-- Tour Highlights -->
           <UCard>
             <template #header>
-              <h2 class="text-2xl font-semibold">Tour Highlights</h2>
+              <h2 class="text-2xl font-semibold">{{ $t('components.tour.detail.highlights') }}</h2>
             </template>
             <div class="grid md:grid-cols-2 gap-4">
               <div class="flex items-start gap-3">
                 <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <h3 class="font-semibold mb-1">Expert Guides</h3>
-                  <p class="text-sm text-muted">Professional and knowledgeable tour guides</p>
+                  <h3 class="font-semibold mb-1">{{ $t('components.tour.detail.expertGuides') }}</h3>
+                  <p class="text-sm text-muted">{{ $t('components.tour.detail.expertGuidesDesc') }}</p>
                 </div>
               </div>
               <div class="flex items-start gap-3">
                 <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <h3 class="font-semibold mb-1">Small Groups</h3>
-                  <p class="text-sm text-muted">Intimate group sizes for better experience</p>
+                  <h3 class="font-semibold mb-1">{{ $t('components.tour.detail.smallGroups') }}</h3>
+                  <p class="text-sm text-muted">{{ $t('components.tour.detail.smallGroupsDesc') }}</p>
                 </div>
               </div>
               <div class="flex items-start gap-3">
                 <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <h3 class="font-semibold mb-1">Flexible Cancellation</h3>
-                  <p class="text-sm text-muted">Free cancellation up to 24 hours before</p>
+                  <h3 class="font-semibold mb-1">{{ $t('components.tour.detail.flexibleCancellation') }}</h3>
+                  <p class="text-sm text-muted">{{ $t('components.tour.detail.flexibleCancellationDesc') }}</p>
                 </div>
               </div>
               <div class="flex items-start gap-3">
                 <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <h3 class="font-semibold mb-1">Best Price Guarantee</h3>
-                  <p class="text-sm text-muted">We match any lower price you find</p>
+                  <h3 class="font-semibold mb-1">{{ $t('components.tour.detail.bestPriceGuarantee') }}</h3>
+                  <p class="text-sm text-muted">{{ $t('components.tour.detail.bestPriceGuaranteeDesc') }}</p>
                 </div>
               </div>
             </div>
@@ -192,11 +193,11 @@ useHead({
           <UCard>
             <template #header>
               <div class="flex items-center justify-between">
-                <h2 class="text-2xl font-semibold">Reviews</h2>
+                <h2 class="text-2xl font-semibold">{{ $t('components.tour.detail.reviewsTitle') }}</h2>
                 <div class="flex items-center gap-2">
                   <UIcon name="i-lucide-star" class="w-5 h-5 text-yellow-500 fill-yellow-500" />
                   <span class="text-lg font-semibold">{{ tour.rating }}</span>
-                  <span class="text-muted">({{ tour.reviews }} reviews)</span>
+                  <span class="text-muted">({{ tour.reviews }} {{ $t('components.tour.detail.reviews') }})</span>
                 </div>
               </div>
             </template>
@@ -243,7 +244,7 @@ useHead({
 
           <!-- Related Tours -->
           <div v-if="relatedTours.length > 0">
-            <h2 class="text-2xl font-semibold mb-6">Related Tours</h2>
+            <h2 class="text-2xl font-semibold mb-6">{{ $t('components.tour.detail.relatedTours') }}</h2>
             <div class="grid md:grid-cols-3 gap-6">
               <UCard v-for="relatedTour in relatedTours" :key="relatedTour.id"
                 class="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
@@ -270,7 +271,7 @@ useHead({
           <div class="sticky top-6">
             <UCard>
               <template #header>
-                <h3 class="text-xl font-semibold">Book This Tour</h3>
+                <h3 class="text-xl font-semibold">{{ $t('components.tour.detail.bookTour') }}</h3>
               </template>
 
               <!-- Price -->
@@ -280,18 +281,18 @@ useHead({
                   <span class="text-lg text-muted line-through">${{ tour.originalPrice }}</span>
                 </div>
                 <span v-else class="text-3xl font-bold text-primary">${{ tour.price }}</span>
-                <span class="text-muted">/person</span>
+                <span class="text-muted">{{ $t('components.tour.detail.person') }}</span>
               </div>
 
               <!-- Booking Form -->
               <ClientOnly>
                 <form @submit.prevent="handleBooking" class="space-y-4">
-                  <UFormField label="Number of Travelers">
+                  <UFormField :label="$t('components.tour.detail.numberOfTravelers')">
                     <UInputNumber v-model="bookingForm.travelers" type="number" class="w-full" :min="1" :max="20"
                       :step="1" />
                   </UFormField>
 
-                  <UFormField label="Start Date" required>
+                  <UFormField :label="$t('components.tour.detail.startDate')" required>
                     <UInputDate ref="startInputDateRef" v-model="startModelValue" class="w-full">
                       <template #trailing>
                         <UPopover :reference="startInputDateRef?.inputsRef[3]?.$el">
@@ -305,25 +306,25 @@ useHead({
                     </UInputDate>
                   </UFormField>
 
-                  <UFormField label="Special Requests">
-                    <UTextarea v-model="bookingForm.specialRequests" placeholder="Any special requirements?" :rows="3"
+                  <UFormField :label="$t('components.tour.detail.specialRequests')">
+                    <UTextarea v-model="bookingForm.specialRequests" :placeholder="$t('components.tour.detail.specialRequestsPlaceholder')" :rows="3"
                       class="w-full" />
                   </UFormField>
 
                   <!-- Total Price -->
                   <div class="pt-4 border-t">
                     <div class="flex items-center justify-between mb-4">
-                      <span class="font-semibold">Total Price</span>
+                      <span class="font-semibold">{{ $t('components.tour.detail.totalPrice') }}</span>
                       <span class="text-2xl font-bold text-primary">${{ totalPrice }}</span>
                     </div>
                   </div>
 
                   <UButton type="submit" size="lg" block :loading="isBooking" icon="i-lucide-calendar-check">
-                    Book Now
+                    {{ $t('components.tour.detail.bookNow') }}
                   </UButton>
 
                   <UButton variant="outline" size="lg" block icon="i-lucide-heart">
-                    Save for Later
+                    {{ $t('components.tour.detail.saveForLater') }}
                   </UButton>
                 </form>
                 <template #fallback>
@@ -338,7 +339,7 @@ useHead({
 
               <!-- Contact Info -->
               <div class="mt-6 pt-6 border-t">
-                <p class="text-sm text-muted mb-3">Need help? Contact us:</p>
+                <p class="text-sm text-muted mb-3">{{ $t('components.tour.detail.needHelp') }}</p>
                 <div class="space-y-2 text-sm">
                   <a href="tel:+15551234567"
                     class="flex items-center gap-2 text-muted hover:text-primary transition-colors">

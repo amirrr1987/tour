@@ -8,10 +8,10 @@
     <div class="mb-16">
       <div class="flex items-center justify-between mb-8">
         <div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-2">Featured Tours</h2>
-          <p class="text-muted">Handpicked experiences for unforgettable memories</p>
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">{{ $t('components.landing.featured.title') }}</h2>
+          <p class="text-muted">{{ $t('components.landing.featured.description') }}</p>
         </div>
-        <UButton to="/tours" variant="outline" icon="i-lucide-arrow-right"> View All </UButton>
+        <UButton to="/tours" variant="outline" icon="i-lucide-arrow-right"> {{ $t('components.landing.featured.viewAll') }} </UButton>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -33,7 +33,7 @@
             </div>
             <p class="text-sm text-muted mb-4 line-clamp-2">{{ tour.description }}</p>
             <UButton :to="`/tours/${tour.id}`" variant="outline" block size="sm">
-              Learn More
+              {{ $t('components.landing.featured.learnMore') }}
             </UButton>
           </div>
         </UCard>

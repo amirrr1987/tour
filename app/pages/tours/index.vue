@@ -128,8 +128,8 @@
   <UPage class="py-6 md:py-8">
     <UContainer>
       <div class="mb-8">
-        <h1 class="text-3xl md:text-4xl font-bold mb-2">Explore Our Tours</h1>
-        <p class="text-muted">Discover amazing destinations and create unforgettable memories</p>
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">{{ $t('tours.explore') }}</h1>
+        <p class="text-muted">{{ $t('tours.discover') }}</p>
       </div>
       <div class="grid md:grid-cols-12 gap-6">
         <div class="md:col-span-5 lg:col-span-4 xl:col-span-3">

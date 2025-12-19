@@ -3,6 +3,7 @@
   import type { ICategory } from '~/models/category.model'
   import type { IFilter } from '~/models/filter.model'
   import type { ILocation } from '~/models/location.model'
+  const { t } = useI18n()
   const props = defineProps<{
     categories: ICategory[]
     locations: ILocation[]
@@ -12,6 +13,13 @@
     (e: 'submit', formData: IFilter): void
     (e: 'reset'): void
   }>()
+
+  const vehicleOptions = [
+    { value: VehicleEnum.Car, label: 'Car' },
+    { value: VehicleEnum.Bus, label: 'Bus' },
+    { value: VehicleEnum.Train, label: 'Train' },
+    { value: VehicleEnum.Flight, label: 'Flight' }
+  ]
 
   const onSubmit = () => {
     emit('submit', formData.value)
@@ -24,18 +32,18 @@
   <UCard class="">
     <template #header>
       <div class="flex items-center justify-between">
-        <h3 class="font-semibold">Filters</h3>
+        <h3 class="font-semibold">{{ $t('components.tour.filter.title') }}</h3>
         <UButton class="text-xs cursor-pointer" variant="ghost" size="sm" @click="onReset">
-          Clear All
+          {{ $t('components.tour.filter.clearAll') }}
         </UButton>
       </div>
     </template>
     <form class="grid grid-cols-2 gap-y-6 gap-x-4" @submit.prevent="onSubmit">
-      <UFormField label="Search" class="col-span-2">
+      <UFormField :label="$t('components.tour.filter.search')" class="col-span-2">
         <UInput
           v-model="formData.search"
           type="text"
-          placeholder="Search tours"
+          :placeholder="$t('components.tour.filter.searchPlaceholder')"
           icon="i-lucide-search"
           class="w-full"
           clearable
@@ -53,14 +61,14 @@
           </template>
         </UInput>
       </UFormField>
-      <UFormField label="Category" class="col-span-1 md:col-span-2">
+      <UFormField :label="$t('components.tour.filter.category')" class="col-span-1 md:col-span-2">
         <USelectMenu
           v-model="formData.category"
           :items="props.categories"
           value-key="id"
           label-key="name"
           searchable
-          placeholder="Select category"
+          :placeholder="$t('components.tour.filter.selectCategory')"
           icon="i-lucide-tag"
           class="w-full"
         >
@@ -76,14 +84,14 @@
             /> </template
         ></USelectMenu>
       </UFormField>
-      <UFormField label="Location" class="col-span-1 md:col-span-2">
+      <UFormField :label="$t('components.tour.filter.location')" class="col-span-1 md:col-span-2">
         <USelectMenu
           v-model="formData.location"
           :items="props.locations"
           value-key="id"
           label-key="name"
           searchable
-          placeholder="Select location"
+          :placeholder="$t('components.tour.filter.selectLocation')"
           class="w-full"
           icon="i-lucide-map"
         >
@@ -100,7 +108,7 @@
         ></USelectMenu>
       </UFormField>
       <UFormField class="col-span-2">
-        <template #label>Price ($)</template>
+        <template #label>{{ $t('components.tour.filter.price') }}</template>
         <template #hint> {{ formData.price[0] }} - {{ formData.price[1] }} </template>
         <USlider
           v-model="formData.price"
@@ -112,38 +120,33 @@
         />
       </UFormField>
 
-      <UFormField label="Start Date" class="col-span-1 md:col-span-2">
+      <UFormField :label="$t('components.tour.filter.startDate')" class="col-span-1 md:col-span-2">
         <UInput
           v-model="formData.startDate"
           type="date"
-          placeholder="Start date"
+          :placeholder="$t('components.tour.filter.startDate')"
           icon="i-lucide-calendar"
           class="w-full"
           :max="formData.endDate"
         />
       </UFormField>
-      <UFormField label="End Date" class="col-span-1 md:col-span-2">
+      <UFormField :label="$t('components.tour.filter.endDate')" class="col-span-1 md:col-span-2">
         <UInput
           v-model="formData.endDate"
           type="date"
-          placeholder="End date"
+          :placeholder="$t('components.tour.filter.endDate')"
           icon="i-lucide-calendar"
           class="w-full"
           :min="formData.startDate"
         />
       </UFormField>
-      <UFormField label="Vehicle" class="col-span-1 md:col-span-2">
+      <UFormField :label="$t('components.tour.filter.vehicle')" class="col-span-1 md:col-span-2">
         <USelectMenu
           v-model="formData.vehicle as VehicleEnum"
-          :items="[
-            { value: VehicleEnum.Car, label: 'Car' },
-            { value: VehicleEnum.Bus, label: 'Bus' },
-            { value: VehicleEnum.Train, label: 'Train' },
-            { value: VehicleEnum.Flight, label: 'Flight' }
-          ]"
+          :items="vehicleOptions"
           value-key="value"
           label-key="label"
-          placeholder="Select vehicle"
+          :placeholder="$t('components.tour.filter.selectVehicle')"
           class="w-full"
           icon="i-lucide-car"
           searchable
@@ -162,7 +165,7 @@
         </USelectMenu>
       </UFormField>
 
-      <UFormField label="Count" class="col-span-1 md:col-span-2 count-field">
+      <UFormField :label="$t('components.tour.filter.count')" class="col-span-1 md:col-span-2 count-field">
         <template #hint>
           <template v-if="formData.count !== undefined">
             <UButton
@@ -178,7 +181,7 @@
         </template>
         <UInputNumber
           v-model="formData.count"
-          placeholder="Count"
+          :placeholder="$t('components.tour.filter.count')"
           icon="i-lucide-users"
           class="w-full"
           :min="1"
@@ -186,7 +189,7 @@
         />
       </UFormField>
       <USeparator class="col-span-2" />
-      <UButton type="submit" block class="col-span-2"> Apply Filters </UButton>
+      <UButton type="submit" block class="col-span-2"> {{ $t('components.tour.filter.applyFilters') }} </UButton>
     </form>
   </UCard>
 </template>

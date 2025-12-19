@@ -66,25 +66,26 @@
     }
   ]
 
+  const { t } = useI18n()
   const stats = [
     {
       number: '10,000+',
-      label: 'Happy Travelers',
+      label: t('stats.happyTravelers'),
       icon: 'i-lucide-users'
     },
     {
       number: '500+',
-      label: 'Tours Completed',
+      label: t('stats.toursCompleted'),
       icon: 'i-lucide-map'
     },
     {
       number: '50+',
-      label: 'Destinations',
+      label: t('stats.destinations'),
       icon: 'i-lucide-globe'
     },
     {
       number: '15+',
-      label: 'Years Experience',
+      label: t('stats.yearsExperience'),
       icon: 'i-lucide-award'
     }
   ]
@@ -92,23 +93,23 @@
   const features = [
     {
       icon: 'i-lucide-shield-check',
-      title: 'Safe & Secure',
-      description: 'Your safety is our top priority'
+      title: t('features.safeSecure'),
+      description: t('features.safeSecureDesc')
     },
     {
       icon: 'i-lucide-heart',
-      title: 'Passionate Guides',
-      description: 'Experienced and dedicated tour guides'
+      title: t('features.passionateGuides'),
+      description: t('features.passionateGuidesDesc')
     },
     {
       icon: 'i-lucide-sparkles',
-      title: 'Unique Experiences',
-      description: 'Authentic experiences beyond the ordinary'
+      title: t('features.uniqueExperiences'),
+      description: t('features.uniqueExperiencesDesc')
     },
     {
       icon: 'i-lucide-dollar-sign',
-      title: 'Best Value',
-      description: 'Competitive prices, exceptional quality'
+      title: t('features.bestValue'),
+      description: t('features.bestValueDesc')
     }
   ]
 
@@ -140,14 +141,13 @@
 <template>
   <UPage>
     <LandingHero />
-  
-      <LandingStatistics :stats="stats" />
-      <LandingFeatured :featured-tours="featuredTours" />
-      <LandingPopularDestinations :destinations="destinations" />
-      <LandingWhy :features="features" />
-      <LandingTestimonials :testimonials="testimonials" />
-      <LandingNewsLetter />
-      <LandingFinalCTA />
 
+    <LandingStatistics :stats="stats" />
+    <LandingFeatured :featured-tours="featuredTours" />
+    <LandingPopularDestinations :destinations="destinations" />
+    <LandingWhy :features="features" />
+    <LandingTestimonials :testimonials="testimonials" />
+    <LandingNewsLetter />
+    <LandingFinalCTA />
   </UPage>
 </template>

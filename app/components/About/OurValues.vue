@@ -7,10 +7,9 @@ const props = defineProps<{
   <UContainer>
     <div class="mb-16">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Values</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ $t('aboutUs.values.title') }}</h2>
         <p class="text-lg text-muted max-w-2xl mx-auto">
-          These core values guide everything we do and shape the experiences we create for our
-          travelers.
+          {{ $t('aboutUs.values.description') }}
         </p>
       </div>
 

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-const props = defineProps<{
-  total: number;
-  count: number;
-}>();
+  const props = defineProps<{
+    total: number
+    count: number
+  }>()
 </script>
 <template>
   <p class="text-sm text-muted">
-    Showing
+    {{ $t('components.tour.totalCount.showing') }}
     {{ props.count }}
-    of
+    {{ $t('components.tour.totalCount.of') }}
     {{ props.total }}
-    tours
+    {{ $t('components.tour.totalCount.tours') }}
   </p>
 </template>
