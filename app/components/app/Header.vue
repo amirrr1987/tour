@@ -41,6 +41,14 @@
       window.document.dir = 'rtl'
     }
   }
+  onMounted(() => {
+    if (window.document.documentElement.lang === 'en') {
+      locale.value = 'en'
+    }
+    if (window.document.documentElement.lang === 'fa') {
+      locale.value = 'fa-IR'
+    }
+  })
 </script>
 <template>
   <UHeader>
