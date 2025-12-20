@@ -28,14 +28,13 @@
   const switchLocalePath = useSwitchLocalePath()
 
   const locale = ref('fa-IR')
-  const handleLocaleChange = (locale: 'en' | 'fa-IR') => {
-    console.log(locale)
-    if (locale === 'en') {
+  const handleLocaleChange = (loc: 'en' | 'fa-IR') => {
+    if (loc === 'en') {
       navigateTo(switchLocalePath('en'))
       window.document.documentElement.lang = 'en'
       window.document.dir = 'ltr'
     }
-    if (locale === 'fa-IR') {
+    if (loc === 'fa-IR') {
       navigateTo(switchLocalePath('fa'))
       window.document.documentElement.lang = 'fa'
       window.document.dir = 'rtl'
